@@ -1,1 +1,4 @@
-# gen-ai-property-chatbot
+## Property Agent Chatbot
+run model.py
+
+(currently only using one example tenancy agreement, adding more)
