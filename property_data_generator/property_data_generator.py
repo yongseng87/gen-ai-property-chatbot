@@ -41,14 +41,20 @@ def map_flat_type_to_rental_type(flat_type):
 # Create rental_type column based on flat_type
 df_cleaned['rental_type']  = df_cleaned['flat_type'].apply(map_flat_type_to_rental_type)
 
-# Generate dummy data for nearby amenities
-df_cleaned['dist_to_MRT'] = np.random.randint(100, 2001, size=len(df_cleaned))
-df_cleaned['dist_to_bus'] = np.random.randint(100, 401, size=len(df_cleaned))
-df_cleaned['dist_to_school'] = np.random.randint(100, 3001, size=len(df_cleaned))
-df_cleaned['near_supermarket'] = np.random.choice(['TRUE', 'FALSE'], size=len(df_cleaned))
-df_cleaned['near_coffeeshop'] = np.random.choice(['TRUE', 'FALSE'], size=len(df_cleaned))
-df_cleaned['near_hawkercentre'] = np.random.choice(['TRUE', 'FALSE'], size=len(df_cleaned))
-df_cleaned['near_park'] = np.random.choice(['TRUE', 'FALSE'], size=len(df_cleaned))
+# Overwrite floor area with smaller number for 1 and 2 bedroom rental types
+mask_1br = df_cleaned['rental_type'] == '1 BEDROOM'
+mask_2br = df_cleaned['rental_type'] == '2 BEDROOM'
+df_cleaned.loc[mask_1br, 'floor_area_sqm'] = np.random.randint(10, 13, size=mask_1br.sum())
+df_cleaned.loc[mask_2br, 'floor_area_sqm'] = np.random.randint(20, 24, size=mask_2br.sum())
+
+# Generate dummy data for nearby amenities (columns commented out as not needed)
+# df_cleaned['dist_to_MRT'] = np.random.randint(100, 2001, size=len(df_cleaned))
+# df_cleaned['dist_to_bus'] = np.random.randint(100, 401, size=len(df_cleaned))
+# df_cleaned['dist_to_school'] = np.random.randint(100, 3001, size=len(df_cleaned))
+# df_cleaned['near_supermarket'] = np.random.choice(['TRUE', 'FALSE'], size=len(df_cleaned))
+# df_cleaned['near_coffeeshop'] = np.random.choice(['TRUE', 'FALSE'], size=len(df_cleaned))
+# df_cleaned['near_hawkercentre'] = np.random.choice(['TRUE', 'FALSE'], size=len(df_cleaned))
+# df_cleaned['near_park'] = np.random.choice(['TRUE', 'FALSE'], size=len(df_cleaned))
 
 # Generate dummy data for rental price based on rental_type
 ranges = {
@@ -102,9 +108,10 @@ for idx, name in zip(rand_indices, combinations_2):
     df_cleaned.loc[idx, 'rental_status'] = 'Rented'
     df_cleaned.loc[idx, 'tenant_name'] = name
 
-# Assign 'Avail' to all other rows with null values for tenant name
+# Assign 'Avail' to all other rows with null values for tenant name and rental date
 df_cleaned.loc[~df_cleaned.index.isin(rand_indices), 'rental_status'] = 'Avail'
 df_cleaned.loc[~df_cleaned.index.isin(rand_indices), 'tenant_name'] = None
+df_cleaned.loc[~df_cleaned.index.isin(rand_indices), 'rental_date'] = None
             
 # Save the cleaned dataframe to a new csv file
 df_cleaned.to_csv('property_database.csv', index=False)
