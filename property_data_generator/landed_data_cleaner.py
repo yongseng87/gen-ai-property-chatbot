@@ -75,6 +75,7 @@ new_df['storey'] = 'Landed'
 new_df['floor_area_sqm'] = df_cleaned['Area (SQM)']
 new_df['flat_model'] = df_cleaned['Property Type']
 new_df['lease_commence_date'] = df_cleaned['Tenure'].apply(extract_lease_commence_date)
+new_df['rental_date'] = pd.to_datetime(df_cleaned['Sale Date'], format='%b-%y').dt.strftime('%Y-%m-%d')
 new_df['property_type'] = 'Landed'
 
 print(new_df.head())
