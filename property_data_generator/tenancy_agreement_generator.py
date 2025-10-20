@@ -3,19 +3,22 @@ from datetime import datetime, timedelta
 from fpdf import FPDF
 from fpdf.enums import XPos, YPos  # Import the new enums
 
-def generate_tenancy_agreement(property_type, rental_type, ref_no, landlord_name, tenant_name, rental_address, monthly_rent):
+def generate_tenancy_agreement(property_type, rental_type, ref_no, landlord_name, tenant_name, rental_address, monthly_rent, rental_date):
 
-    # Create a random date for use as start_date and rental_start_date
-    first_date = datetime(2025, 1, 1)
-    last_date = datetime(2025, 6, 30)
-    random_days = random.randint(0, (last_date - first_date).days)
-    random_date1 = first_date + timedelta(days=random_days)
-    random_date2 = random_date1 + timedelta(days=15)
+    # Create a random date for use as start_date and rental_start_date (depreciated as rental_date is now passed in)
+    # first_date = datetime(2025, 1, 1)
+    # last_date = datetime(2025, 6, 30)
+    # random_days = random.randint(0, (last_date - first_date).days)
+    # random_date1 = first_date + timedelta(days=random_days)
+    # random_date2 = random_date1 + timedelta(days=15)
 
     # Set up inputs for the variables
     property_type = property_type
     full_ref_no = "SPPL/2023/" + str(ref_no).zfill(4)
-    start_date = random_date1.strftime("%d %B %Y")
+    rental_date_obj = datetime.strptime(rental_date, "%d/%m/%Y").date() # Convert string to date object
+    rental_start_date = rental_date_obj.strftime("%d %B %Y") # Format date as "DD Month YYYY"
+    start_date_obj = rental_date_obj - timedelta(days=15) # Start date is 15 days before rental date
+    start_date = start_date_obj.strftime("%d %B %Y") # Format date as "DD Month YYYY"
     landlord_name = landlord_name
     landlord_id = "S1234567A"
     landlord_address = "123, Example Street, #01-01, Singapore 123456"
@@ -25,7 +28,6 @@ def generate_tenancy_agreement(property_type, rental_type, ref_no, landlord_name
     tenant_email = tenant_name.replace(" ", "_") + "@gmail.com"
     rental_address = rental_address
     rental_period = "24"
-    rental_start_date = random_date2.strftime("%d %B %Y")
     monthly_rent = monthly_rent
     bank_account = "123-456789-001"
     security_deposit = str(2*int(monthly_rent))
@@ -97,9 +99,16 @@ def generate_tenancy_agreement(property_type, rental_type, ref_no, landlord_name
     section2ah = "(a) RENT"
     section2a = "To pay the Rent at the times and in the manner aforesaid without any deduction whatsoever."
     section2bh = "(b) SECURITY DEPOSIT"
-    section2b = f"To pay the Landlord a sum of S$ **{security_deposit}** (which is equivalent to 2 month(s) rental) upon signing this Tenancy Agreement to be held by the Landlord as a security deposit for the due performance and observance of the terms and conditions herein. If the Tenant fails to perform and/or comply with any of the conditions of this Tenancy Agreement, the Landlord shall be entitled to deduct such amount from the security deposit to remedy the breach and the balance thereof after deduction shall be refunded without interest to the Tenant within fourteen (14) days from the expiry or termination of the Agreement. The security deposit shall not be utilised by the Tenant to set off any Rent payable under this Agreement."
-    section2ch = "(c) PAYMENT OF OUTGOINGS"
-    section2c = "To pay all charges due in respect of any telephone, supply of water, electricity, gas and any water-borne sewerage system and/or other equipment installed at the Premises, including any tax payable thereon."
+    if property_type == "LANDED":
+        section2b = f"To pay the Landlord a sum of S$ **{security_deposit}** (which is equivalent to 3 month(s) rental) upon signing this Tenancy Agreement to be held by the Landlord as a security deposit for the due performance and observance of the terms and conditions herein. If the Tenant fails to perform and/or comply with any of the conditions of this Tenancy Agreement, the Landlord shall be entitled to deduct such amount from the security deposit to remedy the breach and the balance thereof after deduction shall be refunded without interest to the Tenant within fourteen (14) days from the expiry or termination of the Agreement. The security deposit shall not be utilised by the Tenant to set off any Rent payable under this Agreement."
+    else:
+        section2b = f"To pay the Landlord a sum of S$ **{security_deposit}** (which is equivalent to 2 month(s) rental) upon signing this Tenancy Agreement to be held by the Landlord as a security deposit for the due performance and observance of the terms and conditions herein. If the Tenant fails to perform and/or comply with any of the conditions of this Tenancy Agreement, the Landlord shall be entitled to deduct such amount from the security deposit to remedy the breach and the balance thereof after deduction shall be refunded without interest to the Tenant within fourteen (14) days from the expiry or termination of the Agreement. The security deposit shall not be utilised by the Tenant to set off any Rent payable under this Agreement."
+    if rental_type == "1 BEDROOM" or rental_type == "2 BEDROOM":
+        section2ch = "(c) PAYMENT OF OUTGOINGS"
+        section2c = "In the event that the Tenant's utility consumption is deemed excessive or significantly above average based on past usage history, the Tenant agrees to reimburse the Landlord for the portion of utility costs attributable to such excessive usage. Determination of excessive usage shall be based on utility bills, meter readings, or other reasonable evidence, and the Tenant shall be notified in writing with supporting documentation. Otherwise, the Landlord shall be responsible for all charges due in respect of any telephone, supply of water, electricity, gas and any water-borne sewerage system and/or other equipment installed at the Premises, including any tax payable thereon."
+    else:
+        section2ch = "(c) PAYMENT OF OUTGOINGS"
+        section2c = "To pay all charges due in respect of any telephone, supply of water, electricity, gas and any water-borne sewerage system and/or other equipment installed at the Premises, including any tax payable thereon."
     section2dh = "(d) DEFECT FREE PERIOD"
     section2d = "The Parties agree that there shall be a defect-free period of **30** days which commences on the first day of the tenancy indicated above or date the Premises is handed over to the Tenant (whichever is later) where the Landlord shall not hold the Tenant responsible for any defects of any item, furniture and/or fittings in the Premises that are identified by the Tenant and brought to the Landlord's attention in writing. The Landlord shall be responsible for rectifying any defects so identified."
     section2eh = "(e) MAINTENANCE OF DEMISED PREMISES"
@@ -112,24 +121,40 @@ def generate_tenancy_agreement(property_type, rental_type, ref_no, landlord_name
     section2h = "To be responsible for and to indemnify the Landlord from and against all claims and demands and against damage occasioned to the Premises or any adjacent or neighboring premises or injury caused to any person by any act, default or negligence of the Tenant or the servants, agents, licensees or invitees, guests of the Tenant. The Landlord shall be under no liability to the Tenant, members of the Tenant's immediate family, or to any other person who may be permitted to enter, occupy or use the premises or any part thereof for accidents, happenings or injuries sustained or for loss of or damage to property goods or chattels in the premises or in any part thereof whether arising from the defects in the premises or the negligence of any servant or agent of the Landlord and the Tenant, and the Tenant shall keep the Landlord fully indemnified against all claims, demands, actions, suits, proceedings, orders, damages, costs, losses and expenses of any nature whatsoever which the Landlord may incur or suffer in connection with the aforesaid."
     section2ih = "(i) MINOR REPAIRS"
     section2i = f"To be responsible for all minor repairs and routine maintenance of the Premises not exceeding S$ **{item_excess}** per job/repair/maintenance per item (excluding aircon units/system, water heater and structural repairs) throughout the term of the Tenancy Agreement. In the event any job/repair/maintenance exceeds S$ **{item_excess}** per item, then the initial S$ **{item_excess}** shall be borne by the Tenant and the excess to be borne by the Landlord. For jobs/repairs/maintenance above S$ **{item_excess}**, Landlord's approval must be obtained prior to them being carried out and the Landlord reserves the right to engage his own contractor. For the avoidance of doubt, the Tenant's covenant to carry out minor repairs shall not include any repairs to any water heater, air conditioning system, built-in wardrobes, cabinet, toilet bowl, wash basin, the ceiling, roof, wall structures, structural/main electrical wiring, electrical box unless where the damage is caused by the Tenant's wilful act or negligence."
-    section2jh = "(j) SERVICE OF AIRCON"
-    section2j = "To keep air-conditioning units fully serviced every three months. Cost of repair and replacement (including chemical cleaning and gas top up) to be borne by the Landlord save where the same are caused by act, neglect or omission on the part of the Tenant or any of it servants, agents, occupiers, contractors, guests and visitors. The chemical cleaning of aircon will be solely at the discretion by the contractor appointed by the landlord."
-    section2kh = "(k) MAINTENANCE OF AIRCON"
-    section2k = "To keep the air-conditioning units in good and tenantable repair and condition provided always that the Landlord shall bear the cost and expense for the repair, replacement or renewal of parts, if any, arising from fair wear and tear."
-    section2lh = "(l) NO UNAUTHORISED ALTERATIONS"
-    section2l = "Not to carry out or permit or suffer to be carried out alterations, additions, drilling, hacking or any changes of whatsoever nature to the Premises without the prior written consent of the Landlord. The Tenant shall make good such alterations at his own cost and/or expense at the request of the Landlord."
+    if rental_type == "1 BEDROOM" or rental_type == "2 BEDROOM":
+        section2jh = "(j) NO SMOKING"
+        section2j = "Neither the Tenant, guests, nor any other person shall be allowed to smoke within the Premises. Tenant agrees to refrain from burning candles or incense, and the use of electronic cigarettes, personal vaporizer, or electronic nicotine delivery system inside the Premises. Any violation shall be deemed a material violation of this Agreement. Tenant understands that smoke from any substance will be considered damage. Damage includes but is not limited to deodorizing, repairing, or replacement of carpet, wax removal, additional paint preparation, replacing of drapes/blinds, countertops, or any other surface damaged due to burn marks and/or smoke damage."
+        section2kh = "(k) NO COOKING"
+        section2k = "Tenants shall not engage in cooking that emits unusual odors in the leased premises or the common areas. This includes, but is not limited to, cooking with strong spices, deep frying, grilling, or any other cooking method that produces strong odors. Tenants are expected to use the kitchen facilities in a manner that does not disturb other residents or create an unpleasant living environment. Failure to comply with this rule may result in penalties or termination of the lease agreement."
+        section2lh = "(l) NO ALTERATIONS"
+        section2l = "Not to carry out or permit or suffer to be carried out alterations, additions, drilling, hacking or any changes of whatsoever nature to the Premises."
+    else: 
+        section2jh = "(j) SERVICE OF AIRCON"
+        section2j = "To keep air-conditioning units fully serviced every three months. Cost of repair and replacement (including chemical cleaning and gas top up) to be borne by the Tenant. The chemical cleaning of aircon and the appointment of the contractor shall be notified to the Landlord."        
+        section2kh = "(k) MAINTENANCE OF AIRCON"
+        section2k = "To keep the air-conditioning units in good and tenantable repair and condition provided. The Tenant shall bear the cost and expense for the repair, replacement or renewal of parts, except for those arising from fair wear and tear."
+        section2lh = "(l) NO UNAUTHORISED ALTERATIONS"
+        section2l = "Not to carry out or permit or suffer to be carried out alterations, additions, drilling, hacking or any changes of whatsoever nature to the Premises without the prior written consent of the Landlord. The Tenant shall make good such alterations at his own cost and/or expense at the request of the Landlord."
     section2mh = "(m) ACCESS FOR REPAIRS"
     section2m = "To permit the Landlord and its agents, surveyors and workmen with all necessary appliances to enter upon the Premises at all reasonable times by prior appointment mutually agreed by both parties for the purpose of viewing the condition thereof or for doing such works and things as may be required for any repairs, alterations or improvements whether of the Premises or of any parts of any building to which the Premises may form a part of or adjoin."
     section2nh = "(n) ACCESS TO VIEWING (NEW TENANT)"
     section2n = "To permit persons with authority from the Landlord at all reasonable times by prior appointment mutually agreed by both parties to enter and view the Premises for the purpose of taking a new tenant during 2 calendar months immediately preceding the termination or expiry of the Tenancy Agreement."
     section2oh = "(o) ACCESS TO VIEWING (POTENTIAL PURCHASER)"
     section2o = "To permit persons with authority from the Landlord at all reasonable times by prior appointment mutually agreed by both parties to enter and view the Premises whenever the Landlord wants to sell the Premises. The Premises shall be sold subject to this Tenancy Agreement, unless agreed otherwise by the parties."
-    section2ph = "(p) ASSIGNMENT/SUBLETTING"
-    section2p = "Not to assign, sublet or part with the possession of the Premises or any part thereof without the prior written consent of the Landlord, whose consent shall not be unreasonably withheld, in the case of a respectable or reputable person or corporation."
+    if rental_type == "1 BEDROOM" or rental_type == "2 BEDROOM":
+        section2ph = "(p) NO ASSIGNMENT/SUBLETTING"
+        section2p = "Not to assign, sublet or part with the possession of the Premises or any part thereof."
+    else:
+        section2ph = "(p) ASSIGNMENT/SUBLETTING"
+        section2p = "Not to assign, sublet or part with the possession of the Premises or any part thereof without the prior written consent of the Landlord, whose consent shall not be unreasonably withheld, in the case of a respectable or reputable person or corporation."
     section2qh = "(q) NOT TO CAUSE NUISANCE"
     section2q = "Not to do or permit to be done anything on the Premises which shall be or become a nuisance or annoyance or cause injury to the Landlord or to the inhabitants of the neighbouring premises."
-    section2rh = "(r) USE OF PREMISES"
-    section2r = "To use the Premises as a private dwelling house only and not for any illegal or other purposes. In the event of breach, this Tenancy Agreement shall be immediately terminated and the security deposit fully forfeited by the Tenant and will be paid to/confiscated by the Landlord without prejudice to any right of action of the Landlord in respect of any breach or any antecedent breach of this Tenancy Agreement by the Tenant."
+    if property_type == "LANDED":
+        section2rh = "(r) USE OF PREMISES"
+        section2r = "Premises may be used for small home businesses subject to compliance with prevailing rules and regulations, and not for any illegal or other purposes. In the event of breach, this Tenancy Agreement shall be immediately terminated and the security deposit fully forfeited by the Tenant and will be paid to/confiscated by the Landlord without prejudice to any right of action of the Landlord in respect of any breach or any antecedent breach of this Tenancy Agreement by the Tenant."
+    else:
+        section2rh = "(r) USE OF PREMISES"
+        section2r = "To use the Premises as a private dwelling house only and not for any illegal or other purposes. In the event of breach, this Tenancy Agreement shall be immediately terminated and the security deposit fully forfeited by the Tenant and will be paid to/confiscated by the Landlord without prejudice to any right of action of the Landlord in respect of any breach or any antecedent breach of this Tenancy Agreement by the Tenant."
     section2sh = "(s) DANGEROUS MATERIALS"
     section2s = "Not to keep or permit to be kept on the Premises or any part thereof any materials of a dangerous, explosive or radioactive nature or the keeping of which may contravene any laws or regulations."
     section2th = "(t) NOT TO AFFECT INSURANCE"
@@ -138,10 +163,11 @@ def generate_tenancy_agreement(property_type, rental_type, ref_no, landlord_name
     section2u = "To insure for Tenant's own personal chattels against theft, loss or damage by fire."
     section2vh = "(v) REGISTERED OCCUPIERS"
     section2v = "To permit only occupiers who are registered herein to occupy the Premises. Substitution, addition or change of occupiers are subject to the prior written permission of the Landlord."
-    section2wh = "(w) PETS"
     if rental_type == "1 BEDROOM" or rental_type == "2 BEDROOM":
+        section2wh = "(w) NO KEEPING OF PETS"
         section2w = "Not to keep or permit to be kept in the Premises or any part thereof any animal or bird."
     else:
+        section2wh = "(w) PETS"
         section2w = "Not to keep or permit to be kept in the Premises or any part thereof any animal or bird legally permitted to be pets without the prior written permission of the Landlord and to comply with any conditions imposed by the Landlord in the event such permission is granted."
     section2xh = "(x) COMPLIANCE WITH LAW, RULES AND REGULATIONS"
     section2x = "To comply and conform at all times and in all respects during the continuance of this Tenancy Agreement with the provisions of all laws, acts, enactments and ordinances and rules, regulations, by-laws, orders and notices made thereunder or made by any other competent authority or the Management Corporation. The Tenant shall bear all summonses or fines whether directly or indirectly caused by the Tenant."
@@ -183,6 +209,11 @@ def generate_tenancy_agreement(property_type, rental_type, ref_no, landlord_name
     section4d = "To insure the Premises against loss or damage by fire and to pay the necessary premium punctually. For the avoidance of doubt, such insurance coverage shall be for the loss and/or damage of the Landlord's property and shall not cover any loss and/or damage of the Tenant's property."
     section4eh = "(e) LETTER OF INTENT"
     section4e = "On or before handover of the premises to the Tenant, the Landlord agrees to supply the items and comply with the offer Covenants as stipulated in the Letter of Intent."
+    if rental_type == "1 BEDROOM" or rental_type == "2 BEDROOM":
+        section4fh = "(j) SERVICE OF AIRCON"
+        section4f = "To keep air-conditioning units fully serviced every three months. Cost of repair and replacement (including chemical cleaning and gas top up) to be borne by the Landlord save where the same are caused by act, neglect or omission on the part of the Tenant or any of it servants, agents, occupiers, contractors, guests and visitors."
+        section4gh = "(k) MAINTENANCE OF AIRCON"
+        section4g = "To keep the air-conditioning units in good and tenantable repair and condition provided. The Landlord shall bear the cost and expense for the repair, replacement or renewal of parts, except where the damage is caused by the Tenant's wilful act or negligence."
 
     section5title = "5. PROVIDED ALWAYS and it is hereby agreed as follows:"
     section5ah = "(a) DEFAULT OF TENANT"
@@ -233,6 +264,9 @@ def generate_tenancy_agreement(property_type, rental_type, ref_no, landlord_name
     pdf.cell(0, 10, f"TENANCY AGREEMENT ({property_type})", align='C', border="B", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
     pdf.ln(5)
     pdf.set_font("Helvetica", size=10)
+    if rental_type == "1 BEDROOM" or rental_type == "2 BEDROOM":
+        pdf.write(5, "Note: This lease agreement is for the partial rental of bedrooms only.")
+        pdf.ln(10)
 
     # Header Components
     body_text(ref_no_para, pdf)
@@ -352,6 +386,11 @@ def generate_tenancy_agreement(property_type, rental_type, ref_no, landlord_name
     body_text(section4d, pdf)
     subheader_text(section4eh, pdf, 10)
     body_text(section4e, pdf)
+    if rental_type == "1 BEDROOM" or rental_type == "2 BEDROOM":
+        subheader_text(section4fh, pdf, 10)
+        body_text(section4f, pdf)
+        subheader_text(section4gh, pdf, 10)
+        body_text(section4g, pdf)
 
     # Detailed clauses for section 5
     header_text(section5title, pdf, 14)
