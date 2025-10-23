@@ -1,9 +1,9 @@
 
+import numpy as np
 import nltk
 from rouge_score import rouge_scorer
 from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
 from bert_score import score as bert_score
-
 
 class ChatbotEvaluator:
     def __init__(self):
@@ -48,3 +48,43 @@ class ChatbotEvaluator:
             'bleu': self.evaluate_bleu(references, candidates),
             'bertscore': self.evaluate_bertscore(references, candidates),
         }
+    def evaluate_combined(self, references, candidates, weights=(0.1, 0.4, 0.5)):
+
+        all_scores = self.evaluate_all(references, candidates)
+
+        bleu = all_scores['bleu']
+        rouge_vals = all_scores['rouge']
+        rouge_mean = np.mean(list(rouge_vals.values()))
+        bert_f1 = all_scores['bertscore']['f1']
+
+        # normalize roughly to 0–1 scale
+        bleu_norm = bleu
+        rouge_norm = rouge_mean
+        bert_norm = (bert_f1 - 0.8) / (1.0 - 0.8)  # normalize around 0.8–1.0 typical range
+
+        # weighted combination
+        w_bleu, w_rouge, w_bert = weights
+        composite = (
+            w_bleu * bleu_norm +
+            w_rouge * rouge_norm +
+            w_bert * bert_norm
+        )
+
+        all_scores['composite_score'] = float(np.clip(composite, 0, 1))
+        return all_scores
+
+
+# Example usage:
+if __name__ == "__main__":
+    references = [
+        "The capital of France is Paris.",
+        "Water boils at 100 degrees Celsius."
+    ]
+    candidates = [
+        "Paris is the capital city of France.",
+        "Water reaches its boiling point at one hundred degrees Celsius."
+    ]
+
+    evaluator = ChatbotEvaluator()
+    results = evaluator.evaluate_combined(references, candidates)
+    print(results)
