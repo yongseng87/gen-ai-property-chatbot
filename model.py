@@ -1,57 +1,50 @@
 import os
 import warnings
-import json
-import shutil
 from dotenv import load_dotenv
-from datetime import datetime
-from typing import Dict, List, Optional
+import asyncio
+import pandas as pd
 
 # LangChain Core
 from langchain_openai import ChatOpenAI
-from langchain.schema import HumanMessage
-from langchain.prompts import PromptTemplate, ChatPromptTemplate
-from langchain_core.output_parsers import StrOutputParser
 
 # Memory & Chains
-from langchain.memory import ConversationBufferMemory, ConversationSummaryBufferMemory
-from langchain.chains import ConversationChain, LLMChain, RetrievalQA
+from langchain.memory import ConversationBufferMemory
+from langchain.chains import RetrievalQA
 
 # Retrieval & Vector Stores
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import OpenAIEmbeddings
-from langchain.text_splitter import CharacterTextSplitter, RecursiveCharacterTextSplitter
-from langchain.schema import Document
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_experimental.agents.agent_toolkits.pandas.base import create_pandas_dataframe_agent
 from langchain_community.document_loaders import PyPDFLoader
 
-# Tools & Agents
-from langchain.tools import tool
-from langchain.agents import initialize_agent, AgentType
-
+from classifier import classify
 
 # Suppress warnings
 warnings.filterwarnings('ignore')
 
 def load_and_process_pdf(pdf_path):
     """Load PDF and process it for Chroma DB"""
+    # Knowledge base
+    # Load and process multiple PDFs from the examples folder
+    pdf_folder = pdf_path
+    pdf_files = [os.path.join(pdf_folder, file) for file in os.listdir(pdf_folder) if file.endswith(".pdf")]
     
-    print("📚 Loading PDF document...")
-    print(f"File: {pdf_path}")
-    
-    # Load PDF
-    loader = PyPDFLoader(pdf_path)
-    pages = loader.load()
-    
-    print(f"✅ Loaded {len(pages)} pages from PDF")
-    
-    # Split text into chunks
-    text_splitter = RecursiveCharacterTextSplitter(
+    all_docs = []
+    for pdf_file in pdf_files:
+        print(f"Processing file: {pdf_file}")
+        loader = PyPDFLoader(pdf_file)
+        pages = loader.load()
+        
+        text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=1000,
         chunk_overlap=200,
         length_function=len,
-    )
+        )
+        docs = text_splitter.split_documents(pages)
+        all_docs.extend(docs)
     
-    docs = text_splitter.split_documents(pages)
-    print(f"📝 Split into {len(docs)} text chunks")
+    print(f"📝 Total text chunks from all PDFs: {len(all_docs)}")
     
     # Create embeddings
     embeddings_pdf = OpenAIEmbeddings(openai_api_key=os.getenv("OPENAI_API_KEY"))
@@ -65,7 +58,7 @@ def load_and_process_pdf(pdf_path):
     # Create Chroma vector store
     print("🔍 Creating vector embeddings...")
     vectorstore_pdf = Chroma.from_documents(
-        documents=docs,
+        documents=all_docs,
         embedding=embeddings_pdf,
         persist_directory=db_path
     )
@@ -76,7 +69,8 @@ def load_and_process_pdf(pdf_path):
     
     return vectorstore_pdf
 
-def create_pdf_qa_system(vectorstore_pdf):
+
+def create_pdf_qa_system(vectorstore_pdf, llm):
     """Create Q&A system for PDF documents"""
     
     # Create retrieval QA chain
@@ -93,48 +87,62 @@ def create_pdf_qa_system(vectorstore_pdf):
     print("✅ PDF Q&A system created successfully")
     return qa_chain_pdf
 
+
+def create_csv_agent(csv_path, llm):
+    """Create agent for CSV documents"""
+    
+    df = pd.read_csv(csv_path)
+    agent = create_pandas_dataframe_agent(
+        llm=llm,
+        df=df,
+        verbose=True,
+        agent_type="openai-tools",
+        allow_dangerous_code=True,
+    )
+    print("✅ CSV Agent created successfully")
+    return agent
+
+
 class PropertySupportBot:
     def __init__(self):
         self.llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.1, api_key=openai_api_key)
         self.embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
         
         # Knowledge base
-        self.vectorstore = load_and_process_pdf("examples/Track_B_Tenancy_Agreement.pdf")
+        self.vectorstore = load_and_process_pdf("examples")
         
         # Memory for conversations
         self.memory = ConversationBufferMemory()
         
         # QA chain for policies
-        self.qa_chain = create_pdf_qa_system(self.vectorstore)
-        
+        self.qa_chain = create_pdf_qa_system(self.vectorstore, self.llm)
+        self.csv_agent = create_csv_agent("property_database_v2.csv", self.llm)
     
     def process_query(self, query: str):
-        """Process user query intelligently"""
+        """Process user query based on category classification"""
         
         print(f"🔵 INPUT TO SUPPORT BOT:")
         print(f"Query: {query}")
-        
-        # Simple intent detection
-        query_lower = query.lower()
-        
-        if any(word in query_lower for word in ["tenancy", "agreement", "terms", "contract", "conditions"]):
-            # Use retrieval for policy questions
-            print("🎯 Intent: Tenancy Agreement Question → Using Knowledge Base")
-            print("\n🔵 SEARCHING KNOWLEDGE BASE...")
+
+        # Classify the query
+        classification = asyncio.run(classify(query))
+        module = classification['classifications'][0]['module']
+        if module == "information_retrieval":
+            print("\n🔵 HANDLING INFORMATION RETRIEVAL QUERY...")
             result = self.qa_chain.invoke(query)
             print(f"Answer: {result['result']}")
             print(f"📄 Sources: Page {result['source_documents'][0].metadata.get('page', 'Unknown')} of PDF")
             print(f"📝 Source Text Preview: {result['source_documents'][0].page_content[:150]}...")
-            
+        elif module == "property_data_analysis":
+            print("\n🔵 HANDLING PROPERTY DATA ANALYSIS QUERY...")
+            result = self.csv_agent.invoke(query)
+            print(f"Analysis Result: {result['output']}")
         else:
-            # Use memory conversation for general support
-            print("🎯 Intent: General Support → Using Conversation Memory")
-            print("\n🔵 CALLING GPT WITH MEMORY...")
-            conversation = ConversationChain(llm=self.llm, memory=self.memory)
-            result = conversation.invoke({"input": query})["response"]
+            print("\n🔵 HANDLING GENERAL QUERY...")
+            reason = classification['classifications'][0]['reason']
+            result = {"message": f"Query not related to property support. Reason: {reason}"}
+            print(result['message'])
         
-        print(f"\n🤖 SUPPORT BOT RESPONSE:")
-        print(result)
         return result
 
 if __name__ == "__main__":
@@ -143,28 +151,22 @@ if __name__ == "__main__":
 
     # Verify API key
     openai_api_key = os.getenv("OPENAI_API_KEY")
-    
-    # Initialize OpenAI model
-    llm = ChatOpenAI(
-        model="gpt-4o-mini",
-        temperature=0.1,
-        api_key=openai_api_key
-    )
-    
+    if not openai_api_key:
+        raise ValueError("OPENAI_API_KEY not found in environment variables.")
     # Initialize the complete system
     print("🚀 Initializing Complete Property Support Bot...")
     support_bot = PropertySupportBot()
 
     # Test various query types
     test_queries = [
-        "What's name of the property?",
-        "Look up the terms related to lease duration in the tenancy agreement", 
-        "I'm feeling unsure of what to prioritize when searching for properties to rent, any suggestions?"
+        "what is the mean price of HDB flats in Bishan?",
+        "Do I need to pay for repairs in my rental unit?",
+        "how to invest in stocks for beginners?"
     ]
 
     for query in test_queries:
-        print(f"\n{'='*60}")
-        print(f"TESTING COMPLETE SUPPORT BOT")
+        print(f"{'='*60}")
+        print("PROCESSING NEW QUERY...")
         print(f"{'='*60}")
         
         support_bot.process_query(query)
