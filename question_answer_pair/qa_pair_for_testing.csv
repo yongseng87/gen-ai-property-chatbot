@@ -1,0 +1,253 @@
+difficulty,template_qn,template_ans,model_ans,notes
+easy,what is the mean price of HDB flats in Bishan?,"Sorry, we do not have data on the prices of HDB flats but we do have data on rental prices. The mean rental price of HDB flats in Bishan is approximately $3471.43.",The mean rental price of HDB flats in Bishan is approximately 3471.43.,
+moderate,Do I need to pay for repairs in my rental unit?,"It depends on the nature of the repairs. In cases, where the damage is caused by the Tenant, the Tenant is responsible for the repairs to any damaged items. For minor repairs and routine maintenance of the Premises not caused by the Tenant, the Tenant shall be responsible to bear a certain amount while the Landlord shall bear the excess.
+Sources: Page 2 of tenancy_agreement_HDBflat_whole.pdf
+Source Text Preview: (i) Minor Repairs 
+To be responsible for all minor repairs and routine maintenance of the Premises not exceeding S$ _____ per job/repair/maintenance per item (excluding aircon units/system, water heater and structural repairs) throughout the term of the Tenancy Agreement...","It depends on the nature of the repairs. According to the context provided, the Tenant is responsible for minor repairs unless the damage is caused by the Tenant's wilful act or negligence. However, repairs to specific items such as water heaters, air conditioning systems, built-in wardrobes, cabinets, toilet bowls, wash basins, ceilings, roofs, wall structures, and structural/main electrical wiring are not the Tenant's responsibility unless the damage is caused by the Tenant. Additionally, the cost of repair and replacement for the air conditioning system is borne by the Landlord, except in cases of Tenant negligence.
+Sources: Page 2 of PDF
+Source Text Preview: 200, Landlord's approval must be obtained prior to them being carried out and the Landlord reserves the right to
+engage his own contractor. For the av...",
+easy,how to invest in stocks for beginners?,"Sorry, we are unable to help you with this query as it is not related to property matters. You may ask me another question related to property matters! ","Sorry, we are unable to help you with this query as it is not related to property matters. You may ask me another question related to property matters! Reason: The user is inquiring about investing in stocks, which is not related to information retrieval or property data analysis.","can delete the ""reason"" part after done with troubleshooting"
+easy,IÅfm renting a landed house currently. Can I use the unit to conduct my home business?,"Yes, you can use the premises for small home businesses provided that you comply with the  prevailing rules and regulations, and not
+for any illegal or other purposes.
+Sources: Page 3 of tenancy_agreement_Landed.pdf, tenancy_agreement_Condo_whole.pdf
+Source Text Preview: (r) USE OF PREMISES
+Premises may be used for small home businesses subject to compliance with prevailing rules and regulations, and not for any illegal or other purposes...","I don't know.
+Sources: Page 8 of PDF
+Source Text Preview: The Landlord: Please inspect the original employment or work pass, original travel and identification documents of the
+prospective foreign tenants.
+Th...",
+moderate,IÅfm renting a condominium unit. Am I allowed to keep pets?,"It depends on the type of rental you are holding. If you are renting some bedrooms partially, you are not allowed to keep any pets in the premises. However, if you are renting the entire unit, you may be allowed to keep certain pets with permission from the Landlord subject to conditions imposed by him/her.
+Sources: Page 4 of tenancy_agreement_Condo_bedroom.pdf, tenancy_agreement_Condo_whole.pdf
+Source Text Preview: (w) Pets 
+Not to keep or permit to be kept in the Premises or any part thereof any animal or bird legally permitted to be pets without the prior written permission of the Landlord...","No, you are not allowed to keep pets in the condominium unit as per the terms stated in the agreement.
+Sources: Page 3 of PDF
+Source Text Preview: occupiers are subject to the prior written permission of the Landlord.
+(w) NO KEEPING OF PETS
+Not to keep or permit to be kept in the Premises or any ...",
+moderate,Am I allowed to cook in the house?,"It depends on the type of property that you are renting. If you are renting some bedrooms partially, you are not allowed to engage in cooking that emits odours in the leased premises or common areas. This is because tenants are expected to not cause disturbances to other occupants in the premises as it is a shared living environment. However, if you are renting the entire apartment or landed housing, there are no prohibitions against cooking in the house.
+Sources: Page 3 of tenancy_agreement_HDBflat_bedroom.pdf, tenancy_agreement_Condo_bedroom.pdf
+Source Text Preview: (k) NO COOKING
+Tenants shall not engage in cooking that emits unusual odors in the leased premises or the common areas. This includes, but is not limited to, cooking with strong spices...","No, you are not allowed to cook in the house if it emits unusual odors. This includes cooking with strong spices, deep frying, grilling, or any other method that produces strong odors.
+Sources: Page 2 of PDF
+Source Text Preview: (k) NO COOKING
+Tenants shall not engage in cooking that emits unusual odors in the leased premises or the common areas. This
+includes, but is not limi...",
+complex,Who is responsible for servicing and maintaining the air-con?,"It depends on the type of property that you are renting. If you are renting some bedrooms partially, the Landlord is responsible for the servicing and maintenance of the air-con, as well as bearing all costs related to servicing, repair and cleaning. Otherwise, the Tenant is responsible for servicing and maintaining the air-con. The Tenant is also obliged to inform the Landlord for the chemical cleaning and appointment of contractor. 
+Sources: Page 6 of tenancy_agreement_HDBflat_bedroom.pdf, Page 3 of tenancy_agreement_HDBflat_whole.pdf
+Source Text Preview: (j) SERVICE OF AIRCON
+To keep air-conditioning units fully serviced every three months. Cost of repair and replacement (including chemical cleaning and gas top up) to be borne by the Tenant. The chemical cleaning of aircon and the appointment of the contractor shall be notified to the Landlord.
+(k) MAINTENANCE OF AIRCON
+To keep the air-conditioning units in good and tenantable repair and condition provided. The Tenant shall bear the cost and expense for the repair, replacement or renewal of parts, except for those arising from fair wear and tear.","The landlord is responsible for servicing and maintaining the air-conditioning units, as they bear the cost and expense for the repair, replacement, or renewal of parts arising from fair wear and tear. However, the chemical cleaning of the aircon will be at the discretion of the contractor appointed by the landlord.   
+Sources: Page 2 of PDF
+Source Text Preview: The chemical cleaning of aircon will be solely at the discretion by the contractor appointed by the landlord.
+(k) MAINTENANCE OF AIRCON
+To keep the ai...",
+easy,Can you recommend me an air-con cleaning contractor?,"Sorry, we are unable to help you with this query as it is not related to property matters. You may ask me another question related to property matters! ","Sorry, we are unable to help you with this query as it is not related to property matters. You may ask me another question related to property matters! Reason: The user is inquiring about a contractor for air-con cleaning, which is not related to information retrieval or property data analysis.",
+easy,Who should be responsible for paying the condo management fees?,"The Tenant is responsible for paying the condo management fees.
+Sources: Page 5 of tenancy_agreement_Condo_bedroom.pdf,  tenancy_agreement_Condo_whole.pdf
+Source Text Preview: (ab) COMPLIANCE WITH MANAGEMENT CORPORATION
+To observe and perform all the by-laws, rules and regulations of the Management Corporation for the time being in force and to pay punctually all contributions, levies, fees and other charges which may be imposed","I don't know.
+Sources: Page 2 of PDF
+Source Text Preview: 200, Landlord's approval must be obtained prior to them being carried out and the Landlord reserves the right to
+engage his own contractor. For the av...",
+complex,"IÅfm looking for a two room HDB unit to rent in Hougang. Can you recommend me some available units with monthly rental below $2,200?","Yes, we have some 2 ROOM HDB units available for you to rent in Hougang that fits your budget! Here is a list of units with their address and rental price:
+town	flat_type	block / building	street_name	storey	floor_area_sqm	flat_model	lease_commence_date	property_type	rental_type	rental_price
+HOUGANG	2 ROOM	986A	BUANGKOK CRES	07	47	Model A	2012	HDB Flat	2 ROOM	2000
+HOUGANG	2 ROOM	987B	BUANGKOK GREEN	16	47	Model A	2015	HDB Flat	2 ROOM	2100
+HOUGANG	2 ROOM	998B	BUANGKOK CRES	01	38	Model A	2019	HDB Flat	2 ROOM	2100
+HOUGANG	2 ROOM	991A	BUANGKOK LINK	01	47	Model A	2019	HDB Flat	2 ROOM	2100
+HOUGANG	2 ROOM	998B	BUANGKOK CRES	13	47	Model A	2019	HDB Flat	2 ROOM	2000
+HOUGANG	2 ROOM	986A	BUANGKOK CRES	01	47	Model A	2012	HDB Flat	2 ROOM	2000
+HOUGANG	2 ROOM	994A	BUANGKOK LINK	04	47	2-room	2021	HDB Flat	2 ROOM	2100
+If you are interested in renting any of the units, please contact our property agent. ","Here are some available 2-room HDB units for rent in Hougang with a monthly rental below $2,200:
+
+1. **Unit**: 986A BUANGKOK CRES
+   - **Rental Price**: (not specified in the output)
+   - **Nearest School**: HOUGANG PRIMARY SCHOOL
+   - **Nearest MRT**: TONGKANG LRT STATION
+   - **Distance to Nearest School**: 0.516 km
+   - **Distance to Nearest MRT**: 1.059 km
+
+2. **Unit**: 987B BUANGKOK GREEN
+   - **Rental Price**: (not specified in the output)
+   - **Nearest School**: HOUGANG PRIMARY SCHOOL
+   - **Nearest MRT**: TONGKANG LRT STATION
+   - **Distance to Nearest School**: 0.358 km
+   - **Distance to Nearest MRT**: 1.383 km
+
+3. **Unit**: 998B BUANGKOK CRES
+   - **Rental Price**: (not specified in the output)
+   - **Nearest School**: PEI HWA SECONDARY SCHOOL
+   - **Nearest MRT**: TONGKANG LRT STATION
+   - **Distance to Nearest School**: 0.734 km
+   - **Distance to Nearest MRT**: 0.829 km
+
+4. **Unit**: 991A BUANGKOK LINK
+   - **Rental Price**: (not specified in the output)
+   - **Nearest School**: HOUGANG SECONDARY SCHOOL
+   - **Nearest MRT**: TONGKANG LRT STATION
+   - **Distance to Nearest School**: 0.742 km
+   - **Distance to Nearest MRT**: 0.683 km
+
+5. **Unit**: 998B BUANGKOK CRES (duplicate)
+   - **Rental Price**: (not specified in the output)
+   - **Nearest School**: PEI HWA SECONDARY SCHOOL
+   - **Nearest MRT**: TONGKANG LRT STATION
+   - **Distance to Nearest School**: 0.734 km
+   - **Distance to Nearest MRT**: 0.829 km
+
+6. **Unit**: 986A BUANGKOK CRES (duplicate)
+   - **Rental Price**: (not specified in the output)
+   - **Nearest School**: HOUGANG PRIMARY SCHOOL
+   - **Nearest MRT**: TONGKANG LRT STATION
+   - **Distance to Nearest School**: 0.516 km
+   - **Distance to Nearest MRT**: 1.059 km
+
+7. **Unit**: 994A BUANGKOK LINK
+   - **Rental Price**: (not specified in the output)
+   - **Nearest School**: ANCHOR GREEN PRIMARY SCHOOL
+   - **Nearest MRT**: TONGKANG LRT STATION
+   - **Distance to Nearest School**: 0.649 km
+   - **Distance to Nearest MRT**: 0.465 km
+
+Please note that the rental prices for these units were not specified in the output. You may want to check the rental prices directly for each unit.",depends on how we output the format of the listings. Either as a table or this short list.
+moderate,how far is the unit 998B buangkok cres away from the MRT and which station is it?,The unit 998B BUANGKOK CRES is 0.8289km away from the nearest MRT station and the station is TONGKANG LRT STATION,"Sorry, we are unable to help you with this query as it is not related to property matters. You may ask me another question related to property matters! Reason: The user is inquiring about the distance of a specific unit from the MRT station, which is not related to information retrieval or property data analysis.",depends on last output in conversation chain. Didn't work
+moderate,are rental prices in hougang cheaper than rental prices in punggol?,The rental prices in hougang are slightly higher than those in punggol. The average rental price of houses in hougang is $4552.95 whereas the average rental price of houses in punggol is $4212.06.,"The average rental price in Hougang is approximately 2978.22, while in Punggol, it is approximately 2801.68. Therefore, rental prices in Hougang are higher than those in Punggol.","data is filtered based on inclusion of keywords. I.e., the entry should appear as long as it contains ""hougang"" as some units are encoded with multiple locations e.g. ""Serangoon Garden, Hougang, Punggol"". Bot seemed to drop multiple locations records"
+moderate,are rental prices in JB cheaper than rental prices in singapore?,"Sorry, we are unable to assist you with the query. We do not have data on rental prices in JB.","To compare rental prices in Johor Bahru (JB) and Singapore, we need to have rental price data for both locations. The provided dataframe `df` appears to contain rental prices for properties in Singapore only.
+
+If you have a separate dataset for rental prices in Johor Bahru, please provide that data, and I can help you analyze and compare the rental prices between the two locations. If not, we can only analyze the rental prices in Singapore from the current dataframe.",Bot answer is good but shouldn't ask to take in more datasets from user
+easy,what is the average rental price of landed houses in singapore?,"The average rental price of landed houses in Singapore is $15,624.36.","The average rental price of landed houses in Singapore is not available in the dataset, as it appears there are no entries for ""Landed House"" in the `property_type` column.","bot is not flexible enough to accept ""Landed"" as property_type"
+complex,recommend me a place to rent that is near to Toa Payoh MRT station,"We have a few units near to Toa Payoh MRT station that is available. Here is a list of units with their address and rental price:
+town	flat_type	block / building	street_name	storey	floor_area_sqm	flat_model	lease_commence_date	property_type	rental_type	rental_price	nearest_mrt_dist_km	nearest_mrt_name
+TOA PAYOH	4 ROOM	175	LOR 2 TOA PAYOH	10	10	Improved	1974	HDB Flat	1 BEDROOM	1200	0.053620687826556664	TOA PAYOH MRT STATION
+TOA PAYOH	5 ROOM	152	LOR 2 TOA PAYOH	25	10	Improved	2006	HDB Flat	1 BEDROOM	1200	0.12084709059303177	TOA PAYOH MRT STATION
+TOA PAYOH	4 ROOM	152	LOR 2 TOA PAYOH	22	86	Model A	2006	HDB Flat	4 ROOM	4500	0.12084709059303177	TOA PAYOH MRT STATION
+TOA PAYOH	5 ROOM	153A	LOR 1 TOA PAYOH	10	121	Improved	1999	HDB Flat	5 ROOM	6000	0.15073997463710792	TOA PAYOH MRT STATION
+If you are interested in renting any of the units, please contact our property agent. ","Here are some rental options near Toa Payoh MRT station:
+
+1. **3 ROOM Flat**
+   - **Address:** 177 TOA PAYOH CTRL
+   - **Rental Price:** $1100
+   - **Distance to MRT:** 0.198 km
+
+2. **4 ROOM Flat**
+   - **Address:** 79B TOA PAYOH CTRL
+   - **Rental Price:** $1100
+   - **Distance to MRT:** 0.198 km
+
+3. **3 ROOM Flat**
+   - **Address:** 263 TOA PAYOH EAST
+   - **Rental Price:** $3500
+   - **Distance to MRT:** 0.861 km
+
+4. **5 ROOM Flat**
+   - **Address:** 45 LOR 5 TOA PAYOH
+   - **Rental Price:** $1200
+   - **Distance to MRT:** 0.774 km
+
+5. **4 ROOM Flat**
+   - **Address:** 261 TOA PAYOH EAST
+   - **Rental Price:** $1100
+   - **Distance to MRT:** 0.845 km
+
+These options provide a range of prices and types of flats available for rent near the MRT station.",depends on how we output the format of the listings. Either as a table or this short list.
+complex,recommend me a place to rent that is near to Ai Tong School,"We have a few units near to Ai Tong School that is available. Here is a list of units with their address and rental price:
+town	flat_type	block / building	street_name	storey	floor_area_sqm	flat_model	lease_commence_date	property_type	rental_type	rental_price	owner_name	nearest_school_dist_km	nearest_school_name
+BISHAN	5 ROOM	402	SIN MING AVE	22	120	Improved	1986	HDB Flat	5 ROOM	5500	Timothy Simpson	0.2447407436478345	AI TONG SCHOOL
+BISHAN	3 ROOM	407	SIN MING AVE	10	10	Simplified	1986	HDB Flat	1 BEDROOM	1100	Amy Dixon	0.34561995096707065	AI TONG SCHOOL
+Bishan, Ang Mo Kio	Terrace House	SOO CHOW GARDEN	SOO CHOW VIEW	Landed	171.7	Terrace House	Freehold	Landed	TERRACE HOUSE	13300	David Soh	0.9089026071133504	AI TONG SCHOOL
+If you are interested in renting any of the units, please contact our property agent. ","Here are some rental options near Ai Tong School:
+
+1. **442 SIN MING AVE**
+   - **Town:** Bishan
+   - **Flat Type:** 5 ROOM
+   - **Rental Price:** $6000
+
+2. **450 SIN MING AVE**
+   - **Town:** Bishan
+   - **Flat Type:** 5 ROOM
+   - **Rental Price:** $2400
+
+3. **445 SIN MING AVE**
+   - **Town:** Bishan
+   - **Flat Type:** 4 ROOM
+   - **Rental Price:** $4700
+
+4. **447 BRIGHT HILL DR**
+   - **Town:** Bishan, Ang Mo Kio
+   - **Flat Type:** Terrace House
+   - **Rental Price:** $10400
+
+5. **FABER GARDEN CONDOMINIUM, ANGKLONG LANE**
+   - **Town:** Bishan, Ang Mo Kio
+   - **Flat Type:** EXECUTIVE
+   - **Rental Price:** $6600
+
+6. **447 BRIGHT HILL DR**
+   - **Town:** Bishan
+   - **Flat Type:** 5 ROOM
+   - **Rental Price:** $5600
+
+7. **454 SIN MING AVE**
+   - **Town:** Bishan
+   - **Flat Type:** 4 ROOM
+   - **Rental Price:** $4000
+
+8. **402 SIN MING AVE**
+   - **Town:** Bishan
+   - **Flat Type:** 5 ROOM
+   - **Rental Price:** $5500
+
+9. **444 SIN MING AVE**
+   - **Town:** Bishan
+   - **Flat Type:** 5 ROOM
+   - **Rental Price:** $2000
+
+10. **448 BRIGHT HILL DR**
+    - **Town:** Bishan
+    - **Flat Type:** 4 ROOM
+    - **Rental Price:** $4300
+
+These options vary in price and type, so you can choose based on your preferences and budget.",depends on how we output the format of the listings. Either as a table or this short list.
+complex,"I'm looking for a high floor, 2 room unit to rent in yishun. Recommend me some places","We have a few high floor 2 room units in Yishun that is available. Here is a list of units with their address and rental price:
+town	flat_type	block / building	street_name	storey	floor_area_sqm	flat_model	lease_commence_date	rental_date	property_type	rental_type	rental_price
+YISHUN	2 ROOM	424A	YISHUN AVE 11	10	47	Model A	2015		HDB Flat	2 ROOM	2200
+YISHUN	2 ROOM	478B	YISHUN ST 44	13	38	2-room	2021		HDB Flat	2 ROOM	2400
+YISHUN	2 ROOM	677A	YISHUN RING RD	10	47	Model A	2018		HDB Flat	2 ROOM	2200
+YISHUN	2 ROOM	462B	YISHUN AVE 6	10	38	Model A	2019		HDB Flat	2 ROOM	2300
+YISHUN	2 ROOM	424B	YISHUN AVE 11	10	47	Model A	2015		HDB Flat	2 ROOM	2300
+If you are interested in renting any of the units, please contact our property agent. ","I found a suitable rental unit for you in Yishun:
+
+- **Flat Type:** 2 ROOM
+- **Block / Building:** 478B
+- **Street Name:** YISHUN ST 44
+- **Nearest School:** NORTH VIEW PRIMARY SCHOOL (Distance: 0.42 km)
+- **Nearest MRT Station:** YISHUN MRT STATION (Distance: 1.78 km)
+
+If you need more information or additional options, feel free to ask!",answer not wrong but only show 1 unit
+moderate,recommend me a good place to stay in singapore,"Sorry, we are unable to provide you a recommendation. You may find other information sources for your query.","Sorry, we are unable to help you with this query as it is not related to property matters. You may ask me another question related to property matters! Reason: The user is asking for a recommendation for a place to stay, which does not fit into information retrieval or property data analysis.",needs some error handling
+complex,"I am a foreigner and have just lost my job. However, my rental period has not finished but my work permit will be expiring. How can I terminate my rental agreement and are there any penalties?","The tenancy agreement may be terminated under the Diplomatic Clause. If you have been refused permission by the Singapore Government to work or reside in Singapore,  it shall be lawful for the Tenant to determine the tenancy by giving not less than 2 months' notice or paying 2 months' Rent in lieu of such notice. Documentary evidence shall be provided on or before the last day of the termination date.
+Source: Page 6 of tenancy_agreement_Condo_whole.pdf
+Source Text Preview: (c) DIPLOMATIC CLAUSE
+That if at any time after the expiration of 12 months from the date of the commencement of the Tenancy Agreement, _____________________ (_____________________) shall be: (i) deported from Singapore; or (ii) refused permission by the Singapore Government to work or reside in Singapore...","I don't know.
+Sources: Page 8 of PDF
+Source Text Preview: The Landlord: Please inspect the original employment or work pass, original travel and identification documents of the
+prospective foreign tenants.
+Th...",
+easy,What is the interest rate for late payment of rent?,"The interest rate for rent arrears is 10% on an annual basis.
+Source: Page 6 of tenancy_agreement_HDBflat_whole.pdf
+Source Text Preview: (b) INTEREST FOR RENT ARREARS
+In the event the Rent remains unpaid for 7 calendar days after becoming payable (whether formally demanded or not) it shall be lawful for the Landlord to claim an interest at 10% on an annual basis...","The interest rate for late payment of rent is 10% on an annual basis.
+Sources: Page 5 of PDF
+Source Text Preview: shall be lawful for the Landlord to claim an interest at 10% on an annual basis on the amount unpaid calculated from
+after the date due up to the date...",
+complex,"I'm currently bankrupt and unable to pay the rent that I have owed, can I still stay at the premises and what do I have to do?","You may be unable to stay at the premises as the Landlord is obliged to re-enter the premises and terminate the tenancy agreement. You are advised to contact the Landlord for more information on your situation.
+Source: Page 6 of tenancy_agreement_Condo_whole.pdf
+Source Text Preview: (a) DEFAULT OF TENANT
+If (i) the Rent hereby reserved shall be unpaid for 7 days after being payable (whether formally demanded or not), (ii) the
+Tenant becomes bankrupt or enter into composition...","I don't know.
+Sources: Page 6 of PDF
+Source Text Preview: 5. PROVIDED ALWAYS and it is hereby agreed as follows:
+(a) DEFAULT OF TENANT
+If (i) the Rent hereby reserved shall be unpaid for 7 days after being paÅc","Bot was able to answer properly before I add the question ""what do I have to do"" to make the qn more complex."
