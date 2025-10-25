@@ -1,5 +1,7 @@
 import numpy as np
+import pandas as pd
 import nltk
+import json
 from rouge_score import rouge_scorer
 from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
 from bert_score import score as bert_score
@@ -183,23 +185,49 @@ class UnifiedEvaluator:
 # ===============================================================
 if __name__ == "__main__":
     # --- Example 1: Text-based ---
-    text_refs = [
-        "The capital of France is Paris.",
-        "Water boils at 100 degrees Celsius."
-    ]
-    text_cands = [
-        "Paris is the capital city of France.",
-        "Water reaches boiling point at one hundred degrees Celsius."
-    ]
 
-    # --- Example 2: Numeric-based ---
-    numeric_refs = [2500, 3200, 4100]
-    numeric_cands = [2490, 3198, 4300]
+    # Load the CSV file
+    df = pd.read_csv("qa_pair_for_testing.csv", encoding="latin-1")
+
+    # Ensure required columns exist
+    required_cols = {"template_ans", "model_ans", "difficulty"}
+    if not required_cols.issubset(df.columns):
+        raise ValueError(f"CSV must contain columns: {required_cols}")
+
+    # Extract the lists
+    text_refs = df["template_ans"].tolist()
+    text_cands = df["model_ans"].tolist()
 
     evaluator = UnifiedEvaluator(tolerance_ratio=0.02)
 
     print("=== Text Evaluation ===")
     print(evaluator.evaluate(text_refs, text_cands))
 
-    print("\n=== Numeric Evaluation ===")
-    print(evaluator.evaluate(numeric_refs, numeric_cands))
+    #print("\n=== Numeric Evaluation ===")
+    #print(evaluator.evaluate(numeric_refs, numeric_cands))
+
+results = evaluator.evaluate(text_refs, text_cands)
+
+# Convert the per-sample data to a DataFrame
+per_sample_df = pd.DataFrame(results["per_sample"])
+
+# Merge difficulty back into per-sample evaluation
+per_sample_df["difficulty"] = df["difficulty"]
+
+# --- Aggregate scores by difficulty ---
+metrics = ['composite_score', 'bleu', 'rouge1', 'rouge2', 'rougeL', 'precision', 'recall', 'f1']
+
+# Mean per difficulty
+agg_by_difficulty = per_sample_df.groupby("difficulty")[metrics].mean().reset_index()
+
+total_composite_score = per_sample_df["composite_score"].mean()
+
+# Save overall raw results
+with open("evaluation_results.json", "w") as f:
+    json.dump(results, f, indent=2)
+
+# Save per-sample evaluation
+per_sample_df.to_csv("evaluation_per_sample.csv", index=False)
+
+# Save aggregated by difficulty
+agg_by_difficulty.to_csv("evaluation_by_difficulty.csv", index=False)
