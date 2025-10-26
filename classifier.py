@@ -104,7 +104,6 @@ async def classify(query):
     Raises:
         None
     """
-    print(f"Classifying query: {query}")
     messages = [
         {"role": "system", "content": CONTEXT + EXAMPLES},
         {"role": "user", "content": str(query)},

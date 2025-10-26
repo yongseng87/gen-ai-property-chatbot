@@ -15,13 +15,16 @@ from langchain.chains import RetrievalQA
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_experimental.agents.agent_toolkits.pandas.base import create_pandas_dataframe_agent
 from langchain_community.document_loaders import PyPDFLoader
 
+from create_csv_agent import create_csv_agent
 from classifier import classify
+import re
+from datetime import datetime
 
 # Suppress warnings
 warnings.filterwarnings('ignore')
+
 
 def load_and_process_pdf(pdf_path):
     """Load PDF and process it for Chroma DB"""
@@ -88,21 +91,6 @@ def create_pdf_qa_system(vectorstore_pdf, llm):
     return qa_chain_pdf
 
 
-def create_csv_agent(csv_path, llm):
-    """Create agent for CSV documents"""
-    
-    df = pd.read_csv(csv_path)
-    agent = create_pandas_dataframe_agent(
-        llm=llm,
-        df=df,
-        verbose=True,
-        agent_type="openai-tools",
-        allow_dangerous_code=True,
-    )
-    print("✅ CSV Agent created successfully")
-    return agent
-
-
 class PropertySupportBot:
     def __init__(self):
         self.llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.1, api_key=openai_api_key)
@@ -116,7 +104,7 @@ class PropertySupportBot:
         
         # QA chain for policies
         self.qa_chain = create_pdf_qa_system(self.vectorstore, self.llm)
-        self.csv_agent = create_csv_agent("property_database_v2.csv", self.llm)
+        self.agent_csv = create_csv_agent("property_database_v2.csv", self.llm)
     
     def process_query(self, query: str):
         """Process user query based on category classification"""
@@ -135,13 +123,43 @@ class PropertySupportBot:
             print(f"📝 Source Text Preview: {result['source_documents'][0].page_content[:150]}...")
         elif module == "property_data_analysis":
             print("\n🔵 HANDLING PROPERTY DATA ANALYSIS QUERY...")
-            result = self.csv_agent.invoke(query)
+            result = self.agent_csv.invoke(query)
             print(f"Analysis Result: {result['output']}")
         else:
             print("\n🔵 HANDLING GENERAL QUERY...")
             reason = classification['classifications'][0]['reason']
-            result = {"message": f"Query not related to property support. Reason: {reason}"}
+            result = {"message": f"Sorry, I can't assist with that. Please ask about property-related topics."}
             print(result['message'])
+            # Prompt user for email to contact (optional)
+            email = input("If you'd like a human agent to contact you, enter your email (or press Enter to skip): ").strip()
+            if email:
+                # Basic email validation
+                if re.match(r"^[^@]+@[^@]+\.[^@]+$", email):
+                    folder = os.path.join(os.getcwd(), "user_contacts")
+                    os.makedirs(folder, exist_ok=True)
+                    file_path = os.path.join(folder, "user_emails.csv")
+
+                    # Write header if file does not exist
+                    header_needed = not os.path.exists(file_path)
+                    with open(file_path, "a", encoding="utf-8") as f:
+                        if header_needed:
+                            f.write("timestamp,email,original_query\n")
+                        ts = datetime.utcnow().isoformat()
+                        # Quote fields to handle commas/quotes safely
+                        safe_email = email.replace('"', '""')
+                        safe_query = query.replace('"', '""')
+                        f.write(f'"{ts}","{safe_email}","{safe_query}"\n')
+
+                    print(f"✅ Email saved to {file_path}")
+                    result["saved_email"] = email
+                    result["message"] = "Thanks — your email has been saved. A human agent will contact you if needed."
+                else:
+                    print("⚠️ Invalid email format. Email not saved.")
+                    result["saved_email"] = None
+                    result["message"] = "Invalid email format. Please try again."
+            else:
+                print("No email provided; skipping save.")
+                result["saved_email"] = None
         
         return result
 
@@ -159,9 +177,7 @@ if __name__ == "__main__":
 
     # Test various query types
     test_queries = [
-        "what is the mean price of HDB flats in Bishan?",
-        "Do I need to pay for repairs in my rental unit?",
-        "how to invest in stocks for beginners?"
+        "what is the latest stock price of Apple Inc?",
     ]
 
     for query in test_queries:
