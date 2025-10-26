@@ -2,10 +2,26 @@ import streamlit as st
 from datetime import datetime
 import time
 import os
+import sys
 from dotenv import load_dotenv
 
-# Import the model
-from model import PropertySupportBot
+# Add error handling for imports
+try:
+    # Import the model
+    from model import PropertySupportBot
+except ImportError as e:
+    st.error(f"❌ Error importing model: {e}")
+    st.error("Please ensure all required files are present and dependencies are installed.")
+    st.stop()
+
+# Additional imports for data handling
+try:
+    import pandas as pd
+    import numpy as np
+except ImportError as e:
+    st.error(f"❌ Error importing data libraries: {e}")
+    st.error("Please install required packages: pip install pandas numpy")
+    st.stop()
 
 # Page configuration
 st.set_page_config(
@@ -20,13 +36,24 @@ st.markdown("""
     <style>
     /* Main theme colors */
     .stApp {
-        background-color: #f8f9fa;
+        background-color: #ffffff;
+        color: #000000;
     }
     
     /* Sidebar styles */
     [data-testid="stSidebar"] {
         background-color: #000000;
         color: #ffffff;
+    }
+    
+    /* Main content area text color */
+    .main .block-container {
+        color: #000000;
+    }
+    
+    /* All text elements */
+    h1, h2, h3, h4, h5, h6, p, div, span, label {
+        color: #000000 !important;
     }
     
     /* Quick action button styles */
@@ -50,8 +77,8 @@ st.markdown("""
     
     /* Message bubble styles */
     .user-message {
-        background-color: #ffffff;
-        color: #333;
+        background-color: #e3f2fd;
+        color: #000000;
         padding: 12px 16px;
         border-radius: 18px;
         border-top-right-radius: 4px;
@@ -59,12 +86,12 @@ st.markdown("""
         max-width: 70%;
         float: right;
         clear: both;
-        border: 1px solid #e0e0e0;
+        border: 1px solid #bbdefb;
     }
     
     .bot-message {
-        background-color: white;
-        color: #333;
+        background-color: #e3f2fd;
+        color: #000000;
         padding: 12px 16px;
         border-radius: 18px;
         border-top-left-radius: 4px;
@@ -72,7 +99,7 @@ st.markdown("""
         max-width: 70%;
         float: left;
         clear: both;
-        border: 1px solid #e0e0e0;
+        border: 1px solid #bbdefb;
     }
     
     .message-time {
@@ -83,14 +110,14 @@ st.markdown("""
     
     /* Title styles */
     .main-title {
-        color: #667eea;
+        color: #000000;
         font-size: 2rem;
         font-weight: bold;
         margin-bottom: 0.5rem;
     }
     
     .subtitle {
-        color: #666;
+        color: #000000;
         font-size: 0.9rem;
         margin-bottom: 1.5rem;
     }
@@ -106,6 +133,26 @@ st.markdown("""
         border-radius: 25px;
         padding: 12px 20px;
         border: 2px solid #e0e0e0;
+    }
+    
+    /* Streamlit text elements */
+    .stMarkdown, .stText, .stSelectbox label, .stTextInput label {
+        color: #000000 !important;
+    }
+    
+    /* Metrics and data elements */
+    .metric-container {
+        color: #000000 !important;
+    }
+    
+    /* Dataframe styling */
+    .dataframe {
+        color: #000000 !important;
+    }
+    
+    /* Button text */
+    .stButton > button {
+        color: #000000 !important;
     }
     
     /* Hide Streamlit default elements */
@@ -155,12 +202,40 @@ def initialize_ai_model():
             st.error("⚠️ OpenAI API key not found. Please set OPENAI_API_KEY in your .env file.")
             return None
         
+        # Check if required files exist
+        required_files = [
+            "property_data_generator",
+            "property_database_v2.csv", 
+            "classifier.py"
+        ]
+        
+        missing_files = []
+        for file_path in required_files:
+            if not os.path.exists(file_path):
+                missing_files.append(file_path)
+        
+        if missing_files:
+            st.error("❌ Missing required files:")
+            for file in missing_files:
+                st.error(f"   - {file}")
+            return None
+        
         with st.spinner("🤖 Initializing AI model..."):
             bot = PropertySupportBot()
             st.success("✅ AI model loaded successfully!")
             return bot
+            
+    except ImportError as e:
+        st.error(f"❌ Import error: {str(e)}")
+        st.error("Please install required packages: pip install -r requirements.txt")
+        return None
     except Exception as e:
         st.error(f"❌ Error initializing AI model: {str(e)}")
+        st.error("Please check that all required files are present:")
+        st.error("- property_data_generator/ folder with PDF files")
+        st.error("- property_database_v2.csv file")
+        st.error("- classifier.py file")
+        st.error("- Valid OpenAI API key in .env file")
         return None
 
 # Initialize the model
@@ -220,11 +295,16 @@ with st.sidebar:
                 'content': action['query'],
                 'timestamp': datetime.now()
             })
-            # Simulate AI response
-            time.sleep(0.5)
+            
+            # Use AI model if available, otherwise show placeholder
+            if ai_bot is not None:
+                response = generate_response(action['query'])
+            else:
+                response = f"Processing your '{action['label']}' request... (AI model not available)"
+            
             st.session_state.messages.append({
                 'role': 'assistant',
-                'content': f"Processing your '{action['label']}' request...",
+                'content': response,
                 'timestamp': datetime.now()
             })
             st.rerun()
@@ -248,11 +328,16 @@ with st.sidebar:
                 'content': question,
                 'timestamp': datetime.now()
             })
-            # Simulate AI response
-            time.sleep(0.5)
+            
+            # Use AI model if available, otherwise show placeholder
+            if ai_bot is not None:
+                response = generate_response(question)
+            else:
+                response = "Retrieving information, please wait... (AI model not available)"
+            
             st.session_state.messages.append({
                 'role': 'assistant',
-                'content': "Retrieving information, please wait...",
+                'content': response,
                 'timestamp': datetime.now()
             })
             st.rerun()
@@ -414,9 +499,6 @@ elif st.session_state.current_view == 'property_statistics':
         st.markdown("### 📊 Property Distribution")
         
         # Sample data for demonstration
-        import pandas as pd
-        import numpy as np
-        
         # Property type distribution
         property_data = pd.DataFrame({
             'Property Type': ['1-Bedroom', '2-Bedroom', '3-Bedroom', 'Studio'],
