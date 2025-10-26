@@ -42,8 +42,25 @@ st.markdown("""
     
     /* Sidebar styles */
     [data-testid="stSidebar"] {
-        background-color: #000000;
-        color: #ffffff;
+        background-color: #e3f2fd;
+        color: #000000;
+    }
+    
+    /* Sidebar button styles */
+    [data-testid="stSidebar"] .stButton > button {
+        background-color: #f5f5f5 !important;
+        color: #000000 !important;
+        border: 1px solid #e0e0e0 !important;
+        border-radius: 8px !important;
+        padding: 8px 16px !important;
+        margin: 4px 0 !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    [data-testid="stSidebar"] .stButton > button:hover {
+        background-color: #eeeeee !important;
+        transform: translateY(-1px) !important;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
     }
     
     /* Main content area text color */
@@ -133,6 +150,13 @@ st.markdown("""
         border-radius: 25px;
         padding: 12px 20px;
         border: 2px solid #e0e0e0;
+        background-color: #ffffff !important;
+        color: #000000 !important;
+    }
+    
+    .stTextInput > div > div > input:focus {
+        border-color: #bbdefb !important;
+        box-shadow: 0 0 0 2px rgba(187, 222, 251, 0.2) !important;
     }
     
     /* Streamlit text elements */
@@ -241,6 +265,23 @@ def initialize_ai_model():
 # Initialize the model
 ai_bot = initialize_ai_model()
 
+# Test API connection
+def test_api_connection():
+    """Test if the API connection is working"""
+    if ai_bot is None:
+        return False
+    
+    try:
+        # Simple test query
+        test_response = ai_bot.process_query("Hello, are you working?")
+        return "error" not in test_response.lower() and "❌" not in test_response
+    except Exception as e:
+        print(f"API test failed: {e}")
+        return False
+
+# Test the connection
+api_working = test_api_connection()
+
 # AI response generation function
 def generate_response(user_input):
     """
@@ -250,11 +291,29 @@ def generate_response(user_input):
         return "❌ AI model is not available. Please check your OpenAI API key configuration."
     
     try:
-        with st.spinner("🤖 AI is thinking..."):
+        # Add a timeout wrapper
+        import signal
+        
+        def timeout_handler(signum, frame):
+            raise TimeoutError("API call timed out")
+        
+        # Set timeout for API calls
+        signal.signal(signal.SIGALRM, timeout_handler)
+        signal.alarm(30)  # 30 second timeout
+        
+        try:
             response = ai_bot.process_query(user_input)
+            signal.alarm(0)  # Cancel the alarm
             return response
+        except TimeoutError:
+            signal.alarm(0)  # Cancel the alarm
+            return "⏰ Request timed out. Please try again with a shorter question or check your internet connection."
+        except Exception as e:
+            signal.alarm(0)  # Cancel the alarm
+            return f"❌ Error processing your request: {str(e)}\n\nPlease try again or contact support."
+            
     except Exception as e:
-        return f"❌ Error processing your request: {str(e)}\n\nPlease try again or contact support."
+        return f"❌ Unexpected error: {str(e)}\n\nPlease try again or contact support."
 
 # Sidebar
 with st.sidebar:
@@ -347,8 +406,12 @@ with st.sidebar:
     # AI Model Status
     st.markdown("#### 🤖 AI Model Status")
     if ai_bot is not None:
-        st.success("✅ AI Model Active")
-        st.caption("Powered by GPT-4o-mini + RAG")
+        if api_working:
+            st.success("✅ AI Model Active & Connected")
+            st.caption("Powered by GPT-4o-mini + RAG")
+        else:
+            st.warning("⚠️ AI Model Loaded but API Issues")
+            st.caption("Check API key or network connection")
     else:
         st.error("❌ AI Model Offline")
         st.caption("Check API configuration")
