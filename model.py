@@ -63,8 +63,7 @@ def load_and_process_pdf(pdf_path):
     vectorstore_pdf = Chroma.from_documents(
         documents=all_docs,
         embedding=embeddings_pdf,
-        persist_directory=db_path
-    )
+        persist_directory=db_path)
     
     # Persist the database
     vectorstore_pdf.persist()
@@ -97,7 +96,7 @@ class PropertySupportBot:
         self.embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
         
         # Knowledge base
-        self.vectorstore = load_and_process_pdf("examples")
+        self.vectorstore = load_and_process_pdf("property_data_generator")
         
         # Memory for conversations
         self.memory = ConversationBufferMemory()
