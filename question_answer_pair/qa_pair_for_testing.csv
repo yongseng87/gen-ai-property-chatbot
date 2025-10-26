@@ -8,7 +8,7 @@ Sources: Page 2 of PDF
 Source Text Preview: 200, Landlord's approval must be obtained prior to them being carried out and the Landlord reserves the right to
 engage his own contractor. For the av...",
 easy,how to invest in stocks for beginners?,"Sorry, we are unable to help you with this query as it is not related to property matters. You may ask me another question related to property matters! ","Sorry, we are unable to help you with this query as it is not related to property matters. You may ask me another question related to property matters! Reason: The user is inquiring about investing in stocks, which is not related to information retrieval or property data analysis.","can delete the ""reason"" part after done with troubleshooting"
-easy,IÅfm renting a landed house currently. Can I use the unit to conduct my home business?,"Yes, you can use the premises for small home businesses provided that you comply with the  prevailing rules and regulations, and not
+easy,IÅEfm renting a landed house currently. Can I use the unit to conduct my home business?,"Yes, you can use the premises for small home businesses provided that you comply with the  prevailing rules and regulations, and not
 for any illegal or other purposes.
 Sources: Page 3 of tenancy_agreement_Landed.pdf, tenancy_agreement_Condo_whole.pdf
 Source Text Preview: (r) USE OF PREMISES
@@ -17,7 +17,7 @@ Sources: Page 8 of PDF
 Source Text Preview: The Landlord: Please inspect the original employment or work pass, original travel and identification documents of the
 prospective foreign tenants.
 Th...",
-moderate,IÅfm renting a condominium unit. Am I allowed to keep pets?,"It depends on the type of rental you are holding. If you are renting some bedrooms partially, you are not allowed to keep any pets in the premises. However, if you are renting the entire unit, you may be allowed to keep certain pets with permission from the Landlord subject to conditions imposed by him/her.
+moderate,IÅEfm renting a condominium unit. Am I allowed to keep pets?,"It depends on the type of rental you are holding. If you are renting some bedrooms partially, you are not allowed to keep any pets in the premises. However, if you are renting the entire unit, you may be allowed to keep certain pets with permission from the Landlord subject to conditions imposed by him/her.
 Sources: Page 4 of tenancy_agreement_Condo_bedroom.pdf, tenancy_agreement_Condo_whole.pdf
 Source Text Preview: (w) Pets 
 Not to keep or permit to be kept in the Premises or any part thereof any animal or bird legally permitted to be pets without the prior written permission of the Landlord...","No, you are not allowed to keep pets in the condominium unit as per the terms stated in the agreement.
@@ -51,7 +51,7 @@ To observe and perform all the by-laws, rules and regulations of the Management 
 Sources: Page 2 of PDF
 Source Text Preview: 200, Landlord's approval must be obtained prior to them being carried out and the Landlord reserves the right to
 engage his own contractor. For the av...",
-complex,"IÅfm looking for a two room HDB unit to rent in Hougang. Can you recommend me some available units with monthly rental below $2,200?","Yes, we have some 2 ROOM HDB units available for you to rent in Hougang that fits your budget! Here is a list of units with their address and rental price:
+complex,"IÅEfm looking for a two room HDB unit to rent in Hougang. Can you recommend me some available units with monthly rental below $2,200?","Yes, we have some 2 ROOM HDB units available for you to rent in Hougang that fits your budget! Here is a list of units with their address and rental price:
 town	flat_type	block / building	street_name	storey	floor_area_sqm	flat_model	lease_commence_date	property_type	rental_type	rental_price
 HOUGANG	2 ROOM	986A	BUANGKOK CRES	07	47	Model A	2012	HDB Flat	2 ROOM	2000
 HOUGANG	2 ROOM	987B	BUANGKOK GREEN	16	47	Model A	2015	HDB Flat	2 ROOM	2100
@@ -250,4 +250,15 @@ Tenant becomes bankrupt or enter into composition...","I don't know.
 Sources: Page 6 of PDF
 Source Text Preview: 5. PROVIDED ALWAYS and it is hereby agreed as follows:
 (a) DEFAULT OF TENANT
-If (i) the Rent hereby reserved shall be unpaid for 7 days after being paÅc","Bot was able to answer properly before I add the question ""what do I have to do"" to make the qn more complex."
+If (i) the Rent hereby reserved shall be unpaid for 7 days after being paÅEc","Bot was able to answer properly before I add the question ""what do I have to do"" to make the qn more complex."
+complex,what is the price difference for renting 1 bedroom in 2024 versus 2025?,The price difference of renting 1 bedroom is $7.69 as the mean rental price of 1 bedroom units is $1100 in 2024 and $1107.69 in 2025.,"It appears that there are no available rental prices for 1-bedroom units in the years 2024 and 2025 in the dataset. Therefore, I cannot provide a price difference for renting 1-bedroom units between those years.","Bot run a code that only set ==2025 and ==2024 when rental date is coded in dd/mm/yyyy, returning 0 results."
+easy,what is the cheapest rental price for houses in Orchard,The lowest rental price for a unit in Orchard is $1000. ,"It appears that there are no rental prices listed for houses in Orchard in the dataset, as the result is `NaN`. This could mean that there are no entries for Orchard or that the rental prices are not available.",Bot cannot read data fields with multiple town
+easy,what is the highest rental price for a unit in Novena?,The highest rental price for a unit in Sengkang is $7900.,The highest rental price for a unit in Sengkang is 7900.,
+moderate,how many 4 room HDB units are available for rent in Bukit Merah?,There are 67 units for rent in Bukit Merah.,There are 147 available 4-room HDB units for rent in Bukit Merah.,There are total of 69 minus 2 occupied. This is to check if bot can differentiate. Bot is confused over full 4 room units and those set as 4 room but only renting out 1 bedroom. 147 correctly gives the total number of 4 room units.
+complex,what is the range of rental prices for houses in June 2024.,The range of prices in June 2024 is from $1100 to $5400.,"The range of rental prices for houses in the dataset is as follows:
+
+- Minimum rental price: 1,000
+- Maximum rental price: 29,900
+
+This indicates that the rental prices vary significantly across different properties.",Bot only calls df['rental_price'].describe() and ignore the date.
+complex,what is the average size of 3 room HDB flats?,The mean floor area in sqm of 3 room HDB flats is 68.0153.,The average size of 3-room HDB flats is approximately 39.69 square meters.,"Bot is confused over full 3 room units and those set as 3 room but only renting out 1 bedroom. Bot can interpret term ""size"" correctly."
