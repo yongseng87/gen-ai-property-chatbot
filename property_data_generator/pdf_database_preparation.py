@@ -26,9 +26,10 @@ for i in range(len(rented_df)):
         property_address = f"{rented_df.loc[i, 'block / building']} {rented_df.loc[i, 'street_name']}, #{rented_df.loc[i, 'storey']}-{rented_df.loc[i, 'storey']}, Singapore {np.random.randint(100000, 700000)}"
     rental_price = rented_df.loc[i, 'rental_price']
     rental_type = rented_df.loc[i, 'rental_type']
+    rental_date = rented_df.loc[i, 'rental_date']
     # print(property_type, '|', rental_type, '|', property_address, '|', rental_price)
 
-    generate_tenancy_agreement(property_type, rental_type, ref_no, landlord_name, tenant_name, property_address, rental_price)
+    generate_tenancy_agreement(property_type, rental_type, ref_no, landlord_name, tenant_name, property_address, rental_price, rental_date)
     print(f"Generated tenancy agreement for {tenant_name} at {property_address}")
 
 
