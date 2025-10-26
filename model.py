@@ -55,22 +55,17 @@ def load_and_process_pdf(pdf_path):
     #     shutil.rmtree(db_path)
     #     print("🧹 Cleared existing database")
     
-    # Note: The following code to create a new Chroma vector store is commented out to avoid overwriting existing data.
     # Create Chroma vector store
-    # print("🔍 Creating vector embeddings...")
-    # vectorstore_pdf = Chroma.from_documents(
-    #     documents=all_docs,
-    #     embedding=embeddings_pdf,
-    #     persist_directory=db_path)
+    print("🔍 Creating vector embeddings...")
+    vectorstore_pdf = Chroma.from_documents(
+        documents=all_docs,
+        embedding=embeddings_pdf,
+        persist_directory=db_path)
     
     # Persist the database
-    # vectorstore_pdf.persist()
-    # print(f"💾 Vector database saved to: {db_path}")
+    vectorstore_pdf.persist()
+    print(f"💾 Vector database saved to: {db_path}")
     
-    # Load existing Chroma vector store
-    print("📂 Loading existing vector database...")
-    vectorstore_pdf = Chroma(persist_directory=db_path, embedding_function=embeddings_pdf)
-
     return vectorstore_pdf
 
 
@@ -163,9 +158,9 @@ if __name__ == "__main__":
 
     # Test various query types
     test_queries = [
-        # "what is the mean price of HDB flats in Bishan?",
-        # "Do I need to pay for repairs in my rental unit?",
-        # "how to invest in stocks for beginners?",
+        "what is the mean price of HDB flats in Bishan?",
+        "Do I need to pay for repairs in my rental unit?",
+        "how to invest in stocks for beginners?",
         # "I’m renting a landed house currently. Can I use the unit to conduct my home business?",
         # "I’m renting a condominium unit. Am I allowed to keep pets?",
         # "Am I allowed to cook in the house?",
@@ -184,6 +179,12 @@ if __name__ == "__main__":
         # "I am a foreigner and have just lost my job. However, my rental period has not finished but my work permit will be expiring. How can I terminate my rental agreement and are there any penalties?",
         # "What is the interest rate for late payment of rent?",
         # "I'm currently bankrupt and unable to pay the rent that I have owed, can I still stay at the premises and what do I have to do?"
+        # "what is the price difference for renting 1 bedroom in 2024 versus 2025?",
+        # "what is the cheapest rental price for houses in Orchard",
+        # "what is the highest rental price for a unit in Sengkang?",
+        # "how many 4 room HDB units are available for rent in Bukit Merah?",
+        # "what is the range of rental prices for houses in June 2024.",
+        # "what is the average size of 3 room HDB flats?"        
     ]
 
     for query in test_queries:
