@@ -1,0 +1,102 @@
+difficulty,template_qn,template_ans,model_ans,notes
+easy,what is the mean price of HDB flats in Bishan?,"Sorry, we do not have data on the prices of HDB flats but we do have data on rental prices. The mean rental price of HDB flats in Bishan is approximately $3471.43.",The mean rental price of HDB flats in Bishan is approximately **$2533.33** Singapore Dollars.,AI is hallucinating its own example data with 3 values to give an average
+moderate,Do I need to pay for repairs in my rental unit?,"It depends on the nature of the repairs. In cases, where the damage is caused by the Tenant, the Tenant is responsible for the repairs to any damaged items. For minor repairs and routine maintenance of the Premises not caused by the Tenant, the Tenant shall be responsible to bear a certain amount while the Landlord shall bear the excess.
+Sources: Page 2 of tenancy_agreement_HDBflat_whole.pdf
+Source Text Preview: (i) Minor Repairs 
+To be responsible for all minor repairs and routine maintenance of the Premises not exceeding S$ _____ per job/repair/maintenance per item (excluding aircon units/system, water heater and structural repairs) throughout the term of the Tenancy Agreement...","It depends on the nature of the repairs. According to the context provided, the Tenant is responsible for minor repairs unless the damage is caused by the Tenant's wilful act or negligence. However, repairs to specific items such as water heaters, air conditioning systems, built-in wardrobes, cabinets, toilet bowls, wash basins, ceilings, roofs, wall structures, and main electrical wiring are not the Tenant's responsibility unless the damage is caused by the Tenant. Additionally, the cost of repair and replacement for the air conditioning system is borne by the Landlord, except in cases of Tenant negligence.
+Sources: Page 2 of PDF
+Source Text Preview: 200, Landlord's approval must be obtained prior to them being carried out and the Landlord reserves the right to
+engage his own contractor. For the av...",
+easy,how to invest in stocks for beginners?,"Sorry, we are unable to help you with this query as it is not related to property matters. You may ask me another question related to property matters! ","Sorry, I can't assist with that. Please ask about property-related topics.
+If you'd like a human agent to contact you, enter your email (or press Enter to skip): a12345@gmail.com",
+easy,I・Efm renting a landed house currently. Can I use the unit to conduct my home business?,"Yes, you can use the premises for small home businesses provided that you comply with the  prevailing rules and regulations, and not
+for any illegal or other purposes.
+Sources: Page 3 of tenancy_agreement_Landed.pdf, tenancy_agreement_Condo_whole.pdf
+Source Text Preview: (r) USE OF PREMISES
+Premises may be used for small home businesses subject to compliance with prevailing rules and regulations, and not for any illegal or other purposes...","I don't know.
+Sources: Page 8 of PDF
+Source Text Preview: The Landlord: Please inspect the original employment or work pass, original travel and identification documents of the
+prospective foreign tenants.
+Th…",
+moderate,I・Efm renting a condominium unit. Am I allowed to keep pets?,"It depends on the type of rental you are holding. If you are renting some bedrooms partially, you are not allowed to keep any pets in the premises. However, if you are renting the entire unit, you may be allowed to keep certain pets with permission from the Landlord subject to conditions imposed by him/her.
+Sources: Page 4 of tenancy_agreement_Condo_bedroom.pdf, tenancy_agreement_Condo_whole.pdf
+Source Text Preview: (w) Pets 
+Not to keep or permit to be kept in the Premises or any part thereof any animal or bird legally permitted to be pets without the prior written permission of the Landlord...",,
+moderate,Am I allowed to cook in the house?,"It depends on the type of property that you are renting. If you are renting some bedrooms partially, you are not allowed to engage in cooking that emits odours in the leased premises or common areas. This is because tenants are expected to not cause disturbances to other occupants in the premises as it is a shared living environment. However, if you are renting the entire apartment or landed housing, there are no prohibitions against cooking in the house.
+Sources: Page 3 of tenancy_agreement_HDBflat_bedroom.pdf, tenancy_agreement_Condo_bedroom.pdf
+Source Text Preview: (k) NO COOKING
+Tenants shall not engage in cooking that emits unusual odors in the leased premises or the common areas. This includes, but is not limited to, cooking with strong spices...",,
+complex,Who is responsible for servicing and maintaining the air-con?,"It depends on the type of property that you are renting. If you are renting some bedrooms partially, the Landlord is responsible for the servicing and maintenance of the air-con, as well as bearing all costs related to servicing, repair and cleaning. Otherwise, the Tenant is responsible for servicing and maintaining the air-con. The Tenant is also obliged to inform the Landlord for the chemical cleaning and appointment of contractor. 
+Sources: Page 6 of tenancy_agreement_HDBflat_bedroom.pdf, Page 3 of tenancy_agreement_HDBflat_whole.pdf
+Source Text Preview: (j) SERVICE OF AIRCON
+To keep air-conditioning units fully serviced every three months. Cost of repair and replacement (including chemical cleaning and gas top up) to be borne by the Tenant. The chemical cleaning of aircon and the appointment of the contractor shall be notified to the Landlord.
+(k) MAINTENANCE OF AIRCON
+To keep the air-conditioning units in good and tenantable repair and condition provided. The Tenant shall bear the cost and expense for the repair, replacement or renewal of parts, except for those arising from fair wear and tear.",,
+easy,Can you recommend me an air-con cleaning contractor?,"Sorry, we are unable to help you with this query as it is not related to property matters. You may ask me another question related to property matters! ",,
+easy,Who should be responsible for paying the condo management fees?,"The Tenant is responsible for paying the condo management fees.
+Sources: Page 5 of tenancy_agreement_Condo_bedroom.pdf,  tenancy_agreement_Condo_whole.pdf
+Source Text Preview: (ab) COMPLIANCE WITH MANAGEMENT CORPORATION
+To observe and perform all the by-laws, rules and regulations of the Management Corporation for the time being in force and to pay punctually all contributions, levies, fees and other charges which may be imposed",,
+complex,"I・Efm looking for a two room HDB unit to rent in Hougang. Can you recommend me some available units with monthly rental below $2,200?","Yes, we have some 2 ROOM HDB units available for you to rent in Hougang that fits your budget! Here is a list of units with their address and rental price:
+town	flat_type	block / building	street_name	storey	floor_area_sqm	flat_model	lease_commence_date	property_type	rental_type	rental_price
+HOUGANG	2 ROOM	986A	BUANGKOK CRES	07	47	Model A	2012	HDB Flat	2 ROOM	2000
+HOUGANG	2 ROOM	987B	BUANGKOK GREEN	16	47	Model A	2015	HDB Flat	2 ROOM	2100
+HOUGANG	2 ROOM	998B	BUANGKOK CRES	01	38	Model A	2019	HDB Flat	2 ROOM	2100
+HOUGANG	2 ROOM	991A	BUANGKOK LINK	01	47	Model A	2019	HDB Flat	2 ROOM	2100
+HOUGANG	2 ROOM	998B	BUANGKOK CRES	13	47	Model A	2019	HDB Flat	2 ROOM	2000
+HOUGANG	2 ROOM	986A	BUANGKOK CRES	01	47	Model A	2012	HDB Flat	2 ROOM	2000
+HOUGANG	2 ROOM	994A	BUANGKOK LINK	04	47	2-room	2021	HDB Flat	2 ROOM	2100
+If you are interested in renting any of the units, please contact our property agent. ",,
+moderate,how far is the unit 998B buangkok cres away from the MRT and which station is it?,The unit 998B BUANGKOK CRES is 0.8289km away from the nearest MRT station and the station is TONGKANG LRT STATION,,
+moderate,are rental prices in hougang cheaper than rental prices in punggol?,The rental prices in hougang are slightly higher than those in punggol. The average rental price of houses in hougang is $4552.95 whereas the average rental price of houses in punggol is $4212.06.,,
+moderate,are rental prices in JB cheaper than rental prices in singapore?,"Sorry, we are unable to assist you with the query. We do not have data on rental prices in JB.",,
+easy,what is the average rental price of landed houses in singapore?,"The average rental price of landed houses in Singapore is $15,624.36.",,
+complex,recommend me a place to rent that is near to Toa Payoh MRT station,"We have a few units near to Toa Payoh MRT station that is available. Here is a list of units with their address and rental price:
+town	flat_type	block / building	street_name	storey	floor_area_sqm	flat_model	lease_commence_date	property_type	rental_type	rental_price	nearest_mrt_dist_km	nearest_mrt_name
+TOA PAYOH	4 ROOM	175	LOR 2 TOA PAYOH	10	10	Improved	1974	HDB Flat	1 BEDROOM	1200	0.053620687826556664	TOA PAYOH MRT STATION
+TOA PAYOH	5 ROOM	152	LOR 2 TOA PAYOH	25	10	Improved	2006	HDB Flat	1 BEDROOM	1200	0.12084709059303177	TOA PAYOH MRT STATION
+TOA PAYOH	4 ROOM	152	LOR 2 TOA PAYOH	22	86	Model A	2006	HDB Flat	4 ROOM	4500	0.12084709059303177	TOA PAYOH MRT STATION
+TOA PAYOH	5 ROOM	153A	LOR 1 TOA PAYOH	10	121	Improved	1999	HDB Flat	5 ROOM	6000	0.15073997463710792	TOA PAYOH MRT STATION
+If you are interested in renting any of the units, please contact our property agent. ",,
+complex,recommend me a place to rent that is near to Ai Tong School,"We have a few units near to Ai Tong School that is available. Here is a list of units with their address and rental price:
+town	flat_type	block / building	street_name	storey	floor_area_sqm	flat_model	lease_commence_date	property_type	rental_type	rental_price	owner_name	nearest_school_dist_km	nearest_school_name
+BISHAN	5 ROOM	402	SIN MING AVE	22	120	Improved	1986	HDB Flat	5 ROOM	5500	Timothy Simpson	0.2447407436478345	AI TONG SCHOOL
+BISHAN	3 ROOM	407	SIN MING AVE	10	10	Simplified	1986	HDB Flat	1 BEDROOM	1100	Amy Dixon	0.34561995096707065	AI TONG SCHOOL
+Bishan, Ang Mo Kio	Terrace House	SOO CHOW GARDEN	SOO CHOW VIEW	Landed	171.7	Terrace House	Freehold	Landed	TERRACE HOUSE	13300	David Soh	0.9089026071133504	AI TONG SCHOOL
+If you are interested in renting any of the units, please contact our property agent. ",,
+complex,"I'm looking for a high floor, 2 room unit to rent in yishun. Recommend me some places","We have a few high floor 2 room units in Yishun that is available. Here is a list of units with their address and rental price:
+town	flat_type	block / building	street_name	storey	floor_area_sqm	flat_model	lease_commence_date	rental_date	property_type	rental_type	rental_price
+YISHUN	2 ROOM	424A	YISHUN AVE 11	10	47	Model A	2015		HDB Flat	2 ROOM	2200
+YISHUN	2 ROOM	478B	YISHUN ST 44	13	38	2-room	2021		HDB Flat	2 ROOM	2400
+YISHUN	2 ROOM	677A	YISHUN RING RD	10	47	Model A	2018		HDB Flat	2 ROOM	2200
+YISHUN	2 ROOM	462B	YISHUN AVE 6	10	38	Model A	2019		HDB Flat	2 ROOM	2300
+YISHUN	2 ROOM	424B	YISHUN AVE 11	10	47	Model A	2015		HDB Flat	2 ROOM	2300
+If you are interested in renting any of the units, please contact our property agent. ",,
+moderate,recommend me a good place to stay in singapore,"Sorry, we are unable to provide you a recommendation. You may find other information sources for your query.",,
+complex,"I am a foreigner and have just lost my job. However, my rental period has not finished but my work permit will be expiring. How can I terminate my rental agreement and are there any penalties?","The tenancy agreement may be terminated under the Diplomatic Clause. If you have been refused permission by the Singapore Government to work or reside in Singapore,  it shall be lawful for the Tenant to determine the tenancy by giving not less than 2 months' notice or paying 2 months' Rent in lieu of such notice. Documentary evidence shall be provided on or before the last day of the termination date.
+Source: Page 6 of tenancy_agreement_Condo_whole.pdf
+Source Text Preview: (c) DIPLOMATIC CLAUSE
+That if at any time after the expiration of 12 months from the date of the commencement of the Tenancy Agreement, _____________________ (_____________________) shall be: (i) deported from Singapore; or (ii) refused permission by the Singapore Government to work or reside in Singapore...",,
+easy,What is the interest rate for late payment of rent?,"The interest rate for rent arrears is 10% on an annual basis.
+Source: Page 6 of tenancy_agreement_HDBflat_whole.pdf
+Source Text Preview: (b) INTEREST FOR RENT ARREARS
+In the event the Rent remains unpaid for 7 calendar days after becoming payable (whether formally demanded or not) it shall be lawful for the Landlord to claim an interest at 10% on an annual basis...",,
+complex,"I'm currently bankrupt and unable to pay the rent that I have owed, can I still stay at the premises and what do I have to do?","You may be unable to stay at the premises as the Landlord is obliged to re-enter the premises and terminate the tenancy agreement. You are advised to contact the Landlord for more information on your situation.
+Source: Page 6 of tenancy_agreement_Condo_whole.pdf
+Source Text Preview: (a) DEFAULT OF TENANT
+If (i) the Rent hereby reserved shall be unpaid for 7 days after being payable (whether formally demanded or not), (ii) the
+Tenant becomes bankrupt or enter into composition...",,
+complex,what is the price difference for renting 1 bedroom in 2024 versus 2025?,The price difference of renting 1 bedroom is $7.69 as the mean rental price of 1 bedroom units is $1100 in 2024 and $1107.69 in 2025.,"The average rental prices for a 1-bedroom unit are as follows:
+
+- **2024**: SGD 1,766.67
+- **2025**: SGD 1,866.67
+
+### Price Difference
+The price difference for renting a 1-bedroom unit between 2024 and 2025 is:
+
+**SGD 100.00** (2025 is more expensive).","Bot run a code that only set ==2025 and ==2024 when rental date is coded in dd/mm/yyyy, returning 0 results."
+easy,what is the cheapest rental price for houses in Orchard,The lowest rental price for a unit in Orchard is $1000. ,"It appears that there are no rental properties listed in Orchard, as the query returned no results (NaN). Therefore, I cannot provide a rental price for houses in that area. If you have another location or type of property in mind, please let me know!",
+easy,what is the highest rental price for a unit in Novena?,The highest rental price for a unit in Sengkang is $7900.,"It appears that there are no rental properties listed in Sengkang in the provided data. Therefore, I cannot provide a highest rental price for a unit in that area.",
+moderate,how many 4 room HDB units are available for rent in Bukit Merah?,There are 67 units for rent in Bukit Merah.,There are **2 available 4-room HDB units for rent in Bukit Merah**.,There are total of 69 minus 2 occupied. This is to check if bot can differentiate. Bot is confused over full 4 room units and those set as 4 room but only renting out 1 bedroom. 147 correctly gives the total number of 4 room units.
+complex,what is the range of rental prices for houses in June 2024.,The range of prices in June 2024 is from $1100 to $5400.,,
+complex,what is the average size of 3 room HDB flats?,The mean floor area in sqm of 3 room HDB flats is 68.0153.,,
