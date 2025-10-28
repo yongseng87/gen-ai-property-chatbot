@@ -25,7 +25,15 @@ from datetime import datetime
 # Suppress warnings
 warnings.filterwarnings('ignore')
 
+# Load environment variables
+load_dotenv()
 
+# Verify API key
+openai_api_key = os.getenv("OPENAI_API_KEY")
+
+if not openai_api_key:
+    raise ValueError("OPENAI_API_KEY not found in environment variables.")
+    
 def load_and_process_pdf(pdf_path):
     """Load PDF and process it for Chroma DB"""
     # Knowledge base
@@ -163,20 +171,15 @@ class PropertySupportBot:
         return result
 
 if __name__ == "__main__":
-    # Load environment variables
-    load_dotenv()
 
-    # Verify API key
-    openai_api_key = os.getenv("OPENAI_API_KEY")
-    if not openai_api_key:
-        raise ValueError("OPENAI_API_KEY not found in environment variables.")
     # Initialize the complete system
     print("🚀 Initializing Complete Property Support Bot...")
     support_bot = PropertySupportBot()
 
     # Test various query types
     test_queries = [
-        "what is the latest stock price of Apple Inc?",
+        "I'm looking for a high floor, 2 room unit to rent in yishun. Recommend me some places",
+        "what is the average price of 3 bedroom flats in toa payoh?",
     ]
 
     for query in test_queries:
