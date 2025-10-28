@@ -11,11 +11,10 @@ from langchain_openai import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import RetrievalQA
 
-# Retrieval & Vector Stores
-from langchain_community.vectorstores import Chroma
-from langchain_community.embeddings import OpenAIEmbeddings
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.document_loaders import PyPDFLoader
+from langchain.vectorstores import Chroma
+from langchain.embeddings import OpenAIEmbeddings
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain.document_loaders import PyPDFLoader
 
 from create_csv_agent import create_csv_agent
 from classifier import classify
@@ -25,6 +24,8 @@ from datetime import datetime
 # Suppress warnings
 warnings.filterwarnings('ignore')
 
+load_dotenv()  # Load .env file
+openai_api_key = os.getenv("OPENAI_API_KEY")
 
 def load_and_process_pdf(pdf_path):
     """Load PDF and process it for Chroma DB"""
@@ -50,7 +51,9 @@ def load_and_process_pdf(pdf_path):
     print(f"📝 Total text chunks from all PDFs: {len(all_docs)}")
     
     # Create embeddings
-    embeddings_pdf = OpenAIEmbeddings(openai_api_key=os.getenv("OPENAI_API_KEY"))
+    openai_api_key = os.getenv("OPENAI_API_KEY")
+
+    embeddings_pdf = OpenAIEmbeddings(openai_api_key=openai_api_key)
     
     # Clear any existing chroma database (commented out to prevent errors on rerun)
     db_path = "./pdf_knowledge_base"
@@ -92,7 +95,7 @@ def create_pdf_qa_system(vectorstore_pdf, llm):
 
 class PropertySupportBot:
     def __init__(self):
-        self.llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.1, api_key=openai_api_key)
+        self.llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.1, openai_api_key=openai_api_key)
         self.embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
         
         # Knowledge base

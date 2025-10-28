@@ -267,54 +267,34 @@ ai_bot = initialize_ai_model()
 
 # Test API connection
 def test_api_connection():
-    """Test if the API connection is working"""
-    if ai_bot is None:
-        return False
-    
-    try:
-        # Simple test query
-        test_response = ai_bot.process_query("Hello, are you working?")
-        return "error" not in test_response.lower() and "❌" not in test_response
-    except Exception as e:
-        print(f"API test failed: {e}")
-        return False
+    """Check if AI model object exists without sending a query"""
+    return ai_bot is not None
 
 # Test the connection
 api_working = test_api_connection()
 
 # AI response generation function
 def generate_response(user_input):
-    """
-    Generate AI response using the PropertySupportBot model
-    """
     if ai_bot is None:
-        return "❌ AI model is not available. Please check your OpenAI API key configuration."
-    
-    try:
-        # Add a timeout wrapper
-        import signal
-        
-        def timeout_handler(signum, frame):
-            raise TimeoutError("API call timed out")
-        
-        # Set timeout for API calls
-        signal.signal(signal.SIGALRM, timeout_handler)
-        signal.alarm(30)  # 30 second timeout
-        
-        try:
-            response = ai_bot.process_query(user_input)
-            signal.alarm(0)  # Cancel the alarm
-            return response
-        except TimeoutError:
-            signal.alarm(0)  # Cancel the alarm
-            return "⏰ Request timed out. Please try again with a shorter question or check your internet connection."
-        except Exception as e:
-            signal.alarm(0)  # Cancel the alarm
-            return f"❌ Error processing your request: {str(e)}\n\nPlease try again or contact support."
-            
-    except Exception as e:
-        return f"❌ Unexpected error: {str(e)}\n\nPlease try again or contact support."
+        return "❌ AI model not available."
 
+    raw_response = ai_bot.process_query(user_input)
+
+    # Handle different types of response formats
+    if isinstance(raw_response, dict):
+        # Check for keys
+        if "result" in raw_response:
+            return raw_response["result"]
+        elif "output" in raw_response:
+            return raw_response["output"]
+        else:
+            return str(raw_response)  # fallback
+    elif isinstance(raw_response, str):
+        return raw_response
+    else:
+        return str(raw_response)
+
+    
 # Sidebar
 with st.sidebar:
     # Logo and title
@@ -328,12 +308,12 @@ with st.sidebar:
     with col1:
         if st.button("📄 Lease Agreement", key="lease_btn", use_container_width=True):
             st.session_state.current_view = 'lease_agreement'
-            st.rerun()
+
     
     with col2:
         if st.button("📊 Property Statistics", key="stats_btn", use_container_width=True):
             st.session_state.current_view = 'property_statistics'
-            st.rerun()
+
     
     st.markdown("---")
     
@@ -366,7 +346,6 @@ with st.sidebar:
                 'content': response,
                 'timestamp': datetime.now()
             })
-            st.rerun()
     
     st.markdown("---")
     
@@ -399,7 +378,6 @@ with st.sidebar:
                 'content': response,
                 'timestamp': datetime.now()
             })
-            st.rerun()
     
     st.markdown("---")
     
@@ -428,7 +406,6 @@ with st.sidebar:
     # Clear conversation button
     if st.button("🗑️ Clear Conversation", use_container_width=True):
         st.session_state.messages = [st.session_state.messages[0]]
-        st.rerun()
 
 # Main content area based on selected view
 if st.session_state.current_view == 'lease_agreement':
@@ -512,8 +489,6 @@ if st.session_state.current_view == 'lease_agreement':
                 'timestamp': datetime.now()
             })
             
-            st.rerun()
-
 elif st.session_state.current_view == 'property_statistics':
     # Property Statistics Interface
     col1, col2, col3 = st.columns([1, 6, 1])
