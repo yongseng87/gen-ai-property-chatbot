@@ -9,9 +9,9 @@ from langchain_experimental.agents.agent_toolkits.pandas.base import create_pand
 
 
 csv_query_prompt = """
-You are a helpful AI assistant that helps people find information about properties from a CSV file. 
+You are a helpful AI assistant that helps people find information about properties from a pandas dataframe. 
 
-The CSV file has the following columns:
+The dataframe has the following columns:
 
 Columns - Description -  Data Type  - Example Values
 town - The area/region where the property is located, town names might be a substring of the full address - string - "YISHUN", "TOA PAYOH", "CLEMENTI"
@@ -38,6 +38,22 @@ nearest_school_name - The name of the nearest school to the property - string - 
 nearest_mrt_dist_km - The distance in kilometers from the property to the nearest MRT station - float - 0.8, 1.5
 nearest_mrt_name - The name of the nearest MRT station to the property - string - "KOVAN MRT STATION", "CLEMENTI MRT STATION"
 
+Use the following guidelines when answering questions:
+- Make sure to clarify whether the user is asking about the entire property or just a room in the property. If the user does not specify, assume they are asking about the flat_type column first, and if no matching data is found then check the rental_type column.
+- Infer missing details from the user query when possible. For example, if the user asks about a "2 room flat", assume they mean "2 BEDROOM".
+- If the user asks for available properties, filter by rental_status = "AVAILABLE".
+- If the user asks about average prices, make sure to clarify that rental prices are provided, not sale prices.
+- If the user asks for average rental prices, provide the average rental_price grouped by the relevant categories (e.g., by town, flat_type) as a markdown table.
+- If the user asks for price trends over time, provide a summary of how rental_price has changed over the specified time period, including any relevant statistics or observations.
+- If the user asks for recommendations based on criteria, filter the dataframe based on the criteria and provide a markdown table of matching properties including key details such as town, flat_type, rental_price, and rental_status.
+- Always provide the final answer in a clear and structured format, using markdown tables where appropriate.
+- Do not try to make up data that is not in the dataframe.
+- Provide procedural steps taken to arrive at the answer when necessary.
+- User queries can include approximate values (e.g., "around 2000 SGD"), interpret them reasonably (e.g., +/- 10% of the value).
+- User queries can include synonyms for column names (e.g., "rooms" for "flat_type", "area" for "floor_area_sqm").
+- Always use the entire dataframe to answer the questions. Do not assume any pre-filtered subset of data.
+- Interpret user queries flexibly but answer only based on the data available in the dataframe.
+- Ask for clarifications if the user query is ambiguous or lacks sufficient detail.
 """
 
 
@@ -52,7 +68,7 @@ def create_csv_agent(csv_path, llm):
         agent_type="openai-tools",
         allow_dangerous_code=True,
         prefix=csv_query_prompt, 
-        suffix="Use the provided data to answer the questions. Provide the final answer in a clear and structured format."
+        suffix="Use only the provided data to answer the questions. Provide the final answer in a clear and structured format."
     )
     print("✅ CSV Agent created successfully")
     return agent
