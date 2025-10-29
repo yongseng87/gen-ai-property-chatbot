@@ -23,6 +23,14 @@ from classifier import classify
 # Suppress warnings
 warnings.filterwarnings('ignore')
 
+# Load environment variables
+load_dotenv()
+
+# Verify API key
+openai_api_key = os.getenv("OPENAI_API_KEY")
+if not openai_api_key:
+    raise ValueError("OPENAI_API_KEY not found in environment variables.")
+
 def load_and_process_pdf(pdf_path):
     """Load PDF and process it for Chroma DB"""
     # Knowledge base
@@ -275,13 +283,7 @@ class PropertySupportBot:
         return f"I'm having trouble accessing the {context} right now. Your question '{query}' seems to be about property-related matters. Please try again in a moment, or contact our support team for immediate assistance."
 
 if __name__ == "__main__":
-    # Load environment variables
-    load_dotenv()
 
-    # Verify API key
-    openai_api_key = os.getenv("OPENAI_API_KEY")
-    if not openai_api_key:
-        raise ValueError("OPENAI_API_KEY not found in environment variables.")
     # Initialize the complete system
     print("🚀 Initializing Complete Property Support Bot...")
     support_bot = PropertySupportBot()
