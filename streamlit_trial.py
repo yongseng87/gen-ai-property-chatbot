@@ -208,8 +208,8 @@ How can I assist you today?''',
 
 if 'user_info' not in st.session_state:
     st.session_state.user_info = {
-        'name': 'John Smith',
-        'tenant_id': 'T12345'
+        'name': 'Capstone Project 4',
+        'tenant_id': 'DSS5105'
     }
 
 if 'current_view' not in st.session_state:
@@ -273,7 +273,8 @@ def test_api_connection():
     
     try:
         # Simple test query
-        test_response = ai_bot.process_query("Hello, are you working?")
+        import asyncio
+        test_response = asyncio.run(ai_bot.process_query_async("Hello, are you working?"))
         return "error" not in test_response.lower() and "❌" not in test_response
     except Exception as e:
         print(f"API test failed: {e}")
@@ -283,33 +284,27 @@ def test_api_connection():
 api_working = test_api_connection()
 
 # AI response generation function
-def generate_response(user_input):
+async def generate_response(user_input):
     """
-    Generate AI response using the PropertySupportBot model
+    Generate AI response using the PropertySupportBot model with async timeout
     """
     if ai_bot is None:
         return "❌ AI model is not available. Please check your OpenAI API key configuration."
     
     try:
-        # Add a timeout wrapper
-        import signal
-        
-        def timeout_handler(signum, frame):
-            raise TimeoutError("API call timed out")
-        
-        # Set timeout for API calls
-        signal.signal(signal.SIGALRM, timeout_handler)
-        signal.alarm(30)  # 30 second timeout
+        # Use asyncio.wait_for for timeout handling
+        import asyncio
         
         try:
-            response = ai_bot.process_query(user_input)
-            signal.alarm(0)  # Cancel the alarm
+            # Set timeout for API calls (30 seconds)
+            response = await asyncio.wait_for(
+                ai_bot.process_query_async(user_input), 
+                timeout=30.0
+            )
             return response
-        except TimeoutError:
-            signal.alarm(0)  # Cancel the alarm
+        except asyncio.TimeoutError:
             return "⏰ Request timed out. Please try again with a shorter question or check your internet connection."
         except Exception as e:
-            signal.alarm(0)  # Cancel the alarm
             return f"❌ Error processing your request: {str(e)}\n\nPlease try again or contact support."
             
     except Exception as e:
@@ -357,7 +352,8 @@ with st.sidebar:
             
             # Use AI model if available, otherwise show placeholder
             if ai_bot is not None:
-                response = generate_response(action['query'])
+                import asyncio
+                response = asyncio.run(generate_response(action['query']))
             else:
                 response = f"Processing your '{action['label']}' request... (AI model not available)"
             
@@ -390,7 +386,8 @@ with st.sidebar:
             
             # Use AI model if available, otherwise show placeholder
             if ai_bot is not None:
-                response = generate_response(question)
+                import asyncio
+                response = asyncio.run(generate_response(question))
             else:
                 response = "Retrieving information, please wait... (AI model not available)"
             
@@ -503,7 +500,8 @@ if st.session_state.current_view == 'lease_agreement':
             })
             
             # Generate response
-            response = generate_response(user_input)
+            import asyncio
+            response = asyncio.run(generate_response(user_input))
             
             # Add AI response
             st.session_state.messages.append({
@@ -612,7 +610,8 @@ elif st.session_state.current_view == 'property_statistics':
             
             if st.button("🔍 Generate Insight", key="generate_insight"):
                 with st.spinner("🤖 AI is analyzing data..."):
-                    insight_response = ai_bot.process_query(selected_insight)
+                    import asyncio
+                    insight_response = asyncio.run(ai_bot.process_query_async(selected_insight))
                     st.markdown("#### 💡 AI Insight:")
                     st.info(insight_response)
         else:
@@ -626,3 +625,5 @@ st.markdown(
     "</div>",
     unsafe_allow_html=True
 )
+
+
