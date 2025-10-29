@@ -337,8 +337,6 @@ with st.sidebar:
     
     quick_actions = [
         {"icon": "🏠", "label": "Property Match", "query": "I'm looking for a 2-bedroom apartment"},
-        {"icon": "📅", "label": "Schedule Viewing", "query": "I'd like to schedule a property viewing"},
-        {"icon": "🔧", "label": "Maintenance", "query": "I need to report a maintenance issue"},
         {"icon": "📄", "label": "Contract Query", "query": "When does my tenancy agreement expire?"}
     ]
     
