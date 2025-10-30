@@ -18,9 +18,10 @@ except ImportError as e:
 try:
     import pandas as pd
     import numpy as np
+    import altair as alt
 except ImportError as e:
     st.error(f"❌ Error importing data libraries: {e}")
-    st.error("Please install required packages: pip install pandas numpy")
+    st.error("Please install required packages: pip install pandas numpy altair")
     st.stop()
 
 # Page configuration
@@ -316,62 +317,16 @@ with st.sidebar:
     st.markdown("### 🏠 Tenant AI Assistant")
     st.markdown("---")
     
-    # Main function buttons
-    st.markdown("#### Main Functions")
-    
-    col1, col2 = st.columns(2)
-    with col1:
-        if st.button("📄 Lease Agreement", key="lease_btn", use_container_width=True):
-            st.session_state.current_view = 'lease_agreement'
-            st.rerun()
-    
-    with col2:
-        if st.button("📊 Property Statistics", key="stats_btn", use_container_width=True):
-            st.session_state.current_view = 'property_statistics'
-            st.rerun()
-    
-    st.markdown("---")
-    
-    # Quick actions
-    st.markdown("#### Quick Services")
-    
-    quick_actions = [
-        {"icon": "🏠", "label": "Property Match", "query": "I'm looking for a 2-bedroom apartment"},
-        {"icon": "📄", "label": "Contract Query", "query": "When does my tenancy agreement expire?"}
-    ]
-    
-    for action in quick_actions:
-        if st.button(f"{action['icon']} {action['label']}", key=action['label'], use_container_width=True):
-            st.session_state.messages.append({
-                'role': 'user',
-                'content': action['query'],
-                'timestamp': datetime.now()
-            })
-            
-            # Use AI model if available, otherwise show placeholder
-            if ai_bot is not None:
-                import asyncio
-                response = asyncio.run(generate_response(action['query']))
-            else:
-                response = f"Processing your '{action['label']}' request... (AI model not available)"
-            
-            st.session_state.messages.append({
-                'role': 'assistant',
-                'content': response,
-                'timestamp': datetime.now()
-            })
-            st.rerun()
-    
-    st.markdown("---")
+    # Removed Main Functions and Quick Services sections
     
     # Common questions
     st.markdown("#### Common Questions")
     
     example_questions = [
         "When is my rent due?",
-        "How do I report an AC issue?",
+        "How long is the defect free period?",
         "Can I keep pets?",
-        "What's the notice period for early termination?"
+        "Who has to pay for repairs?"
     ]
     
     for question in example_questions:
@@ -515,12 +470,68 @@ elif st.session_state.current_view == 'property_statistics':
     col1, col2, col3 = st.columns([1, 6, 1])
     
     with col2:
+        # Scoped styles for light blue backgrounds in this section only
+        st.markdown(
+            """
+            <style>
+            /* Scoped to this section via attribute selector on following wrapper */
+            .stats-section .text-box {
+                background-color: #e3f2fd !important;
+                color: #000000 !important;
+                border: 1px solid #bbdefb;
+                border-radius: 10px;
+                padding: 10px 14px;
+                margin-bottom: 8px;
+            }
+            .stats-section [data-testid="stMetric"]{
+                background-color: #e3f2fd !important;
+                border: 1px solid #bbdefb !important;
+                border-radius: 10px !important;
+                padding: 8px 12px !important;
+            }
+            .stats-section [data-testid="stDataFrame"]{
+                background-color: #e3f2fd !important;
+                border: 1px solid #bbdefb !important;
+                border-radius: 10px !important;
+                padding: 6px !important;
+            }
+            .stats-section [data-testid="stDataFrame"] canvas, 
+            .stats-section [data-testid="stDataFrame"] div{
+                background-color: #e3f2fd !important;
+            }
+            /* Style Streamlit info/alert boxes inside stats section */
+            .stats-section [data-testid="stAlert"],
+            .stats-section [role="alert"]{
+                background-color: #e3f2fd !important;
+                border: 1px solid #bbdefb !important;
+                color: #000000 !important;
+                border-radius: 10px !important;
+            }
+            .stats-section [data-testid="stAlert"] * {
+                background-color: transparent !important;
+                color: #000000 !important;
+            }
+            .stats-section .chart-caption{
+                background-color: #e3f2fd !important;
+                border: 1px solid #bbdefb !important;
+                border-radius: 8px !important;
+                padding: 6px 10px !important;
+                display: inline-block;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True,
+        )
+
+        # Wrapper to scope styles
+        st.markdown('<div class="stats-section">', unsafe_allow_html=True)
+
         # Title
-        st.markdown('<div class="main-title">📊 Property Statistics Dashboard</div>', unsafe_allow_html=True)
-        st.markdown('<div class="subtitle"><span class="status-online">● Online</span> | Real-time Property Analytics</div>', unsafe_allow_html=True)
+        st.markdown('<div class="main-title text-box">📊 Property Statistics Dashboard</div>', unsafe_allow_html=True)
+        st.markdown('<div class="subtitle text-box"><span class="status-online">● Online</span> | Real-time Property Analytics</div>', unsafe_allow_html=True)
         
         # Statistics cards
-        st.markdown("### 📈 Key Metrics")
+        st.markdown('<div class="text-box">### 📈 Key Metrics</div>', unsafe_allow_html=True)
         
         col1, col2, col3, col4 = st.columns(4)
         
@@ -555,7 +566,7 @@ elif st.session_state.current_view == 'property_statistics':
         st.markdown("---")
         
         # Charts section
-        st.markdown("### 📊 Property Distribution")
+        st.markdown('<div class="text-box">### 📊 Property Distribution</div>', unsafe_allow_html=True)
         
         # Sample data for demonstration
         # Property type distribution
@@ -568,17 +579,29 @@ elif st.session_state.current_view == 'property_statistics':
         col1, col2 = st.columns(2)
         
         with col1:
-            st.bar_chart(property_data.set_index('Property Type')['Count'])
-            st.caption("Property Count by Type")
+            chart1 = (
+                alt.Chart(property_data)
+                .mark_bar(color="#64b5f6")
+                .encode(x=alt.X('Property Type:N', sort=None, title='Property Type'), y=alt.Y('Count:Q', title='Count'))
+                .properties(width='container', height=300, background='#e3f2fd')
+            )
+            st.altair_chart(chart1, use_container_width=True)
+            st.markdown('<div class="chart-caption">Property Count by Type</div>', unsafe_allow_html=True)
         
         with col2:
-            st.bar_chart(property_data.set_index('Property Type')['Avg Rent'])
-            st.caption("Average Rent by Type")
+            chart2 = (
+                alt.Chart(property_data)
+                .mark_bar(color="#90caf9")
+                .encode(x=alt.X('Property Type:N', sort=None, title='Property Type'), y=alt.Y('Avg Rent:Q', title='Avg Rent'))
+                .properties(width='container', height=300, background='#e3f2fd')
+            )
+            st.altair_chart(chart2, use_container_width=True)
+            st.markdown('<div class="chart-caption">Average Rent by Type</div>', unsafe_allow_html=True)
         
         st.markdown("---")
         
         # Recent activity
-        st.markdown("### 🔄 Recent Activity")
+        st.markdown('<div class="text-box">### 🔄 Recent Activity</div>', unsafe_allow_html=True)
         
         activity_data = pd.DataFrame({
             'Time': ['10:30 AM', '09:45 AM', '09:15 AM', '08:30 AM'],
@@ -591,7 +614,7 @@ elif st.session_state.current_view == 'property_statistics':
         st.markdown("---")
         
         # AI-powered insights
-        st.markdown("### 🧠 AI-Powered Insights")
+        st.markdown('<div class="text-box">### 🧠 AI-Powered Insights</div>', unsafe_allow_html=True)
         
         if ai_bot is not None:
             insight_queries = [
@@ -614,6 +637,9 @@ elif st.session_state.current_view == 'property_statistics':
                     st.info(insight_response)
         else:
             st.warning("⚠️ AI model not available for insights generation")
+
+        # Close scoped wrapper
+        st.markdown('</div>', unsafe_allow_html=True)
 
 # Footer information
 st.markdown("---")
