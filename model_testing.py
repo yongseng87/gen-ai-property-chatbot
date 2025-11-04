@@ -1,23 +1,27 @@
 import pandas as pd
 from model import PropertySupportBot
 
+# This file is for testing the PropertySupportBot with various queries and collecting the responses.
+
+# Initialize the PropertySupportBot
 support_bot = PropertySupportBot()
 
 # Read the question-answer pairs
-df = pd.read_csv("./question_answer_pair/qa_pair_for_testing_v2.csv", encoding="ISO-8859-1")
+df = pd.read_csv("./question_answer_pair/qa_pair_for_testing_v3.csv", encoding="ISO-8859-1")
 
 # Test various query types
 test_queries = [
     "what is the mean price of HDB flats in Bishan?",
+    "what is the mean price of all houses in Bishan?",
     "Do I need to pay for repairs in my rental unit?",
     "how to invest in stocks for beginners?",
-    "I’m renting a landed house currently. Can I use the unit to conduct my home business?",
-    "I’m renting a condominium unit. Am I allowed to keep pets?",
+    "I am renting a landed house currently. Can I use the unit to conduct my home business?",
+    "I am renting a condominium unit. Am I allowed to keep pets?",
     "Am I allowed to cook in the house?",
     "Who is responsible for servicing and maintaining the air-con?",
     "Can you recommend me an air-con cleaning contractor?",
     "Who should be responsible for paying the condo management fees?",
-    "I’m looking for a two room HDB unit to rent in Hougang. Can you recommend me some available units with monthly rental below $2,200?",
+    "I am looking for a two room HDB unit to rent in Hougang. Can you recommend me some available units with monthly rental below $2,200?",
     "how far is the unit 998B buangkok cres away from the MRT and which station is it?",
     "are rental prices in hougang cheaper than rental prices in punggol?",
     "are rental prices in JB cheaper than rental prices in singapore?",
@@ -47,8 +51,10 @@ for query in test_queries:
         
     result = support_bot.process_query(query)
     # Save the result to the dataframe
-    df.at[i, 'model_ans'] = result.get('output', result.get('message', 'No response'))
+    df.at[i, 'model_ans'] = result.get('output', result.get('result', result.get('message', 'No response')))
+    df.at[i, 'query_type'] = result.get('query_type', 'Unknown')
+
     i += 1
 
 # Save the updated dataframe to a new CSV file
-df.to_csv("./question_answer_pair/qa_pair_model_test_results_v3.csv", index=False)
+df.to_csv("./question_answer_pair/qa_pair_model_test_results_v4.csv", index=False)

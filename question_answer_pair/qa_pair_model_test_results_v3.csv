@@ -1,5 +1,6 @@
 difficulty,template_qn,template_ans,model_ans,notes
 easy,what is the mean price of HDB flats in Bishan?,"Sorry, we do not have data on the prices of HDB flats but we do have data on rental prices. The mean rental price of HDB flats in Bishan is approximately $3471.43.",The mean rental price of HDB flats in Bishan is approximately **3471.43 SGD**.,
+easy,what is the mean rental price of all houses in Bishan?,The mean rental price of HDB flats in Bishan is approximately **5167.11 SGD**.,,
 moderate,Do I need to pay for repairs in my rental unit?,"It depends on the nature of the repairs. In cases, where the damage is caused by the Tenant, the Tenant is responsible for the repairs to any damaged items. For minor repairs and routine maintenance of the Premises not caused by the Tenant, the Tenant shall be responsible to bear a certain amount while the Landlord shall bear the excess.
 Sources: Page 2 of STANDARD TENANCY CLAUSES.pdf
 Source Text Preview: (i) Minor Repairs 
@@ -16,7 +17,7 @@ Premises may be used for small home businesses subject to compliance with prevai
 ?? Sources: Page 8 of PDF
 ?? Source Text Preview: The Landlord: Please inspect the original employment or work pass, original travel and identification documents of the
 prospective foreign tenants.
-Th…",
+Th・c",
 moderate,I am renting a condominium unit. Am I allowed to keep pets?,"You may be allowed to keep certain pets with permission from the Landlord subject to conditions imposed by him/her.
 Sources: Page 1 of SPECIFIC TENANCY CLAUSES FOR CONDOMINIUM APARTMENT.pdf
 Source Text Preview: (w) Pets 
@@ -50,7 +51,7 @@ Source Text Preview: (d) COMPLIANCE WITH MANAGEMENT CORPORATION
 To observe and perform all the by-laws, rules and regulations of the Management Corporation for the time being in force and to pay punctually all contributions, levies, fees and other charges which may be imposed","I don't know.
 ?? Sources: Page 2 of PDF
 ?? Source Text Preview: 200, Landlord's approval must be obtained prior to them being carried out and the Landlord reserves the right to
-engage his own contractor. For the av…",
+engage his own contractor. For the av・c",
 complex,"I am looking for a two room HDB unit to rent in Hougang. Can you recommend me some available units with monthly rental below $2,200?","Yes, we have some 2 ROOM HDB units available for you to rent in Hougang that fits your budget! Here is a list of units with their address and rental price:
 town	flat_type	block / building	street_name	storey	floor_area_sqm	flat_model	lease_commence_date	property_type	rental_type	rental_price
 HOUGANG	2 ROOM	986A	BUANGKOK CRES	07	47	Model A	2012	HDB Flat	2 ROOM	2000
@@ -135,7 +136,7 @@ That if at any time after the expiration of 12 months from the date of the comme
 ?? Sources: Page 3 of PDF
 ?? Source Text Preview: cannot be anticipated, to inform the Landlord as soon as practicable upon knowledge of such change.
 (c)
-The Tenant further covenants with the Landl…",
+The Tenant further covenants with the Landl・c",
 easy,What is the interest rate for late payment of rent?,"The interest rate for rent arrears is 10% on an annual basis.
 Source: Page 5 of STANDARD TENANCY CLAUSES.pdf
 Source Text Preview: (b) INTEREST FOR RENT ARREARS
@@ -151,7 +152,7 @@ Tenant becomes bankrupt or enter into composition...","I don't know.
 ?? Sources: Page 6 of PDF
 ?? Source Text Preview: 5. PROVIDED ALWAYS and it is hereby agreed as follows:
 (a) DEFAULT OF TENANT
-If (i) the Rent hereby reserved shall be unpaid for 7 days after being pa…",
+If (i) the Rent hereby reserved shall be unpaid for 7 days after being pa・c",
 complex,what is the price difference for renting 1 bedroom in 2024 versus 2025?,The price difference of renting 1 bedroom is $7.69 as the mean rental price of 1 bedroom units is $1100 in 2024 and $1107.69 in 2025.,"It seems that you are asking for rental prices for houses specifically in June 2024. However, I currently do not have data for that specific time frame, as my dataset does not include future rental prices or any data beyond the present.
 
 If you would like, I can provide you with the current range of rental prices for houses based on the available data. Please confirm if you would like me to do that.",
