@@ -48,7 +48,7 @@ town_mapping = {
 
 # Function to map each town name in the list
 def map_town_name(town_code):
-    return town_mapping.get(str(town_code), town_code)
+    return town_mapping.get(str(town_code), town_code).upper()
 
 # Function to extract lease commence date from tenure
 def extract_lease_commence_date(tenure):

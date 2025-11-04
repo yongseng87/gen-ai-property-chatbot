@@ -3,7 +3,7 @@ import numpy as np
 
 # Set desired number of entries for creating property database
 X = 10000 # For number of entries in database
-Y = 100 # For number of rented entries with tenant name
+Y = 4619 # For number of rented entries with tenant name
 
 # Read the cleaned CSV files for HDB, Condo/Apt, and Landed properties
 hdb_df = pd.read_csv('publicflatdata_cleaned.csv')
@@ -74,6 +74,9 @@ ranges = {
 }
 df_cleaned['rental_price'] = df_cleaned['rental_type'].apply(lambda t: np.random.choice(ranges.get(t, [0])))
 
+# Change all characters in flat_model to upper case
+df_cleaned['flat_model'] = df_cleaned['flat_model'].str.upper()
+
 # Read names database
 df_names = pd.read_csv('names_database.csv')
 
@@ -111,7 +114,8 @@ for idx, name in zip(rand_indices, combinations_2):
 # Assign 'Avail' to all other rows with null values for tenant name and rental date
 df_cleaned.loc[~df_cleaned.index.isin(rand_indices), 'rental_status'] = 'Avail'
 df_cleaned.loc[~df_cleaned.index.isin(rand_indices), 'tenant_name'] = None
-df_cleaned.loc[~df_cleaned.index.isin(rand_indices), 'rental_date'] = None
+# df_cleaned.loc[~df_cleaned.index.isin(rand_indices), 'rental_date'] = None    # Commented out to keep rental date for all properties
+df_cleaned = df_cleaned.rename(columns={"rental_date": "rental_listed_date"})
             
 # Save the cleaned dataframe to a new csv file
 df_cleaned.to_csv('property_database.csv', index=False)

@@ -22,7 +22,7 @@ storey - The storey of the property, for landed house this column is default to 
 floor_area_sqm - The floor area of the property in square meters - float - 45.0, 75.5, 120.0
 flat_model - The model/type of the flat - string - "IMPROVED", "MODEL A", "DBSS"
 lease_commence_year - The year the lease of the property commenced, for freehold properties this is the year the property was built - integer - 1995, 2003, 2010
-rental_date - The date when the property was rented out, and empty value means the unit is still available - date - "2020-05-01", "2021-12-15"
+rental_listed_date - The date when the property listing was put out for rent - date - "2020-05-01", "2021-12-15"
 property_type - The type of property, one of "HDB Flat", "Condo / Private Apartment", "Landed" - string - "HDB Flat", "Condo / Private Apartment", "Landed"
 rental_type - the type of the unit for rental, if this column matches flat_type, the entire property is considered for rental. "room" and "bedroom" can be interchanged. Search this field first for user queries unless specified that entire property is considered, and if not available search flat_type - string - "1 BEDROOM", "5 ROOM"
 rental_price - The monthly rental price of the property in Singapore Dollars - integer - 1500, 3000, 4500
