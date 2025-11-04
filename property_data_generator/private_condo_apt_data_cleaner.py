@@ -48,7 +48,7 @@ town_mapping = {
 
 # Function to map each town name in the list
 def map_town_name(town_code):
-    return town_mapping.get(str(town_code), town_code)
+    return town_mapping.get(str(town_code), town_code).upper()
 
 # Function to map floor area to number of rooms as data does not contain flat type. Values are ranges observed from HDB data.
 def map_floor_area_to_rooms(floor_area):
