@@ -1,4 +1,5 @@
 import os
+from time import time
 import warnings
 from dotenv import load_dotenv
 import asyncio
@@ -19,6 +20,7 @@ from langchain_experimental.agents.agent_toolkits.pandas.base import create_pand
 from langchain_community.document_loaders import PyPDFLoader
 
 from classifier import classify
+from create_csv_agent import create_csv_agent
 
 # Suppress warnings
 warnings.filterwarnings('ignore')
@@ -77,12 +79,13 @@ def load_and_process_pdf(pdf_path):
     return vectorstore_pdf
 
 
-def create_pdf_qa_system(vectorstore_pdf, llm):
+def create_pdf_qa_system(vectorstore_pdf, llm, memory=None):
     """Create Q&A system for PDF documents"""
     
     # Create retrieval QA chain
     qa_chain_pdf = RetrievalQA.from_chain_type(
         llm=llm,
+        memory=memory,
         chain_type="stuff",
         retriever=vectorstore_pdf.as_retriever(
             search_type="similarity",
@@ -94,20 +97,6 @@ def create_pdf_qa_system(vectorstore_pdf, llm):
     print("✅ PDF Q&A system created successfully")
     return qa_chain_pdf
 
-
-def create_csv_agent(csv_path, llm):
-    """Create agent for CSV documents"""
-    
-    df = pd.read_csv(csv_path)
-    agent = create_pandas_dataframe_agent(
-        llm=llm,
-        df=df,
-        verbose=True,
-        agent_type="openai-tools",
-        allow_dangerous_code=True,
-    )
-    print("✅ CSV Agent created successfully")
-    return agent
 
 
 class PropertySupportBot:
@@ -141,11 +130,11 @@ class PropertySupportBot:
             self.vectorstore = load_and_process_pdf("property_data_generator")
             
             # Memory for conversations
-            self.memory = ConversationBufferMemory()
+            self.memory = ConversationBufferMemory(output_key='result', memory_key='chat_history', return_messages=True)
             
             # QA chain for policies
-            self.qa_chain = create_pdf_qa_system(self.vectorstore, self.llm)
-            self.csv_agent = create_csv_agent("property_database_v2.csv", self.llm)
+            self.qa_chain = create_pdf_qa_system(self.vectorstore, self.llm, memory=self.memory)
+            self.csv_agent = create_csv_agent("property_database_v3.csv", self.llm, memory=self.memory)
         except Exception as e:
             print(f"Error initializing knowledge base: {e}")
             raise
