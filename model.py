@@ -1,4 +1,5 @@
 import os
+from time import time
 import warnings
 from dotenv import load_dotenv
 import asyncio
@@ -129,7 +130,7 @@ class PropertySupportBot:
             self.vectorstore = load_and_process_pdf("property_data_generator")
             
             # Memory for conversations
-            self.memory = ConversationBufferMemory()
+            self.memory = ConversationBufferMemory(output_key='result', memory_key='chat_history', return_messages=True)
             
             # QA chain for policies
             self.qa_chain = create_pdf_qa_system(self.vectorstore, self.llm, memory=self.memory)
