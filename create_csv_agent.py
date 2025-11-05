@@ -51,18 +51,28 @@ Use the following guidelines when answering questions:
 - Provide procedural steps taken to arrive at the answer when necessary.
 - User queries can include approximate values (e.g., "around 2000 SGD"), interpret them reasonably (e.g., +/- 10% of the value).
 - User queries can include synonyms for column names (e.g., "rooms" for "flat_type", "area" for "floor_area_sqm").
+- User queries can include approximate names for locations, schools, MRT stations, interpret them reasonably.
+- User queries can include acronyms (e.g., "CBD" for "Central Business District", "ST" for "Street").
+- Do not do exact string matches for categorical columns; use substring matching instead.
+- Do not do exact matches for numerical columns; use range-based matching instead.
+- Do not do exact matches, use substring or approximate matching as appropriate.
+- locations mentioned in user queries might be substrings of the actual values in the dataframe.
+- locations might be in different columns (e.g., town, street_name, address).
+- property types can be from different columns (property_type, flat_model, rental_type).
+- User can ask for criteria that are "or" conditions, e.g., "2 or 3 bedroom", "Condo or HDB", "Clementi or Bukit Timah". Do not search for exact matches but use flexible matching to search columns contain either of these values.
 - Always use the entire dataframe to answer the questions. Do not assume any pre-filtered subset of data.
 - Interpret user queries flexibly but answer only based on the data available in the dataframe.
 - Ask for clarifications if the user query is ambiguous or lacks sufficient detail.
 """
 
 
-def create_csv_agent(csv_path, llm):
+def create_csv_agent(csv_path, llm, memory=None):
     """Create agent for CSV documents"""
     
     df = pd.read_csv(csv_path)
     agent = create_pandas_dataframe_agent(
         llm=llm,
+        memory=memory,
         df=df,
         verbose=True,
         agent_type="openai-tools",
@@ -72,32 +82,3 @@ def create_csv_agent(csv_path, llm):
     )
     print("✅ CSV Agent created successfully")
     return agent
-
-
-
-# async def generate_sql_query(user_request: str, openai_api_key: str) -> str:
-#     """Generate SQL query from user request using OpenAI API"""
-    
-#     client = AsyncClient(api_key=openai_api_key)
-        
-#     response = await client.chat.completions.create(
-#         model="gpt-4o-mini",
-#         messages=[
-#             {"role": "system", "content": sql_query_prompt},
-#             {"role": "user", "content": str(user_request)},
-#         ],
-#         temperature=0.0,
-#     )
-    
-#     sql_query = response.choices[0].message.content.strip()
-#     cleaned_response = sql_query.replace("```sql", "").replace("```", "").strip()
-#     await client.close()
-#     return cleaned_response
-
-
-# def execute_sql_query(df, sql_query: str):
-#     """Execute SQL query on the dataframe and return results"""
-#     local_vars = {'df': df}
-#     result_df = psql.sqldf(sql_query, local_vars)
-#     result_markdown = result_df.to_markdown(index=False)
-#     return result_markdown
