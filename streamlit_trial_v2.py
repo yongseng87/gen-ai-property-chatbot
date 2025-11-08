@@ -9,7 +9,7 @@ import difflib
 # Add error handling for imports
 try:
     # Import the model
-    from model import PropertySupportBot
+    from model_v2 import PropertySupportBot
 except ImportError as e:
     st.error(f"❌ Error importing model: {e}")
     st.error("Please ensure all required files are present and dependencies are installed.")
@@ -282,23 +282,7 @@ def load_property_data():
             df[col] = pd.to_numeric(df[col], errors="coerce")
     return df
 
-# Test API connection
-def test_api_connection():
-    """Test if the API connection is working"""
-    if ai_bot is None:
-        return False
-    
-    try:
-        # Simple test query
-        import asyncio
-        test_response = asyncio.run(ai_bot.process_query_async("Hello, are you working?"))
-        return "error" not in test_response.lower() and "❌" not in test_response
-    except Exception as e:
-        print(f"API test failed: {e}")
-        return False
 
-# Test the connection
-api_working = test_api_connection()
 
 # AI response generation function
 async def generate_response(user_input):
@@ -382,22 +366,7 @@ with st.sidebar:
             })
             st.rerun()
     
-    st.markdown("---")
-    
-    # AI Model Status
-    st.markdown("#### 🤖 AI Model Status")
-    if ai_bot is not None:
-        if api_working:
-            st.success("✅ AI Model Active & Connected")
-            st.caption("Powered by GPT-4o-mini + RAG")
-        else:
-            st.warning("⚠️ AI Model Loaded but API Issues")
-            st.caption("Check API key or network connection")
-    else:
-        st.error("❌ AI Model Offline")
-        st.caption("Check API configuration")
-    
-    st.markdown("---")
+
     
     # User information
     st.markdown("#### 👤 User Profile")
@@ -476,24 +445,41 @@ if st.session_state.current_view == 'lease_agreement':
         
         # Handle send message
         if send_button and user_input:
-            # Add user message
+            # Add user message to session
             st.session_state.messages.append({
                 'role': 'user',
                 'content': user_input,
                 'timestamp': datetime.now()
             })
-            
-            # Generate response
+
+            # Generate response asynchronously
             import asyncio
             response = asyncio.run(generate_response(user_input))
-            
-            # Add AI response
+
+            # Conditionally format PDF-type response
+            if isinstance(response, dict) and response.get("type") == "pdf":
+                answer = response.get("answer")
+                sources = response.get("sources")
+
+                # If sources exist, format them with page and preview
+                if sources:
+                    page = sources[0].get("page", "Unknown")
+                    preview = sources[0].get("preview", "No preview available.")
+                    display_content = f"{answer}\n\n📄 Source Document:\nPage {page}\nPreview: {preview}"
+                else:
+                    # If no sources, just display the answer
+                    display_content = f"{answer}\n\nNo sources available."
+            else:
+                # For non-PDF type response, just display the answer
+                display_content = response
+
+            # Add AI response to session
             st.session_state.messages.append({
                 'role': 'assistant',
-                'content': response,
+                'content': display_content,
                 'timestamp': datetime.now()
             })
-            
+
             st.rerun()
 
 elif st.session_state.current_view == 'property_statistics':
