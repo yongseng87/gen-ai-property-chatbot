@@ -110,8 +110,8 @@ class PropertySupportBot:
             
         try:
             self.llm = ChatOpenAI(
-                model="gpt-4o-mini", 
-                temperature=0.1, 
+                model="gpt-4o", 
+                temperature=0.4, 
                 api_key=self.openai_api_key,
                 max_retries=3,
                 request_timeout=30
@@ -138,28 +138,17 @@ class PropertySupportBot:
         except Exception as e:
             print(f"Error initializing knowledge base: {e}")
             raise
-    
-    def process_query(self, query: str):
-        """Process user query based on category classification (synchronous version)"""
         
-        print(f"🔵 INPUT TO SUPPORT BOT:")
+    async def process_query_async(self, query: str):
+        """Process user query based on category classification (asynchronous version)"""
+
+        print(f"🔵 INPUT TO SUPPORT BOT (ASYNC):")
         print(f"Query: {query}")
 
         try:
-            # Classify the query with timeout
+            # Step 1: Classify the query
             try:
-                # Check if we're already in an event loop
-                try:
-                    loop = asyncio.get_running_loop()
-                    # We're in an event loop, use run_in_executor
-                    import concurrent.futures
-                    with concurrent.futures.ThreadPoolExecutor() as executor:
-                        future = executor.submit(asyncio.run, asyncio.wait_for(classify(query), timeout=10.0))
-                        classification = future.result(timeout=15.0)  # Give extra time for the executor
-                except RuntimeError:
-                    # No event loop running, safe to use asyncio.run
-                    classification = asyncio.run(asyncio.wait_for(classify(query), timeout=10.0))
-                
+                classification = await asyncio.wait_for(classify(query), timeout=10.0)
                 module = classification['classifications'][0]['module']
                 print(f"🎯 Classification: {module}")
             except asyncio.TimeoutError:
@@ -168,147 +157,92 @@ class PropertySupportBot:
             except Exception as e:
                 print(f"❌ Classification error: {e}, using fallback")
                 module = "general_support"
-            
+
+            # Step 2: Route based on classification
             if module == "information_retrieval":
                 print("\n🔵 HANDLING INFORMATION RETRIEVAL QUERY...")
                 try:
-                    result = self.qa_chain.invoke(query)
-                    print(f"Answer: {result['result']}")
-                    if result.get('source_documents'):
-                        print(f"📄 Sources: Page {result['source_documents'][0].metadata.get('page', 'Unknown')} of PDF")
-                        print(f"📝 Source Text Preview: {result['source_documents'][0].page_content[:150]}...")
-                    return result['result']
+                    loop = asyncio.get_event_loop()
+                    result = await loop.run_in_executor(None, self.qa_chain.invoke, query)
+                    print(f"Answer: {result.get('result', '')}")
+
+                    # Format source documents
+                    sources = []
+                    for doc in result.get("source_documents", []):
+                        sources.append({
+                            "page": doc.metadata.get("page", "Unknown") + 1,  # Pages are 0-indexed
+                            "preview": doc.page_content[:200] + "...",
+                        })
+
+                    if sources:
+                        print(f"📄 Sources: Page {sources[0]['page']}")
+                        print(f"📝 Source Text Preview: {sources[0]['preview']}")
+
+                    return {
+                        "answer": result.get("result", ""),
+                        "sources": sources,
+                        "type": "pdf"
+                    }
+
                 except Exception as e:
                     print(f"❌ PDF QA error: {e}")
-                    return self._fallback_response(query, "PDF knowledge base")
-                    
+                    return {
+                        "answer": self._fallback_response(query, "PDF knowledge base"),
+                        "sources": [],
+                        "type": "fallback"
+                    }
+
             elif module == "property_data_analysis":
                 print("\n🔵 HANDLING PROPERTY DATA ANALYSIS QUERY...")
                 try:
-                    result = self.csv_agent.invoke(query)
-                    print(f"Analysis Result: {result['output']}")
-                    return result['output']
+                    loop = asyncio.get_event_loop()
+                    result = await loop.run_in_executor(None, self.csv_agent.invoke, query)
+
+                    return {
+                        "answer": result.get("output", ""),
+                        "sources": [],
+                        "type": "csv"
+                    }
+
                 except Exception as e:
                     print(f"❌ CSV analysis error: {e}")
-                    return self._fallback_response(query, "property data analysis")
-                    
+                    return {
+                        "answer": self._fallback_response(query, "property data analysis"),
+                        "sources": [],
+                        "type": "fallback"
+                    }
+
             else:
                 print("\n🔵 HANDLING GENERAL QUERY...")
                 try:
-                    # Use simple LLM for general queries
-                    response = self.llm.invoke(query)
-                    return response.content
+                    loop = asyncio.get_event_loop()
+                    response = await loop.run_in_executor(None, self.llm.invoke, query)
+
+                    return {
+                        "answer": response.content,
+                        "sources": [],
+                        "type": "general"
+                    }
+
                 except Exception as e:
                     print(f"❌ General query error: {e}")
-                    return self._fallback_response(query, "general support")
-                
+                    return {
+                        "answer": self._fallback_response(query, "general support"),
+                        "sources": [],
+                        "type": "fallback"
+                    }
+
         except Exception as e:
-            print(f"❌ Critical error in process_query: {e}")
-            return f"I apologize, but I encountered an error while processing your query: '{query}'. Please try rephrasing your question or contact support if the issue persists."
+            print(f"❌ Critical error in process_query_async: {e}")
+            return {
+                "answer": f"I apologize, but I encountered an error while processing your query: '{query}'. Please try rephrasing your question or contact support if the issue persists.",
+                "sources": [],
+                "type": "critical"
+            }
 
-async def process_query_async(self, query: str):
-    """Process user query based on category classification (asynchronous version)"""
-
-    print(f"🔵 INPUT TO SUPPORT BOT (ASYNC):")
-    print(f"Query: {query}")
-
-    try:
-        # Step 1: Classify the query
-        try:
-            classification = await asyncio.wait_for(classify(query), timeout=10.0)
-            module = classification['classifications'][0]['module']
-            print(f"🎯 Classification: {module}")
-        except asyncio.TimeoutError:
-            print("⏰ Classification timeout, using fallback")
-            module = "general_support"
-        except Exception as e:
-            print(f"❌ Classification error: {e}, using fallback")
-            module = "general_support"
-
-        # Step 2: Route based on classification
-        if module == "information_retrieval":
-            print("\n🔵 HANDLING INFORMATION RETRIEVAL QUERY...")
-            try:
-                loop = asyncio.get_event_loop()
-                result = await loop.run_in_executor(None, self.qa_chain.invoke, query)
-
-                # Format source documents
-                sources = []
-                for doc in result.get("source_documents", []):
-                    sources.append({
-                        "page": doc.metadata.get("page", "Unknown"),
-                        "preview": doc.page_content[:150] + "..." if doc.page_content else ""
-                    })
-
-                if sources:
-                    print(f"📄 Sources: Page {sources[0]['page']}")
-                    print(f"📝 Source Text Preview: {sources[0]['preview']}")
-
-                return {
-                    "answer": result.get("result", ""),
-                    "sources": sources,
-                    "type": "pdf"
-                }
-
-            except Exception as e:
-                print(f"❌ PDF QA error: {e}")
-                return {
-                    "answer": self._fallback_response(query, "PDF knowledge base"),
-                    "sources": [],
-                    "type": "fallback"
-                }
-
-        elif module == "property_data_analysis":
-            print("\n🔵 HANDLING PROPERTY DATA ANALYSIS QUERY...")
-            try:
-                loop = asyncio.get_event_loop()
-                result = await loop.run_in_executor(None, self.csv_agent.invoke, query)
-
-                return {
-                    "answer": result.get("output", ""),
-                    "sources": [],
-                    "type": "csv"
-                }
-
-            except Exception as e:
-                print(f"❌ CSV analysis error: {e}")
-                return {
-                    "answer": self._fallback_response(query, "property data analysis"),
-                    "sources": [],
-                    "type": "fallback"
-                }
-
-        else:
-            print("\n🔵 HANDLING GENERAL QUERY...")
-            try:
-                loop = asyncio.get_event_loop()
-                response = await loop.run_in_executor(None, self.llm.invoke, query)
-
-                return {
-                    "answer": response.content,
-                    "sources": [],
-                    "type": "general"
-                }
-
-            except Exception as e:
-                print(f"❌ General query error: {e}")
-                return {
-                    "answer": self._fallback_response(query, "general support"),
-                    "sources": [],
-                    "type": "fallback"
-                }
-
-    except Exception as e:
-        print(f"❌ Critical error in process_query_async: {e}")
-        return {
-            "answer": f"I apologize, but I encountered an error while processing your query: '{query}'. Please try rephrasing your question or contact support if the issue persists.",
-            "sources": [],
-            "type": "critical"
-        }
-
-def _fallback_response(self, query: str, context: str):
-    """Provide a fallback response when API calls fail"""
-    return f"I'm having trouble accessing the {context} right now. Your question '{query}' seems to be about property-related matters. Please try again in a moment, or contact our support team for immediate assistance."
+    def _fallback_response(self, query: str, context: str):
+        """Provide a fallback response when API calls fail"""
+        return f"I'm having trouble accessing the {context} right now. Your question '{query}' seems to be about property-related matters. Please try again in a moment, or contact our support team for immediate assistance."
 
 if __name__ == "__main__":
 
