@@ -283,7 +283,6 @@ def load_property_data():
     return df
 
 
-
 # AI response generation function
 async def generate_response(user_input):
     """
@@ -338,7 +337,7 @@ with st.sidebar:
     st.markdown("#### Common Questions")
     
     example_questions = [
-        "When is my rent due?",
+        "What is the interest rate for late payment of rent?",
         "How long is the defect free period?",
         "Can I keep pets?",
         "Who has to pay for repairs?"
@@ -352,16 +351,33 @@ with st.sidebar:
                 'timestamp': datetime.now()
             })
             
-            # Use AI model if available, otherwise show placeholder
-            if ai_bot is not None:
-                import asyncio
-                response = asyncio.run(generate_response(question))
+            # Generate response asynchronously
+            import asyncio
+            response = asyncio.run(generate_response(question))
+
+            # Conditionally format PDF-type response
+            if isinstance(response, dict) and response.get("type") == "pdf":
+                answer = response.get("answer")
+                sources = response.get("sources")
+
+                # If sources exist, format them with page and preview
+                if sources:
+                    page = sources[0].get("page", "Unknown")
+                    preview = sources[0].get("preview", "No preview available.")
+                    # chunk = sources[0].get("chunk", "No content found.")
+
+                    display_content = f"AI Assistant: {answer}\n\n📄 Sources: Page {page}\n\n 📝 Source Text Preview : {preview}"
+                else:
+                    # If no sources, just display the answer
+                    display_content = f"AI Assistant: {answer}\n\nNo sources available."
             else:
-                response = "Retrieving information, please wait... (AI model not available)"
+                # For non-PDF type response, just display the answer
+                display_content = f"AI Assistant: {response}"
             
+            # Add AI response to session
             st.session_state.messages.append({
                 'role': 'assistant',
-                'content': response,
+                'content': display_content,
                 'timestamp': datetime.now()
             })
             st.rerun()
@@ -465,13 +481,14 @@ if st.session_state.current_view == 'lease_agreement':
                 if sources:
                     page = sources[0].get("page", "Unknown")
                     preview = sources[0].get("preview", "No preview available.")
-                    display_content = f"{answer}\n\n📄 Source Document:\nPage {page}\nPreview: {preview}"
+                    # chunk = sources[0].get("chunk", "No content found.")
+                    display_content = f"AI Assistant: {answer}\n\n📄 Sources: Page {page}\n\n 📝 Source Text Preview : {preview}"
                 else:
                     # If no sources, just display the answer
-                    display_content = f"{answer}\n\nNo sources available."
+                    display_content = f"AI Assistant: {answer}\n\nNo sources available."
             else:
                 # For non-PDF type response, just display the answer
-                display_content = response
+                display_content = f"AI Assistant: {response.get('answer')}"
 
             # Add AI response to session
             st.session_state.messages.append({
