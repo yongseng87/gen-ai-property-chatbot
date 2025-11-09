@@ -4,12 +4,11 @@ import time
 import os
 import sys
 from dotenv import load_dotenv
-import difflib
 
 # Add error handling for imports
 try:
     # Import the model
-    from model import PropertySupportBot
+    from model_v2 import PropertySupportBot
 except ImportError as e:
     st.error(f"❌ Error importing model: {e}")
     st.error("Please ensure all required files are present and dependencies are installed.")
@@ -232,7 +231,7 @@ def initialize_ai_model():
         # Check if required files exist
         required_files = [
             "property_data_generator",
-            "property_database_v3.csv", 
+            "property_database_v4.csv", 
             "classifier.py"
         ]
         
@@ -260,7 +259,7 @@ def initialize_ai_model():
         st.error(f"❌ Error initializing AI model: {str(e)}")
         st.error("Please check that all required files are present:")
         st.error("- property_data_generator/ folder with PDF files")
-        st.error("- property_database_v3.csv file")
+        st.error("- property_database_v4.csv file")
         st.error("- classifier.py file")
         st.error("- Valid OpenAI API key in .env file")
         return None
@@ -272,7 +271,7 @@ ai_bot = initialize_ai_model()
 @st.cache_data
 def load_property_data():
     """Load property dataset with caching"""
-    df = pd.read_csv("property_database_v3.csv")
+    df = pd.read_csv("property_database_v4.csv")
     numeric_columns = [
         "monthly_rent", "rental_price", "sqft", "bedrooms", "bathrooms",
         "floor_level", "distance_to_mrt"
@@ -282,23 +281,6 @@ def load_property_data():
             df[col] = pd.to_numeric(df[col], errors="coerce")
     return df
 
-# Test API connection
-def test_api_connection():
-    """Test if the API connection is working"""
-    if ai_bot is None:
-        return False
-    
-    try:
-        # Simple test query
-        import asyncio
-        test_response = asyncio.run(ai_bot.process_query_async("Hello, are you working?"))
-        return "error" not in test_response.lower() and "❌" not in test_response
-    except Exception as e:
-        print(f"API test failed: {e}")
-        return False
-
-# Test the connection
-api_working = test_api_connection()
 
 # AI response generation function
 async def generate_response(user_input):
@@ -354,7 +336,7 @@ with st.sidebar:
     st.markdown("#### Common Questions")
     
     example_questions = [
-        "When is my rent due?",
+        "What is the interest rate for late payment of rent?",
         "How long is the defect free period?",
         "Can I keep pets?",
         "Who has to pay for repairs?"
@@ -368,36 +350,38 @@ with st.sidebar:
                 'timestamp': datetime.now()
             })
             
-            # Use AI model if available, otherwise show placeholder
-            if ai_bot is not None:
-                import asyncio
-                response = asyncio.run(generate_response(question))
+            # Generate response asynchronously
+            import asyncio
+            response = asyncio.run(generate_response(question))
+
+            # Conditionally format PDF-type response
+            if isinstance(response, dict) and response.get("type") == "pdf":
+                answer = response.get("answer")
+                sources = response.get("sources")
+
+                # If sources exist, format them with page and preview
+                if sources:
+                    page = sources[0].get("page", "Unknown")
+                    preview = sources[0].get("preview", "No preview available.")
+                    # chunk = sources[0].get("chunk", "No content found.")
+
+                    display_content = f"AI Assistant: {answer}\n\n📄 Sources: Page {page}\n\n 📝 Source Text Preview : {preview}"
+                else:
+                    # If no sources, just display the answer
+                    display_content = f"AI Assistant: {answer}\n\nNo sources available."
             else:
-                response = "Retrieving information, please wait... (AI model not available)"
+                # For non-PDF type response, just display the answer
+                display_content = f"AI Assistant: {response}"
             
+            # Add AI response to session
             st.session_state.messages.append({
                 'role': 'assistant',
-                'content': response,
+                'content': display_content,
                 'timestamp': datetime.now()
             })
             st.rerun()
     
-    st.markdown("---")
-    
-    # AI Model Status
-    st.markdown("#### 🤖 AI Model Status")
-    if ai_bot is not None:
-        if api_working:
-            st.success("✅ AI Model Active & Connected")
-            st.caption("Powered by GPT-4o-mini + RAG")
-        else:
-            st.warning("⚠️ AI Model Loaded but API Issues")
-            st.caption("Check API key or network connection")
-    else:
-        st.error("❌ AI Model Offline")
-        st.caption("Check API configuration")
-    
-    st.markdown("---")
+
     
     # User information
     st.markdown("#### 👤 User Profile")
@@ -476,24 +460,42 @@ if st.session_state.current_view == 'lease_agreement':
         
         # Handle send message
         if send_button and user_input:
-            # Add user message
+            # Add user message to session
             st.session_state.messages.append({
                 'role': 'user',
                 'content': user_input,
                 'timestamp': datetime.now()
             })
-            
-            # Generate response
+
+            # Generate response asynchronously
             import asyncio
             response = asyncio.run(generate_response(user_input))
-            
-            # Add AI response
+
+            # Conditionally format PDF-type response
+            if isinstance(response, dict) and response.get("type") == "pdf":
+                answer = response.get("answer")
+                sources = response.get("sources")
+
+                # If sources exist, format them with page and preview
+                if sources:
+                    page = sources[0].get("page", "Unknown")
+                    preview = sources[0].get("preview", "No preview available.")
+                    # chunk = sources[0].get("chunk", "No content found.")
+                    display_content = f"AI Assistant: {answer}\n\n📄 Sources: Page {page}\n\n 📝 Source Text Preview : {preview}"
+                else:
+                    # If no sources, just display the answer
+                    display_content = f"AI Assistant: {answer}\n\nNo sources available."
+            else:
+                # For non-PDF type response, just display the answer
+                display_content = f"AI Assistant: {response.get('answer')}"
+
+            # Add AI response to session
             st.session_state.messages.append({
                 'role': 'assistant',
-                'content': response,
+                'content': display_content,
                 'timestamp': datetime.now()
             })
-            
+
             st.rerun()
 
 elif st.session_state.current_view == 'property_statistics':
@@ -565,7 +567,7 @@ elif st.session_state.current_view == 'property_statistics':
         property_df = load_property_data()
 
         if property_df.empty:
-            st.warning("⚠️ Unable to load `property_database_v3.csv`. Please verify the file exists and has data.")
+            st.warning("⚠️ Unable to load `property_database_v2.csv`. Please verify the file exists and has data.")
         else:
             price_column = "rental_price" if "rental_price" in property_df.columns else "monthly_rent"
 
@@ -575,47 +577,78 @@ elif st.session_state.current_view == 'property_statistics':
                 # Filter section
                 st.markdown('<div class="text-box">### 🎛️ Property Filters</div>', unsafe_allow_html=True)
 
+                unique_mrt = sorted(property_df['nearest_mrt_name'].dropna().unique()) if 'nearest_mrt_name' in property_df.columns else []
+                unique_towns = sorted(property_df['town'].dropna().unique()) if 'town' in property_df.columns else []
+
+                mrt_state_key = "filter_mrt_select"
+                town_state_key = "filter_town_select"
+
+                current_mrt_selection = st.session_state.get(mrt_state_key, [])
+                current_town_selection = st.session_state.get(town_state_key, [])
+
+                if unique_mrt:
+                    current_mrt_selection = [m for m in current_mrt_selection if m in unique_mrt]
+                else:
+                    current_mrt_selection = []
+
+                if unique_towns:
+                    current_town_selection = [t for t in current_town_selection if t in unique_towns]
+                else:
+                    current_town_selection = []
+
+                if unique_mrt and current_mrt_selection:
+                    town_filter_base = property_df[property_df['nearest_mrt_name'].isin(current_mrt_selection)]
+                else:
+                    town_filter_base = property_df
+
+                town_options = sorted(town_filter_base['town'].dropna().unique()) if 'town' in property_df.columns else []
+                if not town_options:
+                    town_options = unique_towns
+                current_town_selection = [t for t in current_town_selection if t in town_options]
+
                 filter_col1, filter_col2 = st.columns([1.3, 1.3])
 
-                # Nearest MRT filter with suggestions
                 with filter_col1:
-                    unique_mrt = sorted(property_df['nearest_mrt_name'].dropna().unique()) if 'nearest_mrt_name' in property_df.columns else []
-                    mrt_search = st.text_input("Search nearest MRT name", key="filter_mrt_input")
-                    mrt_options = unique_mrt
-                    if mrt_search:
-                        contains_matches = [opt for opt in unique_mrt if mrt_search.lower() in opt.lower()]
-                        close_matches = difflib.get_close_matches(mrt_search, unique_mrt, n=10, cutoff=0.0)
-                        merged = []
-                        for opt in contains_matches + close_matches:
-                            if opt not in merged:
-                                merged.append(opt)
-                        mrt_options = merged or unique_mrt
-                    mrt_select = st.selectbox(
-                        "Select nearest MRT",
-                        options=["All"] + mrt_options,
-                        index=0,
-                        key="filter_mrt_select"
+                    selected_towns_widget_default = current_town_selection
+                    selected_towns = st.multiselect(
+                        "Select town(s)",
+                        options=town_options,
+                        default=selected_towns_widget_default,
+                        key=town_state_key
                     )
 
-                # Town filter with suggestions
+                selected_towns = st.session_state.get(town_state_key, [])
+                selected_towns = [t for t in selected_towns if t in town_options]
+                if set(selected_towns) != set(st.session_state.get(town_state_key, [])):
+                    st.session_state[town_state_key] = selected_towns
+
+                if 'town' in property_df.columns and selected_towns:
+                    mrt_filter_base = property_df[property_df['town'].isin(selected_towns)]
+                else:
+                    mrt_filter_base = property_df
+
+                if unique_mrt:
+                    mrt_options = sorted(mrt_filter_base['nearest_mrt_name'].dropna().unique()) if 'nearest_mrt_name' in property_df.columns else []
+                    if not mrt_options:
+                        mrt_options = unique_mrt
+                else:
+                    mrt_options = []
+
                 with filter_col2:
-                    unique_towns = sorted(property_df['town'].dropna().unique()) if 'town' in property_df.columns else []
-                    town_search = st.text_input("Search town", key="filter_town_input")
-                    town_options = unique_towns
-                    if town_search:
-                        contains_matches = [opt for opt in unique_towns if town_search.lower() in opt.lower()]
-                        close_matches = difflib.get_close_matches(town_search, unique_towns, n=10, cutoff=0.0)
-                        merged = []
-                        for opt in contains_matches + close_matches:
-                            if opt not in merged:
-                                merged.append(opt)
-                        town_options = merged or unique_towns
-                    town_select = st.selectbox(
-                        "Select town",
-                        options=["All"] + town_options,
-                        index=0,
-                        key="filter_town_select"
+                    current_mrt_selection = st.session_state.get(mrt_state_key, [])
+                    current_mrt_selection = [m for m in current_mrt_selection if m in mrt_options]
+                    selected_mrts = st.multiselect(
+                        "Select nearest MRT(s)",
+                        options=mrt_options,
+                        default=current_mrt_selection,
+                        key=mrt_state_key
                     )
+
+                selected_mrts = st.session_state.get(mrt_state_key, [])
+                selected_mrts = [m for m in selected_mrts if m in mrt_options]
+                if set(selected_mrts) != set(st.session_state.get(mrt_state_key, [])):
+                    st.session_state[mrt_state_key] = selected_mrts
+
 
                 # Rental price range filter
                 price_col = property_df[price_column].dropna()
@@ -651,11 +684,11 @@ elif st.session_state.current_view == 'property_statistics':
 
                 filtered_df = property_df.copy()
 
-                if 'nearest_mrt_name' in filtered_df.columns and mrt_select != "All":
-                    filtered_df = filtered_df[filtered_df['nearest_mrt_name'] == mrt_select]
+                if 'town' in filtered_df.columns and selected_towns:
+                    filtered_df = filtered_df[filtered_df['town'].isin(selected_towns)]
 
-                if 'town' in filtered_df.columns and town_select != "All":
-                    filtered_df = filtered_df[filtered_df['town'] == town_select]
+                if 'nearest_mrt_name' in filtered_df.columns and selected_mrts:
+                    filtered_df = filtered_df[filtered_df['nearest_mrt_name'].isin(selected_mrts)]
 
                 filtered_df = filtered_df[(filtered_df[price_column] >= min_price)]
                 if max_price != float("inf"):
@@ -770,7 +803,7 @@ elif st.session_state.current_view == 'property_statistics':
                     # Data table of filtered results
                     st.markdown('<div class="text-box">### 📋 Filtered Properties</div>', unsafe_allow_html=True)
                     display_columns = [
-                        "town", "flat_type", "block / building", "street_name", "property_type",
+                        "town", "flat_type", "block / building", "street_name", "storey", "property_type",
                         "nearest_mrt_name", price_column, "rental_status", "address"
                     ]
                     available_columns = [col for col in display_columns if col in filtered_df.columns]
@@ -779,6 +812,7 @@ elif st.session_state.current_view == 'property_statistics':
                         "flat_type": "Flat type",
                         "block / building": "Block/Building",
                         "street_name": "Street name",
+                        "storey": "Storey",
                         "property_type": "Property type",
                         "nearest_mrt_name": "Nearest MRT",
                         price_column: "Rental price (SGD)",
@@ -870,6 +904,3 @@ st.markdown(
     "</div>",
     unsafe_allow_html=True
 )
-
-
-
