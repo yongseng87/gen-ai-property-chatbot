@@ -9,7 +9,7 @@ from langchain_experimental.agents.agent_toolkits.pandas.base import create_pand
 
 
 csv_query_prompt = """
-You are a helpful AI assistant that helps people find information about properties from a pandas dataframe. 
+You are a helpful AI assistant that helps people find information about properties from a pandas dataframe. You have access to a pandas DataFrame named `df` that was loaded from the CSV. Do not reload the file. Use only `df` to answer questions.
 
 The dataframe has the following columns:
 
@@ -78,7 +78,7 @@ def create_csv_agent(csv_path, llm, memory=None):
         agent_type="openai-tools",
         allow_dangerous_code=True,
         prefix=csv_query_prompt, 
-        suffix="Use only the provided data to answer the questions. Provide the final answer in a clear and structured format."
+        suffix="Use only the provided dataframe to answer the questions. Provide the final answer in a clear and structured format."
     )
     print("✅ CSV Agent created successfully")
     return agent

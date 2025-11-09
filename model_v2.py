@@ -138,7 +138,75 @@ class PropertySupportBot:
         except Exception as e:
             print(f"Error initializing knowledge base: {e}")
             raise
+    
+    def process_query(self, query: str):
+        """Process user query based on category classification (synchronous version)"""
         
+        print(f"🔵 INPUT TO SUPPORT BOT:")
+        print(f"Query: {query}")
+
+        try:
+            # Classify the query with timeout
+            try:
+                # Check if we're already in an event loop
+                try:
+                    loop = asyncio.get_running_loop()
+                    # We're in an event loop, use run_in_executor
+                    import concurrent.futures
+                    with concurrent.futures.ThreadPoolExecutor() as executor:
+                        future = executor.submit(asyncio.run, asyncio.wait_for(classify(query), timeout=10.0))
+                        classification = future.result(timeout=15.0)  # Give extra time for the executor
+                except RuntimeError:
+                    # No event loop running, safe to use asyncio.run
+                    classification = asyncio.run(asyncio.wait_for(classify(query), timeout=10.0))
+                
+                module = classification['classifications'][0]['module']
+                print(f"🎯 Classification: {module}")
+            except asyncio.TimeoutError:
+                print("⏰ Classification timeout, using fallback")
+                module = "general_support"
+            except Exception as e:
+                print(f"❌ Classification error: {e}, using fallback")
+                module = "general_support"
+            
+            if module == "information_retrieval":
+                print("\n🔵 HANDLING INFORMATION RETRIEVAL QUERY...")
+                try:
+                    result = self.qa_chain.invoke(query)
+                    print(f"Answer: {result['result']}")
+                    if result.get('source_documents'):
+                        print(f"📄 Sources: Page {result['source_documents'][0].metadata.get('page', 'Unknown')} of PDF")
+                        print(f"📝 Source Text Preview: {result['source_documents'][0].page_content[:150]}...")
+                        display_content = f"AI Assistant: {result['result']}\n\n📄 Sources: Page {result['source_documents'][0].metadata.get('page', 'Unknown')} of PDF\n\n 📝 Source Text Preview : {result['source_documents'][0].page_content[:150]}..."
+                    return display_content
+                except Exception as e:
+                    print(f"❌ PDF QA error: {e}")
+                    return self._fallback_response(query, "PDF knowledge base")
+                    
+            elif module == "property_data_analysis":
+                print("\n🔵 HANDLING PROPERTY DATA ANALYSIS QUERY...")
+                try:
+                    result = self.csv_agent.invoke(query)
+                    print(f"Analysis Result: {result['output']}")
+                    return result['output']
+                except Exception as e:
+                    print(f"❌ CSV analysis error: {e}")
+                    return self._fallback_response(query, "property data analysis")
+                    
+            else:
+                print("\n🔵 HANDLING GENERAL QUERY...")
+                try:
+                    # Use simple LLM for general queries
+                    response = self.llm.invoke(query)
+                    return response.content
+                except Exception as e:
+                    print(f"❌ General query error: {e}")
+                    return self._fallback_response(query, "general support")
+                
+        except Exception as e:
+            print(f"❌ Critical error in process_query: {e}")
+            return f"I apologize, but I encountered an error while processing your query: '{query}'. Please try rephrasing your question or contact support if the issue persists."
+    
     async def process_query_async(self, query: str):
         """Process user query based on category classification (asynchronous version)"""
 
@@ -252,9 +320,10 @@ if __name__ == "__main__":
 
     # Test various query types
     test_queries = [
-        "what is the mean price of HDB flats in Bishan?",
-        "Do I need to pay for repairs in my rental unit?",
-        "how to invest in stocks for beginners?",
+        "what is the mean price of all flats in Bishan?",
+        "recommend me a place to rent that is near to Ai Tong School",
+        # "Do I need to pay for repairs in my rental unit?",
+        # "how to invest in stocks for beginners?",
     ]
 
     for query in test_queries:
