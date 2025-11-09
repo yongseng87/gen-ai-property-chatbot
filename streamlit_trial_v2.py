@@ -232,7 +232,7 @@ def initialize_ai_model():
         # Check if required files exist
         required_files = [
             "property_data_generator",
-            "property_database_v3.csv", 
+            "property_database_v4.csv", 
             "classifier.py"
         ]
         
@@ -260,7 +260,7 @@ def initialize_ai_model():
         st.error(f"❌ Error initializing AI model: {str(e)}")
         st.error("Please check that all required files are present:")
         st.error("- property_data_generator/ folder with PDF files")
-        st.error("- property_database_v3.csv file")
+        st.error("- property_database_v4.csv file")
         st.error("- classifier.py file")
         st.error("- Valid OpenAI API key in .env file")
         return None
@@ -272,7 +272,7 @@ ai_bot = initialize_ai_model()
 @st.cache_data
 def load_property_data():
     """Load property dataset with caching"""
-    df = pd.read_csv("property_database_v3.csv")
+    df = pd.read_csv("property_database_v4.csv")
     numeric_columns = [
         "monthly_rent", "rental_price", "sqft", "bedrooms", "bathrooms",
         "floor_level", "distance_to_mrt"
@@ -568,7 +568,7 @@ elif st.session_state.current_view == 'property_statistics':
         property_df = load_property_data()
 
         if property_df.empty:
-            st.warning("⚠️ Unable to load `property_database_v3.csv`. Please verify the file exists and has data.")
+            st.warning("⚠️ Unable to load `property_database_v4.csv`. Please verify the file exists and has data.")
         else:
             price_column = "rental_price" if "rental_price" in property_df.columns else "monthly_rent"
 
@@ -773,7 +773,7 @@ elif st.session_state.current_view == 'property_statistics':
                     # Data table of filtered results
                     st.markdown('<div class="text-box">### 📋 Filtered Properties</div>', unsafe_allow_html=True)
                     display_columns = [
-                        "town", "flat_type", "block / building", "street_name", "property_type",
+                        "town", "flat_type", "block / building", "street_name", "storey", "property_type",
                         "nearest_mrt_name", price_column, "rental_status", "address"
                     ]
                     available_columns = [col for col in display_columns if col in filtered_df.columns]
@@ -782,6 +782,7 @@ elif st.session_state.current_view == 'property_statistics':
                         "flat_type": "Flat type",
                         "block / building": "Block/Building",
                         "street_name": "Street name",
+                        "storey": "Storey",
                         "property_type": "Property type",
                         "nearest_mrt_name": "Nearest MRT",
                         price_column: "Rental price (SGD)",

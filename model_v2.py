@@ -134,7 +134,7 @@ class PropertySupportBot:
             
             # QA chain for policies
             self.qa_chain = create_pdf_qa_system(self.vectorstore, self.llm, memory=self.memory)
-            self.csv_agent = create_csv_agent("property_database_v3.csv", self.llm, memory=self.memory)
+            self.csv_agent = create_csv_agent("property_database_v4.csv", self.llm, memory=self.memory)
         except Exception as e:
             print(f"Error initializing knowledge base: {e}")
             raise
