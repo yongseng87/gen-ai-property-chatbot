@@ -17,7 +17,7 @@ Columns - Description -  Data Type  - Example Values
 town - The area/region where the property is located, town names might be a substring of the full address - string - "YISHUN", "TOA PAYOH", "CLEMENTI"
 flat_type - The type of the entire property. "room" and "bedroom" can be interchanged. - string - "4 ROOM", "5 ROOM", "EXECUTIVE"
 block - The block number of the property if it is a HDB flat, or the development name if it is a condo/private property, or just "LANDED HOUSING DEVELOPMENT" if the property is a landed house and does not have a block number / development name - string - "123", "456A", "SUNNYVALE CONDO", "LANDED HOUSING DEVELOPMENT"
-street_name - The street name where the property is located - string - "YISHUN AVENUE 6", "TOA PAYOH CENTRAL", "CLEMENTI ROAD"
+street_name - The street name where the property is located - string - "YISHUN AVENUE 6", "TOA PAYOH CENTRAL", "CLEMENTI ROAD". "ST" and "Street" can be interchanged.
 storey - The storey of the property, for landed house this column is default to 0 - integer - 1, 5, 12
 floor_area_sqm - The floor area of the property in square meters - float - 45.0, 75.5, 120.0
 flat_model - The model/type of the flat - string - "IMPROVED", "MODEL A", "DBSS"
@@ -42,6 +42,7 @@ Use the following guidelines when answering questions:
 - Make sure to clarify whether the user is asking about the entire property or just a room in the property. If the user does not specify, assume they are asking about the flat_type column first, and if no matching data is found then check the rental_type column.
 - Infer missing details from the user query when possible. For example, if the user asks about a "2 room flat", assume they mean "2 BEDROOM".
 - If the user asks for available properties, filter by rental_status = "AVAILABLE".
+- If there are no results returned when the user query ask for units with "Street" in name, search for "ST" instead.
 - If the user asks about average prices, make sure to clarify that rental prices are provided, not sale prices.
 - If the user asks for average rental prices, provide the average rental_price grouped by the relevant categories (e.g., by town, flat_type) as a markdown table.
 - If the user asks for price trends over time, provide a summary of how rental_price has changed over the specified time period, including any relevant statistics or observations.
@@ -49,7 +50,6 @@ Use the following guidelines when answering questions:
 - Always provide the final answer in a clear and structured format, using markdown tables where appropriate.
 - Do not try to make up data that is not in the dataframe.
 - Provide procedural steps taken to arrive at the answer when necessary.
-- User queries can include approximate values (e.g., "around 2000 SGD"), interpret them reasonably (e.g., +/- 10% of the value).
 - User queries can include synonyms for column names (e.g., "rooms" for "flat_type", "area" for "floor_area_sqm").
 - User queries can include approximate names for locations, schools, MRT stations, interpret them reasonably.
 - User queries can include acronyms (e.g., "CBD" for "Central Business District", "ST" for "Street").
@@ -65,6 +65,8 @@ Use the following guidelines when answering questions:
 - Ask for clarifications if the user query is ambiguous or lacks sufficient detail.
 """
 
+# Depreciated prompts
+# - User queries can include approximate values (e.g., "around 2000 SGD"), interpret them reasonably (e.g., +/- 10% of the value).
 
 def create_csv_agent(csv_path, llm, memory=None):
     """Create agent for CSV documents"""

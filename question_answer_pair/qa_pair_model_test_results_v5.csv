@@ -1,10 +1,17 @@
 difficulty,template_qn,template_ans,model_ans,notes
-easy,what is the mean price of HDB flats in Bishan?,The mean rental price of HDB flats in Bishan is approximately **$3471.43**.,The mean rental price of HDB flats in Bishan is approximately **3471.43 SGD**.,
-easy,what is the mean rental price of all houses in Bishan?,The mean rental price of all houses in Bishan is approximately **5167.11 SGD**.,The mean rental price of all houses in Bishan is approximately **5167.11 SGD**.,
+easy,what is the mean price of HDB flats in Bishan?,The mean rental price of HDB flats in Bishan is approximately **$3471.43**.,The mean rental price of HDB flats in Bishan is approximately 3471 SGD.,
+easy,what is the mean rental price of all houses in Bishan?,The mean rental price of all houses in Bishan is approximately **5167.11 SGD**.,"The mean rental price of all houses in Bishan is approximately SGD 5,167.11.",
 moderate,Do I need to pay for repairs in my rental unit?,"It depends on the nature of the repairs. In cases, where the damage is caused by the Tenant, the Tenant is responsible for the repairs to any damaged items. For minor repairs and routine maintenance of the Premises not caused by the Tenant, the Tenant shall be responsible to bear a certain amount while the Landlord shall bear the excess.
 Sources: Page 3 of ALL TENANCY CLAUSES.pdf
 Source Text Preview: (m) Minor Repairs 
-To be responsible for all minor repairs and routine maintenance of the Premises not exceeding S$ _____ per job/repair/maintenance per item (excluding aircon units/system, water heater and structural repairs) throughout the term of the Tenancy Agreement...","It depends on the terms of your Tenancy Agreement. Generally, tenants are responsible for minor repairs and routine maintenance up to a certain amount, while the landlord may cover costs exceeding that amount. However, specific details such as the cost limits and types of repairs covered should be outlined in your agreement. If you have questions about your specific situation, it's best to refer to your Tenancy Agreement or consult with your landlord.",
+To be responsible for all minor repairs and routine maintenance of the Premises not exceeding S$ _____ per job/repair/maintenance per item (excluding aircon units/system, water heater and structural repairs) throughout the term of the Tenancy Agreement...","AI Assistant: According to the context provided, as a tenant, you are responsible for all minor repairs and routine maintenance of the premises, provided the cost does not exceed a certain amount per job/repair/maintenance per item. This excludes repairs to air conditioning units/systems, water heaters, and structural repairs. If the cost exceeds the specified amount, you would bear the initial cost up to that amount, and the landlord would cover the excess. For repairs above this amount, you must obtain the landlord's approval before proceeding, and the landlord has the right to engage their own contractor.
+
+・EE・EE・EE・EE Sources: Page 2 of PDF
+
+ ・EE・EE・EE・EE Source Text Preview : 3 
+ 
+against all claims, demands, actions, suits, proceedings, orders, damages, costs, losses and  expenses of 
+any nature whatsoever which the Landlo...",
 easy,how to invest in stocks for beginners?,"Investing in stocks can seem daunting at first, but with a little knowledge and a step-by-step approach, you can start making informed decisions. Heres a guide to help beginners get started with investing in stocks:
 
 1. Understand the Basics
@@ -69,76 +76,95 @@ Instead of trying to time the market (which is difficult even for professionals)
 
 7. Monitor Your Investments
 
-Once you've started investing, itﾂ・Efs important to track your progress but avoid reacting to short-term fluctuations. Review your portfolio periodically and make adjustments if necessary. You donﾂ・Eft need to check daily?once every few months is fine fo","Investing in stocks can be a rewarding way to build wealth over time, but it・・s important to approach it with knowledge and a clear strategy. Here・・s a step-by-step guide for beginners:
+Once you've started investing, itﾂ・EEEfs important to track your progress but avoid reacting to short-term fluctuations. Review your portfolio periodically and make adjustments if necessary. You donﾂ・EEEft need to check daily?once every few months is fine fo","Investing in stocks can be a rewarding way to build wealth over time, but it・EE・EEs important to approach it with a clear strategy and understanding. Here are some steps to help beginners get started:
 
-### 1. **Educate Yourself**
-   - **Understand Basic Concepts**: Learn about stocks, dividends, market capitalization, and how the stock market works.
-   - **Read Books and Articles**: Consider reading investment books like ""Intelligent Investor"" by Benjamin Graham or ""A Random Walk Down Wall Street"" by Burton Malkiel.
-   - **Follow Financial News**: Stay updated with financial news through reputable sources like Bloomberg, CNBC, or The Wall Street Journal.
+1. **Educate Yourself**: 
+   - **Understand the Basics**: Learn about how the stock market works, different types of stocks (e.g., common vs. preferred), and key investment terms.
+   - **Read Books and Articles**: Consider reading books like ""telligent Investor"" by Benjamin Graham or ""A Random Walk Down Wall Street"" by Burton Malkiel.
+   - **Online Resources**: Use websites like Investopedia for definitions and explanations of financial concepts.
 
-### 2. **Set Your Investment Goals**
-   - **Define Your Objectives**: Are you investing for retirement, a major purchase, or wealth accumulation?
-   - **Determine Your Time Horizon**: How long do you plan to invest? Short-term (1-3 years) or long-term (5+ years)?
+2. **Set Financial Goals**:
+   - Determine your investment goals, such as saving for retirement, buying a home, or funding education.
+   - Decide on the time horizon for your investments and your risk tolerance.
 
-### 3. **Assess Your Risk Tolerance**
-   - **Understand Your Comfort Level**: Consider how much risk you are willing to take. Stocks can be volatile, and prices can fluctuate significantly.
-   - **Consider Your Financial Situation**: Ensure you have an emergency fund and are not investing money you may need in the short term.
+3. **Create a Budget**:
+   - Assess your financial situation and decide how much you can afford to invest.
+   - Ensure you have an emergency fund in place before investing.
 
-### 4. **Choose an Investment Account**
-   - **Brokerage Account**: Open a brokerage account with a reputable firm (e.g., Fidelity, Charles Schwab, E*TRADE, Robinhood).
-   - **Retirement Accounts**: Consider tax-advantaged accounts like IRAs or 401(k)s if you祥皞e investing for retirement.
+4. **Choose an Investment Account**:
+   - **Brokerage Account**: Open a brokerage account with a reputable firm. Consider online brokers like Fidelity, Charles Schwab, or Robinhood.
+   - **Retirement Accounts**: Consider tax-advantaged accounts like a 401(k) or an IRA if investing for retirement.
 
-### 5. **Develop an Investment Strategy**
-   - **Decide on Active vs. Passive Investing**: Active investing involves picking individual stocks, while passive investing typically involves index funds or ETFs that track the market.
+5. **Develop an Investment Strategy**:
    - **Diversification**: Spread your investments across different sectors and asset classes to reduce risk.
+   - **Decide on Active vs. Passive Investing**: Active investing involves picking individual stocks, while passive investing typically involves index funds or ETFs.
 
-### 6. **Start Small**
-   - **Invest an Amount You Can Afford**: Begin with a small amount to get comfortable with the process.
-   - **Consider Dollar-Cost Averaging**: Invest a fixed amount regularly (e.g., monthly) to reduce the impact of market volatility.
+6. **Start with Index Funds or ETFs**:
+   - For beginners, index funds or ETFs that track market indices like the S&P 500 can be a good starting point due to their diversification and lower fees.
 
-### 7. **Research Stocks**
-   - **Analyze Companies**: Look at financial statements, earnings reports, and market trends.
-   - **Use Tools and Resources**: Utilize stock screeners, analyst reports, and financial news to inform your decisions.
+7. **Research and Select Stocks**:
+   - If you choose to invest in individual stocks, research companies thoroughly, considering factors like financial health, competitive position, and growth potential.
 
-### 8. **Make Your First Investment**
-   - **Choose Your Stocks or Funds**: Based on your research and strategy, select the stocks or funds you want to invest in.
-   - **Place Your Order**: Use your brokerage account to buy shares. You can place market orders (buy at current price) or limit orders (buy at a specific price).
+8. **Monitor and Adjust Your Portfolio**:
+   - Regularly review your investments to ensure they align with your goals.
+   - Rebalance your portfolio as needed to maintain your desired asset allocation.
 
-### 9. **Monitor Your Investments**
-   - **Review Performance**: Regularly check how your investments are performing, but avoid making impulsive decisions based on short-term market fluctuations.
-   - **Rebalance Your Portfolio**: Adjust your investments periodically to maintain your desired asset allocation.
+9. **Stay Informed and Patient**:
+   - Keep up with market news and trends, but avoid making impulsive decisions based on short-term market fluctuations.
+   - Focus on long-term growth rather than trying to time the market.
 
-### 10. **Stay Informed and Keep Learning**
-   - **Continue Your Education**: The market is constantly changing, so keep learning about new investment strategies and market trends.
-   - **Join Investment Communities**: Engage with other investors through forums, social media, or local investment clubs.
+10. **Seek Professional Advice if Needed**:
+    - Consider consulting with a financial advisor, especially if you have a large portfolio or complex financial situation.
 
-### 11. **Be Patient**
-   - **Think Long-Term**: Stock investing is often about patience and discipline. Avoid the temptation to react to short-term market movements.
-
-### Conclusion
-Investing in stocks can be a great way to grow your wealth over time. By educating yourself, setting clear goals, and developing a thoughtful strategy, you can navigate the stock market with confidence. Remember to start small, stay informed, and be patient as you build your investment portf",
+Remember, investing in stocks involves risk, and it・EE・EEs important to invest only what you can afford to lose. Patience and discipline are key to successful investing..mmaau",Compared with ChatGPT response
 easy,I am renting a landed house currently. Can I use the unit to conduct my home business?,"Yes, you can use the premises for small home businesses provided that you comply with the  prevailing rules and regulations, and not
 for any illegal or other purposes.
 Sources: Page 5 of ALL TENANCY CLAUSES.pdf
 Source Text Preview: (jj) USE OF PREMISES [For Landed only]
-Premises may be used for small home businesses subject to compliance with prevailing rules and regulations, and not for any illegal or other purposes...","Yes, you can use the premises for small home businesses, provided that you comply with prevailing rules and regulations and do not use it for illegal purposes. However, be aware that any breach of this agreement may result in immediate termination of the tenancy agreement and forfeiture of your security deposit.",
+Premises may be used for small home businesses subject to compliance with prevailing rules and regulations, and not for any illegal or other purposes...","AI Assistant: Yes, you can use the unit to conduct a small home business, provided you comply with prevailing rules and regulations and do not use the premises for any illegal or other prohibited purposes. If there is a breach of these conditions, the Tenancy Agreement may be immediately terminated, and the security deposit may be fully forfeited by the Tenant and paid to or confiscated by the Landlord.
+
+・EE・EE・EE・EE Sources: Page 4 of PDF
+
+ ・EE・EE・EE・EE Source Text Preview : not disturb other residents or create an unpleasant living environment. Failure to comply with this rule may 
+result in penalties or termination of th...",
 moderate,I am renting a condominium unit. Am I allowed to keep pets?,"You may be allowed to keep certain pets with permission from the Landlord subject to conditions imposed by him/her.
 Sources: Page 4 of ALL TENANCY CLAUSES.pdf
 Source Text Preview: (y) PETS [For Condo / Apartment / Landed only]
-Not to keep or permit to be kept in the Premises or any part thereof any animal or bird legally permitted to be pets without the prior written permission of the Landlord and to comply with any conditions imposed by the Landlord in the event such permission is granted.","You are not allowed to keep pets in your condominium unit without the prior written permission of the Landlord. If permission is granted, you must also comply with any conditions imposed by the Landlord.",
+Not to keep or permit to be kept in the Premises or any part thereof any animal or bird legally permitted to be pets without the prior written permission of the Landlord and to comply with any conditions imposed by the Landlord in the event such permission is granted.","AI Assistant: If you are renting a condominium unit, you are not allowed to keep any animal or bird legally permitted to be pets without the prior written permission of the landlord. Additionally, you must comply with any conditions imposed by the landlord if such permission is granted.
+
+・EE・EE・EE・EE Sources: Page 3 of PDF
+
+ ・EE・EE・EE・EE Source Text Preview : (x) PETS [For HDB Flat only] 
+Not to keep or permit to be kept in the Premises or any part thereof any animal or bird. 
+(y) PETS [For Condo / Apartmen...",
 moderate,Am I allowed to cook in the house?,"It depends on the type of property that you are renting. If you are renting a HDB flat, you are not allowed to engage in cooking that emits odours in the leased premises or common areas. This is because tenants are expected to not cause disturbances to other occupants in the premises as it is a shared living environment. Otherwise, there are no prohibitions against cooking in the house.
 Sources: Page 5 of ALL TENANCY CLAUSES.pdf
 Source Text Preview: (hh) NO COOKING [For HDB Flat only]
-Tenants shall not engage in cooking that emits unusual odors in the leased premises or the common areas. This includes, but is not limited to, cooking with strong spices...","It depends on the specific rules of your lease agreement. According to the provided context, tenants in HDB flats are not allowed to engage in cooking that emits unusual odors, which includes cooking with strong spices, deep frying, grilling, or any other method that produces strong odors. You should refer to your lease agreement for any specific cooking restrictions.",
+Tenants shall not engage in cooking that emits unusual odors in the leased premises or the common areas. This includes, but is not limited to, cooking with strong spices...","AI Assistant: If you are living in an HDB flat, you are not allowed to engage in cooking that emits unusual odors in the leased premises or the common areas. This includes cooking with strong spices, deep frying, grilling, or any other method that produces strong odors. You are expected to use the kitchen facilities in a manner that does not disturb other residents or create an unpleasant living environment. Failure to comply with this rule may result in penalties or termination of the lease agreement.
+
+・EE・EE・EE・EE Sources: Page 4 of PDF
+
+ ・EE・EE・EE・EE Source Text Preview : or electronic nicotine delivery system inside the Premises. Any violation shall be deemed a material violation 
+of this Agreement. Tenant understands ...",
 complex,Who is responsible for servicing and maintaining the air-con?,"It depends on the type of property that you are renting. If you are renting a Landed property, the Landlord is responsible for the servicing and maintenance of the air-con, as well as bearing all costs related to servicing, repair and cleaning. Otherwise, the Tenant is responsible for servicing and maintaining the air-con. The Tenant is also obliged to inform the Landlord for the chemical cleaning and appointment of contractor. 
 Sources: Page 2 of ALL TENANCY CLAUSES.pdf
 Source Text Preview: (j) SERVICE OF AIRCON [For Landed only]
-To keep air-conditioning units fully serviced every three months. Cost of repair and replacement (including chemical cleaning and gas top up) to be borne by the Landlord...","The Landlord is responsible for servicing and maintaining the air-conditioning units, including the cost of repair and replacement, except where the damage is caused by the Tenant's wilful act or negligence. The air-conditioning units must be fully serviced every three months.",
-easy,Can you recommend me an air-con cleaning contractor?,"I canﾂ・Eft give you specific contractor recommendations, but I can offer a few tips on how to find a good air-conditioning cleaning contractor in your area:
+To keep air-conditioning units fully serviced every three months. Cost of repair and replacement (including chemical cleaning and gas top up) to be borne by the Landlord...","AI Assistant: The responsibility for servicing and maintaining the air-conditioning units is shared between the Tenant and the Landlord. 
+
+The Tenant is responsible for keeping the air-conditioning units fully serviced every three months. However, the cost of repair and replacement, including chemical cleaning and gas top-up, is to be borne by the Landlord unless the damage is caused by the act, neglect, or omission of the Tenant or their associates.
+
+Additionally, the Landlord is responsible for bearing the cost and expense for the repair, replacement, or renewal of parts, except where the damage is caused by the Tenant's wilful act or negligence.
+
+・EE・EE・EE・EE Sources: Page 6 of PDF
+
+ ・EE・EE・EE・EE Source Text Preview : notice from the Tenant and bear all cost associated with such repair, replacement or renewal subject to clause 
+2(i). 
+(d) SERVICE OF AIRCON [For HDB ...",Bot cannot read from multiple locations consecutively and infer
+easy,Can you recommend me an air-con cleaning contractor?,"I canﾂ・EEEft give you specific contractor recommendations, but I can offer a few tips on how to find a good air-conditioning cleaning contractor in your area:
 
 1. Search Online Directories
 
-Google: Simply search for ""-con cleaning services near me"" or ""air conditioning cleaning contractor"" along with your city or area name.
+Google: Simply search for ""on cleaning services near me"" or ""air conditioning cleaning contractor"" along with your city or area name.
 
 Yelp: This site offers reviews of local contractors, so you can see ratings, customer feedback, and photos of their work.
 
@@ -180,27 +206,18 @@ Before committing, check:
 
 Online Reviews: Look at Google reviews, Yelp, or other platforms for customer feedback.
 
-Better Business Bureau (BBB): Look up the companyﾂ・Efs rating with the BBB to see if any complaints have been filed agacn","I can't provide specific recommendations for contractors, but I can suggest some tips on how to find a reliable air conditioning cleaning service:
-
-1. **Online Reviews**: Check platforms like Google, Yelp, or Angie's List for customer reviews and ratings of local air conditioning cleaning services.
-
-2. **Ask for Recommendations**: Reach out to friends, family, or neighbors for their recommendations based on their experiences.
-
-3. **Check Credentials**: Ensure the contractor is licensed, insured, and certified. This can help ensure quality service and protection in case of accidents.
-
-4. **Get Multiple Quotes**: Contact several contractors to get quotes and compare their services and prices.
-
-5. **Inquire About Experience**: Ask how long they have been in business and if they have experience with your specific type of air conditioning system.
-
-6. **Look for Special Offers**: Some companies may offer discounts or promotions for first-time customers or seasonal services.
-
-7. **Check for Memberships**: Membership in professional organizations, such as the Air Conditioning Contractors of America (ACCA), can indicate a commitment to industry standards.
-
-By following these steps, you should be able to find a reputable air conditioning cleaning contractor in your area.",
+Better Business Bureau (BBB): Look up the companyﾂ・EEEfs rating with the BBB to see if any complaints have been filed agacsta","Certainly! However, I don't have access to real-time databases or specific company listings. I recommend checking local business directories, online review sites like Yelp or Angie's List, or even Google Maps for air conditioning cleaning contractors in your area. You can also ask for recommendations from friends, family, or neighbors who have recently had similar services done. Make sure to check reviews and ratings to ensure you choose a reputable contractor.",Compared with ChatGPT response
 easy,Who should be responsible for paying the condo management fees?,"The Tenant is responsible for paying the condo management fees.
 Sources: Page 3 of ALL TENANCY CLAUSES.pdf
 Source Text Preview: (p) COMPLIANCE WITH MANAGEMENT CORPORATION [For Condo only]
-To observe and perform all the by-laws, rules and regulations of the Management Corporation for the time being in force and to pay punctually all contributions, levies, fees and other charges",I don't know.,
+To observe and perform all the by-laws, rules and regulations of the Management Corporation for the time being in force and to pay punctually all contributions, levies, fees and other charges","AI Assistant: The provided context does not specify who is responsible for paying condo management fees. If this information is not included in the lease agreement or any related documents, it would typically be the responsibility of the landlord, but this can vary depending on the specific terms agreed upon by the landlord and tenant. It's best to refer to the lease agreement for clarification.
+
+・EE・EE・EE・EE Sources: Page 1 of PDF
+
+ ・EE・EE・EE・EE Source Text Preview : 2 
+ 
+condition (fair wear and tear and  damage by fire, lighting, earthquake, flood and acts of God or cause not 
+attributable to the neglect of the T...",Bot cannot infer what is condo management fees
 complex,"I am looking for a two room HDB unit to rent in Hougang. Can you recommend me some available units with monthly rental below $2,200?","Here are some available two-room HDB units for rent in Hougang with a monthly rental price below $2,200:
 town	flat_type	block / building	street_name	storey	floor_area_sqm	flat_model	lease_commence_date	property_type	rental_type	rental_price
 HOUGANG	2 ROOM	986A	BUANGKOK CRES	07	47	Model A	2012	HDB Flat	2 ROOM	2000
@@ -210,28 +227,24 @@ HOUGANG	2 ROOM	991A	BUANGKOK LINK	01	47	Model A	2019	HDB Flat	2 ROOM	2100
 HOUGANG	2 ROOM	998B	BUANGKOK CRES	13	47	Model A	2019	HDB Flat	2 ROOM	2000
 HOUGANG	2 ROOM	986A	BUANGKOK CRES	01	47	Model A	2012	HDB Flat	2 ROOM	2000
 HOUGANG	2 ROOM	994A	BUANGKOK LINK	04	47	2-room	2021	HDB Flat	2 ROOM	2100
-If you are interested in renting any of the units, please contact our property agent. ","Here are some available two-room HDB units for rent in Hougang with a monthly rental price below $2,200:
+If you are interested in renting any of the units, please contact our property agent. ","Here are some available 2-room HDB units for rent in Hougang with a monthly rental price below $2,200:
 
-| Town    | Flat Type | Block / Building | Street Name      | Rental Price | Nearest School Name              | Nearest MRT Name        |
-|---------|-----------|------------------|------------------|--------------|----------------------------------|-------------------------|
-| HOUGANG | 2 ROOM    | 986A             | BUANGKOK CRES    | <Price>      | HOUGANG PRIMARY SCHOOL           | TONGKANG LRT STATION    |
-| HOUGANG | 2 ROOM    | 998B             | BUANGKOK CRES    | <Price>      | PEI HWA SECONDARY SCHOOL         | TONGKANG LRT STATION    |
-| HOUGANG | 2 ROOM    | 991A             | BUANGKOK LINK    | <Price>      | HOUGANG SECONDARY SCHOOL         | TONGKANG LRT STATION    |
-| HOUGANG | 2 ROOM    | 998B             | BUANGKOK CRES    | <Price>      | PEI HWA SECONDARY SCHOOL         | TONGKANG LRT STATION    |
-| HOUGANG | 2 ROOM    | 994A             | BUANGKOK LINK    | <Price>      | ANCHOR GREEN PRIMARY SCHOOL      | TONGKANG LRT STATION    |
+| Town   | Flat Type | Rental Price | Rental Status | Address            | Rental Type |
+|--------|-----------|--------------|---------------|--------------------|-------------|
+| HOUGANG | 2 ROOM    | $2,000       | AVAILABLE     | 986A BUANGKOK CRES | 2 ROOM      |
+| HOUGANG | 5 ROOM    | $2,000       | AVAILABLE     | 570 HOUGANG ST 51  | 2 BEDROOM   |
+| HOUGANG | 5 ROOM    | $2,000       | AVAILABLE     | 238 HOUGANG AVE 1  | 2 BEDROOM   |
+| HOUGANG | 2 ROOM    | $2,100       | AVAILABLE     | 998B BUANGKOK CRES | 2 ROOM      |
+| HOUGANG | 5 ROOM    | $2,000       | AVAILABLE     | 941 HOUGANG ST 92  | 2 BEDROOM   |
+| HOUGANG | 2 ROOM    | $2,100       | AVAILABLE     | 991A BUANGKOK LINK | 2 ROOM      |
+| HOUGANG | 2 ROOM    | $2,000       | AVAILABLE     | 998B BUANGKOK CRES | 2 ROOM      |
+| HOUGANG | 2 ROOM    | $2,100       | AVAILABLE     | 994A BUANGKOK LINK | 2 ROOM      |
 
-Please note that the rental prices for these units were not included in the output. If you would like to see the specific rental prices or any additional details, please let me know!",
-moderate,how far is the unit 998B buangkok cres away from the MRT and which station is it?,The unit 998B BUANGKOK CRES is 0.8289km away from the nearest MRT station and the station is TONGKANG LRT STATION,"Unit 998B Buangkok Crescent is located near the Buangkok MRT station on the North East Line (NEL) in Singapore. The distance from the unit to the MRT station is approximately 1 kilometer, which is about a 10 to 15-minute walk, depending on your pace. For the most accurate and updated information, it's always a good idea to check a map or navigation app.",
-moderate,are rental prices in hougang cheaper than rental prices in punggol?,The rental prices in hougang are slightly higher than those in punggol. The average rental price of houses in hougang is $4552.95 whereas the average rental price of houses in punggol is $4212.06.,"The average rental prices are as follows:
-
-- **Hougang**: Approximately **4553 SGD**
-- **Punggol**: Approximately **4212 SGD**
-
-Based on these averages, rental prices in Hougang are higher than those in Punggol.",
-moderate,are rental prices in JB cheaper than rental prices in singapore?,"Sorry, we are unable to assist you with the query. We do not have data on rental prices in JB.","To answer your question, I need to clarify that I only have access to rental prices for properties in Singapore, as the provided DataFrame does not contain any data for properties in Johor Bahru (JB) or any other locations outside of Singapore.
-
-If you would like, I can provide information on the rental prices in Singapore, including average prices by town or property type. Would you like me to do that?",
-easy,what is the average rental price of landed houses in singapore?,"The average rental price of landed houses in Singapore is $15,624.36.","The average rental price of landed houses in Singapore is approximately **15,624.36 SGD**.",
+These listings include both ""2 ROOM"" and ""2 BEDROOM"" rental types. Let me know if you need more information!",
+moderate,how far is the unit 998B buangkok cres away from the MRT and which station is it?,The unit 998B BUANGKOK CRES is 0.8289km away from the nearest MRT station and the station is TONGKANG LRT STATION,"998B Buangkok Crescent is relatively close to the Buangkok MRT station. The distance is approximately 1 kilometer, which would take around 10 to 15 minutes to walk, depending on your pace. Buangkok MRT station is part of the North East Line (NEL) in Singapore.",
+moderate,are rental prices in hougang cheaper than rental prices in punggol?,The rental prices in hougang are slightly higher than those in punggol. The average rental price of houses in hougang is $4552.95 whereas the average rental price of houses in punggol is $2801.68.,"The average rental price in Hougang is approximately 4,553 SGD, whereas in Punggol, it is approximately 2,802 SGD. Therefore, rental prices in Punggol are generally cheaper than those in Hougang.",
+moderate,are rental prices in JB cheaper than rental prices in singapore?,"Sorry, we are unable to assist you with the query. We do not have data on rental prices in JB.","I don't have access to rental price data for Johor Bahru (JB) or any location outside of Singapore. I can provide information and analysis based on the rental data available in the dataframe for properties in Singapore. If you have specific questions about rental prices in Singapore, feel free to ask!",
+easy,what is the average rental price of landed houses in singapore?,"The average rental price of landed houses in Singapore is $15,624.36.","The average rental price of landed houses in Singapore is approximately SGD 15,624.36.",
 complex,recommend me a place to rent that is near to Toa Payoh MRT station,"Here are some available rental properties near to Toa Payoh MRT station:
 town	flat_type	block / building	street_name	storey	floor_area_sqm	flat_model	lease_commence_date	property_type	rental_type	rental_price	nearest_mrt_dist_km	nearest_mrt_name
 TOA PAYOH	4 ROOM	175	LOR 2 TOA PAYOH	10	10	Improved	1974	HDB Flat	1 BEDROOM	1200	0.053620687826556664	TOA PAYOH MRT STATION
@@ -240,40 +253,36 @@ TOA PAYOH	4 ROOM	152	LOR 2 TOA PAYOH	22	86	Model A	2006	HDB Flat	4 ROOM	4500	0.1
 TOA PAYOH	5 ROOM	153A	LOR 1 TOA PAYOH	10	121	Improved	1999	HDB Flat	5 ROOM	6000	0.15073997463710792	TOA PAYOH MRT STATION
 If you are interested in renting any of the units, please contact our property agent. ","Here are some available rental properties near Toa Payoh MRT station:
 
-| Town      | Flat Type | Block / Building | Rental Price (SGD) | Nearest School Name               | Distance to MRT (km) |
-|-----------|-----------|------------------|---------------------|-----------------------------------|-----------------------|
-| TOA PAYOH | 3 ROOM    | 177              | Not specified        | KHENG CHENG SCHOOL                | 0.20                  |
-| TOA PAYOH | 4 ROOM    | 79B              | Not specified        | KHENG CHENG SCHOOL                | 0.20                  |
-| TOA PAYOH | 3 ROOM    | 263              | Not specified        | PEI CHUN PUBLIC SCHOOL            | 0.86                  |
-| BALESTIER, TOA PAYOH, SERANGOON | EXECUTIVE | TRELLIS TOWERS | Not specified | CHIJ SECONDARY (TOA PAYOH)       | 0.44                  |
-| TOA PAYOH | 2 ROOM    | 161              | Not specified        | CHIJ SECONDARY (TOA PAYOH)       | 0.35                  |
-| TOA PAYOH | 3 ROOM    | 163              | Not specified        | CHIJ SECONDARY (TOA PAYOH)       | 0.30                  |
-| TOA PAYOH | 5 ROOM    | 138A             | Not specified        | KHENG CHENG SCHOOL                | 0.40                  |
-| TOA PAYOH | 3 ROOM    | 186              | Not specified        | KHENG CHENG SCHOOL                | 0.28                  |
-| TOA PAYOH | 4 ROOM    | 147              | Not specified        | CHIJ SECONDARY (TOA PAYOH)       | 0.21                  |
+| Town      | Flat Type  | Rental Price (SGD) | Rental Status | Address                      | Nearest MRT Name      | Distance to MRT (km) |
+|-----------|------------|--------------------|---------------|------------------------------|-----------------------|----------------------|
+| TOA PAYOH | 3 ROOM     | 1100               | AVAILABLE     | 177 TOA PAYOH CTRL           | TOA PAYOH MRT STATION | 0.198                |
+| TOA PAYOH | 4 ROOM     | 1100               | AVAILABLE     | 79B TOA PAYOH CTRL           | TOA PAYOH MRT STATION | 0.198                |
+| TOA PAYOH | 3 ROOM     | 3500               | AVAILABLE     | 263 TOA PAYOH EAST           | TOA PAYOH MRT STATION | 0.861                |
+| TOA PAYOH | EXECUTIVE  | 7600               | AVAILABLE     | TRELLIS TOWERS LORONG 1 TOA PAYOH | TOA PAYOH MRT STATION | 0.441                |
+| TOA PAYOH | 2 ROOM     | 2100               | AVAILABLE     | 161 LOR 1 TOA PAYOH          | TOA PAYOH MRT STATION | 0.350                |
 
-Please note that the rental prices for these properties were not specified in the data. If you need more specific details or have other preferences, feel free to ask!",
+These properties are all within approximately 0.9 km of Toa Payoh MRT station. Let me know if you need more details or have other criteria in mind!",
 complex,recommend me a place to rent that is near to Ai Tong School,"Here are some available rental properties near to Ai Tong School:
 town	flat_type	block / building	street_name	storey	floor_area_sqm	flat_model	lease_commence_date	property_type	rental_type	rental_price	owner_name	nearest_school_dist_km	nearest_school_name
 BISHAN	5 ROOM	402	SIN MING AVE	22	120	Improved	1986	HDB Flat	5 ROOM	5500	Timothy Simpson	0.2447407436478345	AI TONG SCHOOL
 BISHAN	3 ROOM	407	SIN MING AVE	10	10	Simplified	1986	HDB Flat	1 BEDROOM	1100	Amy Dixon	0.34561995096707065	AI TONG SCHOOL
 Bishan, Ang Mo Kio	Terrace House	SOO CHOW GARDEN	SOO CHOW VIEW	Landed	171.7	Terrace House	Freehold	Landed	TERRACE HOUSE	13300	David Soh	0.9089026071133504	AI TONG SCHOOL
-If you are interested in renting any of the units, please contact our property agent. ","I found several rental properties near Ai Tong School. Here are the details of the available properties:
+If you are interested in renting any of the units, please contact our property agent. ","Here are some available rental properties near Ai Tong School:
 
-| Town                | Flat Type | Block / Building               | Rental Price (SGD) | Rental Status | Nearest MRT Name          | Nearest MRT Distance (km) |
-|---------------------|-----------|-------------------------------|---------------------|---------------|---------------------------|----------------------------|
-| BISHAN              | 5 ROOM    | 442                           | Not specified        | AVAILABLE      | BRIGHT HILL MRT STATION   | 0.33                       |
-| BISHAN              | 5 ROOM    | 450                           | Not specified        | AVAILABLE      | UPPER THOMSON MRT STATION | 0.33                       |
-| BISHAN              | 4 ROOM    | 445                           | Not specified        | AVAILABLE      | UPPER THOMSON MRT STATION | 0.33                       |
-| BISHAN              | EXECUTIVE | FABER GARDEN CONDOMINIUM     | Not specified        | AVAILABLE      | BRIGHT HILL MRT STATION   | 0.24                       |
-| BISHAN              | 5 ROOM    | 447                           | Not specified        | AVAILABLE      | UPPER THOMSON MRT STATION | 0.28                       |
-| BISHAN              | 4 ROOM    | 454                           | Not specified        | AVAILABLE      | BRIGHT HILL MRT STATION   | 0.40                       |
-| BISHAN              | 5 ROOM    | 402                           | Not specified        | AVAILABLE      | BRIGHT HILL MRT STATION   | 0.08                       |
-| BISHAN              | EXECUTIVE | 447                           | Not specified        | AVAILABLE      | UPPER THOMSON MRT STATION | 0.28                       |
-| BISHAN              | 5 ROOM    | 444                           | Not specified        | AVAILABLE      | UPPER THOMSON MRT STATION | 0.32                       |
-| BISHAN              | 4 ROOM    | 448                           | Not specified        | AVAILABLE      | UPPER THOMSON MRT STATION | 0.30                       |
+| Town  | Flat Type      | Rental Price (SGD) | Rental Status | Nearest School | Distance to School (km) |
+|-------|----------------|--------------------|---------------|----------------|-------------------------|
+| BISHAN | MANSIONETTE   | 9800               | AVAILABLE     | AI TONG SCHOOL | 0.109                   |
+| BISHAN | 5 ROOM        | 1200               | AVAILABLE     | AI TONG SCHOOL | 0.109                   |
+| BISHAN | Terrace House | 14500              | AVAILABLE     | AI TONG SCHOOL | 0.234                   |
+| BISHAN | 5 ROOM        | 5500               | AVAILABLE     | AI TONG SCHOOL | 0.245                   |
+| BISHAN | 4 ROOM        | 4500               | AVAILABLE     | AI TONG SCHOOL | 0.262                   |
+| BISHAN | 4 ROOM        | 4500               | AVAILABLE     | AI TONG SCHOOL | 0.262                   |
+| BISHAN | Terrace House | 10800              | AVAILABLE     | AI TONG SCHOOL | 0.265                   |
+| BISHAN | 5 ROOM        | 5700               | AVAILABLE     | AI TONG SCHOOL | 0.300                   |
+| BISHAN | 4 ROOM        | 1200               | AVAILABLE     | AI TONG SCHOOL | 0.318                   |
+| BISHAN | 4 ROOM        | 4000               | AVAILABLE     | AI TONG SCHOOL | 0.318                   |
 
-Please note that the rental prices for these properties were not specified in the data. If you would like more specific information or have other criteria in mind, please let me know!",
+These properties are in Bishan and are within approximately 1 km of Ai Tong School. Let me know if you need more information or assistance!",
 complex,"I'm looking for a high floor, 2 room unit to rent in yishun. Recommend me some places","We have a few high floor 2 room units in Yishun that is available. Here is a list of units with their address and rental price:
 town	flat_type	block / building	street_name	storey	floor_area_sqm	flat_model	lease_commence_date	rental_date	property_type	rental_type	rental_price
 YISHUN	2 ROOM	424A	YISHUN AVE 11	10	47	Model A	2015		HDB Flat	2 ROOM	2200
@@ -281,19 +290,21 @@ YISHUN	2 ROOM	478B	YISHUN ST 44	13	38	2-room	2021		HDB Flat	2 ROOM	2400
 YISHUN	2 ROOM	677A	YISHUN RING RD	10	47	Model A	2018		HDB Flat	2 ROOM	2200
 YISHUN	2 ROOM	462B	YISHUN AVE 6	10	38	Model A	2019		HDB Flat	2 ROOM	2300
 YISHUN	2 ROOM	424B	YISHUN AVE 11	10	47	Model A	2015		HDB Flat	2 ROOM	2300
-If you are interested in renting any of the units, please contact our property agent. ","Here are some available high-floor 2-room units for rent in Yishun:
+If you are interested in renting any of the units, please contact our property agent. ","Here are some high-floor, 2-room units available for rent in Yishun:
 
-| Town   | Flat Type | Block   | Street Name       | Storey | Floor Area (sqm) | Rental Price (SGD) | Rental Status | Nearest School Name                  | Nearest MRT Name         |
-|--------|-----------|---------|-------------------|--------|-------------------|---------------------|---------------|--------------------------------------|--------------------------|
-| YISHUN | 2 ROOM    | 424B    |                   | 6      |                   |                     | AVAILABLE     | NORTHBROOKS SECONDARY SCHOOL         | YISHUN MRT STATION       |
-| YISHUN | 2 ROOM    | 462C    |                   | 7      |                   |                     | AVAILABLE     | NORTH VIEW PRIMARY SCHOOL            | YISHUN MRT STATION       |
-| YISHUN | 2 ROOM    | 462D    |                   | 8      |                   |                     | AVAILABLE     | NORTH VIEW PRIMARY SCHOOL            | YISHUN MRT STATION       |
-| YISHUN | 2 ROOM    | 462B    |                   | 9      |                   |                     | AVAILABLE     | NORTH VIEW PRIMARY SCHOOL            | YISHUN MRT STATION       |
-| YISHUN | 2 ROOM    | 675A    |                   | 10     |                   |                     | AVAILABLE     | NORTHBROOKS SECONDARY SCHOOL        | YISHUN MRT STATION       |
-| YISHUN | 2 ROOM    | 677A    |                   | 11     |                   |                     | AVAILABLE     | NORTHBROOKS SECONDARY SCHOOL        | YISHUN MRT STATION       |
-| YISHUN | 2 ROOM    | 678A    |                   | 12     |                   |                     | AVAILABLE     | NORTHBROOKS SECONDARY SCHOOL        | YISHUN MRT STATION       |
+| Town  | Flat Type | Rental Type | Storey | Rental Price (SGD) | Address              | Rental Status |
+|-------|-----------|-------------|--------|--------------------|----------------------|---------------|
+| YISHUN | 5 ROOM   | 2 BEDROOM   | 13     | 2600               | 299 YISHUN ST 20     | AVAILABLE     |
+| YISHUN | 5 ROOM   | 2 BEDROOM   | 16     | 2400               | 347A YISHUN AVE 11   | AVAILABLE     |
+| YISHUN | 5 ROOM   | 2 BEDROOM   | 10     | 2400               | 350 YISHUN AVE 11    | AVAILABLE     |
+| YISHUN | 5 ROOM   | 2 BEDROOM   | 10     | 3000               | 851 YISHUN ST 81     | AVAILABLE     |
+| YISHUN | 2 ROOM   | 2 ROOM      | 10     | 2200               | 424A YISHUN AVE 11   | AVAILABLE     |
+| YISHUN | 2 ROOM   | 2 ROOM      | 13     | 2400               | 478B YISHUN ST 44    | AVAILABLE     |
+| YISHUN | 2 ROOM   | 2 ROOM      | 10     | 2200               | 677A YISHUN RING RD  | AVAILABLE     |
+| YISHUN | 2 ROOM   | 2 ROOM      | 10     | 2300               | 462B YISHUN AVE 6    | AVAILABLE     |
+| YISHUN | 2 ROOM   | 2 ROOM      | 10     | 2300               | 424B YISHUN AVE 11   | AVAILABLE     |
 
-Please note that the rental prices and floor areas are not provided in the current dataset. If you need more specific details or additional options, feel free to ask!",
+These properties are currently available for rent. Let me know if you need more information or assistance!",Bot also took 2 bedroom units since we coded it in the prompt. May be acceptable.
 moderate,recommend me a good place to stay in singapore,"Singapore is a vibrant city with a wide range of accommodation options, depending on your budget, preferences, and what you're looking to experience. Here are some top recommendations for different types of travelers:
 
 1. For Luxury and Modern Comfort
@@ -380,7 +391,7 @@ Location: Sentosa Island (great for theme parks, beaches, and other attractions)
 
 Capella Singapore
 
-Why Stay? This luxurious resort on Sentosa Island offers plenty of family-oriented activities, beautiful villas, and a great pool. Itﾂ・Efs perfect for families who want both relaxation and adventure.
+Why Stay? This luxurious resort on Sentosa Island offers plenty of family-oriented activities, beautiful villas, and a great pool. Itﾂ・EEEfs perfect for families who want both relaxation and adventure.
 
 Location: Sentosa Island (close to beaches, the S.E.A. Aquarium, and other family attractions).
 
@@ -390,132 +401,97 @@ If you're keen to experience Singapore's culture and history, these neighborhood
 
 The Sultan Hotel
 
-Why Stay? In addition to being a stylish boutique hotel, The Sultan is located in the culturally rich K","Singapore offers a wide range of accommodations to suit various preferences and budgets. Here are a few recommendations across different categories:
+Why Stay? In addition to being a stylish boutique hotel, The Sultan is located in the culturally rich K","Certainly! Singapore offers a wide range of accommodations to suit different preferences and budgets. Here are a few recommendations across various categories:
 
 ### Luxury Hotels
-1. **Marina Bay Sands** - Iconic for its rooftop infinity pool and stunning views of the skyline, this hotel offers luxury and a range of amenities.
-2. **Raffles Singapore** - A historic hotel known for its colonial architecture and exceptional service, perfect for a lavish stay.
-
-### Mid-Range Hotels
-1. **Hotel Jen Orchardgateway** - Located on Orchard Road, this hotel offers modern amenities and easy access to shopping and dining.
-2. **M Social Singapore** - A trendy hotel with a vibrant atmosphere, located near the Singapore River.
-
-### Budget Hotels
-1. **Hotel 81** - A budget-friendly chain with multiple locations across Singapore, offering clean and comfortable rooms.
-2. **Capsule Pod Boutique Hostel** - A unique capsule-style hostel that provides a budget-friendly yet comfortable stay, ideal for solo travelers.
+1. **Marina Bay Sands**: Famous for its iconic rooftop infinity pool and stunning views of the city skyline.
+2. **Raffles Hotel**: A historic and luxurious hotel known for its colonial architecture and the birthplace of the Singapore Sling cocktail.
+3. **The Fullerton Bay Hotel**: Offers beautiful waterfront views and is located near major attractions.
 
 ### Boutique Hotels
-1. **The Warehouse Hotel** - A beautifully restored heritage building along the Singapore River, offering a blend of modern comfort and historical charm.
-2. **The Sultan** - Located in the Kampong Glam area, this boutique hotel features a mix of traditional and contemporary design.
+1. **The Warehouse Hotel**: A stylish hotel set in a restored heritage building along the Singapore River.
+2. **Hotel Fort Canning**: Nestled in the greenery of Fort Canning Park, combining colonial charm with modern amenities.
+3. **Naumi Hotel**: A chic and contemporary boutique hotel located in the heart of the city.
 
-### Unique Stays
-1. **The Pod @ Pasir Ris** - A unique capsule hotel experience that is both affordable and comfortable.
-2. **Lloyd's Inn** - A minimalist hotel with a focus on nature, featuring a beautiful garden and pool area.
+### Mid-Range Hotels
+1. **YOTEL Singapore**: Known for its smart design and technology-driven amenities, located on Orchard Road.
+2. **Hotel G Singapore**: Offers a trendy and affordable stay with easy access to shopping and dining.
+3. **Park Hotel Clarke Quay**: Offers a resort-like atmosphere with a lovely pool area near the vibrant Clarke Quay.
 
-When choosing a place to stay, consider your itinerary, preferred neighborhoods, and budget to find the best fit for your trip!",
+### Budget Accommodations
+1. **CapsulePod@Aljunied**: A modern capsule hotel offering a unique experience at a budget-friendly price.
+2. **The Pod Boutique Capsule Hotel**: Located in the Kampong Glam area, offering stylish and comfortable capsule accommodations.
+3. **Hotel 81**: A budget hotel chain with multiple locations across Singapore, offering basic amenities at affordable rates.
+
+### Serviced Apartments
+1. **Ascott Raffles Place**: Offers luxurious serviced apartments in the heart of the financial district.
+2. **Fraser Suites Singapore**: Provides spacious serviced apartments with family-friendly amenities.
+3. **Oakwood Premier AMTD Singapore**: Offers a blend of hotel-like services and the comfort of a home.
+
+When choosing a place to stay, consider factors such as location, proximity to public transport, amenities, and your budget. Singapore's efficient public transport system makes it easy to explore the city from almost anywhere.",Compared with ChatGPT response
 complex,"I am a foreigner and have just lost my job. However, my rental period has not finished but my work permit will be expiring. How can I terminate my rental agreement and are there any penalties?","The tenancy agreement may be terminated under the Diplomatic Clause. If you have been refused permission by the Singapore Government to work or reside in Singapore,  it shall be lawful for the Tenant to determine the tenancy by giving not less than 2 months' notice or paying 2 months' Rent in lieu of such notice. Documentary evidence shall be provided on or before the last day of the termination date.
 Source: Page 8 of ALL TENANCY CLAUSES.pdf
 Source Text Preview: (c) DIPLOMATIC CLAUSE
-That if at any time after the expiration of 12 months from the date of the commencement of the Tenancy Agreement, _____________________ (_____________________) shall be: (i) deported from Singapore; or (ii) refused permission by the Singapore Government to work or reside in Singapore...","Based on the context provided, you may be able to terminate your rental agreement by exercising the diplomatic clause if you are deported, refused permission to work or reside in Singapore, or relocated to another country. You would need to provide documentary evidence of your situation. 
+That if at any time after the expiration of 12 months from the date of the commencement of the Tenancy Agreement, _____________________ (_____________________) shall be: (i) deported from Singapore; or (ii) refused permission by the Singapore Government to work or reside in Singapore...","AI Assistant: If your rental agreement includes a diplomatic clause, you may be able to terminate the tenancy without penalties under certain conditions. According to the context provided, after the expiration of 12 months from the commencement of the Tenancy Agreement, you can terminate the agreement if you are deported from Singapore, refused permission by the Singapore Government to work or reside in Singapore, or transferred or relocated from Singapore to another country. You need to provide at least 2 months' notice or pay 2 months' rent in lieu of such notice. Additionally, you must provide documentary evidence of your situation on or before the last day of the termination date or date of handover.
 
-You can terminate the tenancy by giving not less than 2 months' notice or by paying 2 months' rent in lieu of such notice. Additionally, if you lawfully terminate the agreement, you may be required to reimburse the landlord for the commission paid to the agency on a pro-rata basis for the remaining period of the tenancy.
+If you lawfully terminate the agreement under the diplomatic clause, you may also need to reimburse the landlord for the commission paid to the agency on a pro-rata basis for the remaining period of the tenancy. 
 
-It is advisable to review your specific tenancy agreement and consult with a legal professional or the landlord for further clarification on penalties and the termination process.",
+It's important to review your specific tenancy agreement for any additional terms and consult with your landlord or a legal advisor to ensure you follow the correct procedure.
+
+・EE・EE・EE・EE Sources: Page 7 of PDF
+
+ ・EE・EE・EE・EE Source Text Preview : day) x number of days payment is late. 
+(c) DIPLOMATIC CLAUSE 
+That if at any time after the expiration of 12 months from the date of the commencement...",
 easy,What is the interest rate for late payment of rent?,"The interest rate for rent arrears is 10% on an annual basis.
 Source: Page 8 of ALL TENANCY CLAUSES.pdf
 Source Text Preview: (b) INTEREST FOR RENT ARREARS
-In the event the Rent remains unpaid for 7 calendar days after becoming payable (whether formally demanded or not) it shall be lawful for the Landlord to claim an interest at 10% on an annual basis...",The interest rate for late payment of rent is 10% on an annual basis.,
+In the event the Rent remains unpaid for 7 calendar days after becoming payable (whether formally demanded or not) it shall be lawful for the Landlord to claim an interest at 10% on an annual basis...","AI Assistant: The interest rate for late payment of rent is 10% on an annual basis.
+
+・EE・EE・EE・EE Sources: Page 7 of PDF
+
+ ・EE・EE・EE・EE Source Text Preview : 8 
+ 
+for the Landlord at any time thereafter to re-enter upon the Premises or any part thereof and thereupon this 
+tenancy shall absolutely terminate ...",
 complex,"I'm currently bankrupt and unable to pay the rent that I have owed, can I still stay at the premises and what do I have to do?","You may be unable to stay at the premises as the Landlord is obliged to re-enter the premises and terminate the tenancy agreement. You are advised to contact the Landlord for more information on your situation.
 Source: Page 7 of ALL TENANCY CLAUSES.pdf
 Source Text Preview: (a) DEFAULT OF TENANT
-If (i) the Rent hereby reserved shall be unpaid for 7 days after being payable (whether formally demanded or not), (ii) the Tenant becomes bankrupt or enter into composition...",I don't know.,
-complex,what is the price difference for renting 1 bedroom in 2024 versus 2025?,The price difference of renting 1 bedroom is $7.69 as the mean rental price of 1 bedroom units is $1100 in 2024 and $1107.69 in 2025.,"Here are the average rental prices for 1 bedroom properties in 2024 and 2025:
+If (i) the Rent hereby reserved shall be unpaid for 7 days after being payable (whether formally demanded or not), (ii) the Tenant becomes bankrupt or enter into composition...","AI Assistant: Based on the context provided, if the premises are unfit for occupation and use due to damage by fire, lightning, riot, explosion, or any other cause not within your control, the rent may be suspended or reduced proportionally. However, bankruptcy itself is not mentioned as a condition for suspending rent. 
 
-| Year | Average Rental Price (SGD) |
-|------|-----------------------------|
-| 2024 | 1101.23                     |
-| 2025 | 1105.00                     |
+If your inability to pay rent is due to financial issues like bankruptcy, you should communicate with your landlord to discuss your situation and explore possible solutions, such as a payment plan or temporary rent reduction. Legal advice may also be beneficial to understand your rights and options in your specific situation.
 
-### Price Difference
-The price difference for renting a 1 bedroom in 2025 compared to 2024 is approximately:
+・EE・EE・EE・EE Sources: Page 8 of PDF
 
-- **1105.00 - 1101.23 = 3.77 SGD**
-
-Thus, the average rental price for a 1 bedroom increased by about **3.77 SGD** from 2024 to 2025.",
-easy,what is the cheapest rental price for houses in Orchard,The lowest rental price for a unit in Orchard is $1000. ,"The cheapest rental price for houses (landed properties) in Orchard is **10,000 SGD**.",
-easy,what is the highest rental price for a unit in Sengkang?,The highest rental price for a unit in Sengkang is $7900.,The highest rental price for a unit in Sengkang is **7900 SGD**.,
-moderate,how many 4 room HDB units are available for rent in Bukit Merah?,There are 67 units for rent in Bukit Merah.,"There are **82** available 4-room HDB units for rent in Bukit Merah. 
-
-If you need more details about these properties, feel free to ask!",
-complex,what is the range of rental prices for houses in June 2024.,The range of prices in June 2024 is from $1100 to $5400.,"The data I have access to does not include rental prices for June 2024, as it only contains historical data. If you would like, I can provide you with the range of rental prices for the available data in the dataframe. Would you like me to do that?",
-complex,what is the average size of 3 room HDB flats?,The mean floor area in sqm of 3 room HDB flats is 68.0153.,The average size of 3-room HDB flats is approximately **39.69 square meters**.,
-moderate,How far is the average unit in Bedok from the CBD?,13.308,"The distance from Bedok to the Central Business District (CBD) in Singapore is approximately 12 to 15 kilometers, depending on the specific starting point in Bedok and the route taken. Travel time can vary based on traffic conditions and the mode of transportation, but it typically takes around 20 to 30 minutes by car or taxi, and about 30 to 45 minutes by public transport.",
-moderate,How many currently available units are near to Tampines MRT?,119,"There are currently **288 available units** near Tampines MRT. If you need more details about these units, feel free to ask!",
-complex,What percentage of 4-room or 5-room HDB units available now are under $4500 rent per month?,73.39%,"To find the percentage of available 4-room or 5-room HDB units that are under $4500 rent per month, I performed the following calculations:
-
-1. **Count of available 4-room or 5-room units under $4500**: 2325 units.
-2. **Total count of available 4-room or 5-room units**: 3287 units.
-
-Now, I can calculate the percentage:
-
-\[
-\text{Percentage} = \left( \frac{\text{Count under } 4500}{\text{Total Count}} \right) \times 100 = \left( \frac{2325}{3287} \right) \times 100 \approx 70.76\%
-\]
-
-Thus, approximately **70.76%** of the available 4-room or 5-room HDB units are under $4500 rent per month.",
-moderate,What is the median room floor area of properties that are near Admiralty MRT station?,22,The median floor area of properties near Admiralty MRT station is **22.0 square meters**.,
-moderate,My parents stay on Choa Chu Kang Street 53. How many units available now in that area?,6,"There are currently no available rental units on Choa Chu Kang Street 53. If you have any other areas or criteria in mind, feel free to ask!",
-complex,"Units currently available in Bukit Merah, how many of them are on a high storey? Like 15th floor and above?",69,There are currently **69 available units** in Bukit Merah that are on the 15th floor or above.,
-complex,What is the average rent of units currently available in Geylang with floor area more than 100 sqm?,8610,The average rent of units currently available in Geylang with a floor area of more than 100 sqm is **8610 SGD**.,
-moderate,I am interested in staying in the Blossom Mansions. Do you know what is the nearest MRT station?,Paya Lebar MRT Station,"Blossom Mansions is located in Singapore, and the nearest MRT station is typically the Novena MRT Station, which is part of the North-South Line. It's a good idea to check a map or a navigation app for the most accurate and current information regarding public transport options and walking distances.",
-moderate,How far is it in meters?,295,"To provide an accurate answer, I need to know the specific distance or location you are referring to. Could you please provide more details?",
-moderate,I want to send my son to Raffles Institution. How many available units are near to it? ,2,"There are **2 available units** near Raffles Institution. Here are the details:
-
-| Town               | Flat Type   | Block / Building | Street Name | Rental Status | Nearest MRT               | Distance to Nearest School (km) |
-|--------------------|-------------|------------------|-------------|---------------|---------------------------|----------------------------------|
-| BISHAN             | EXECUTIVE   | 301              | SHUNFU RD   | AVAILABLE      | MARYMOUNT MRT STATION     | 0.094                            |
-| BISHAN, ANG MO KIO| Terrace House| CLOVER PARK      | CLOVER WAY  | AVAILABLE      | BISHAN MRT STATION        | 0.432                            |
-
-If you need more information or assistance, feel free to ask!",
-moderate,What is the average rent for those units?,9050,"Could you please specify which type of units you are referring to? For example, are you asking about a specific flat type (e.g., ""2 bedroom"", ""3 room"") or a particular town or property type (e.g., ""HDB Flat"", ""Condo"")? This will help me provide you with the most accurate average rental price.",
-moderate,How far is the nearest one from the school? In meters,402.4,"To provide an accurate answer, I would need to know the specific school you are referring to and what you mean by ""the nearest one."" Are you asking about the nearest landmark, facility, or something else? Please provide more details so I can assist you better.",
-complex,I want to stay near Catholic High. The unit must be at least 120 square meters. How many units available now meet my requirements?,5,"There are currently **5 available units** that meet your requirements of being at least 120 square meters and located near Catholic High. Here are the details of these units:
-
-| Town                | Flat Type            | Block / Building               | Street Name        | Floor Area (sqm) | Rental Status |
-|---------------------|---------------------|--------------------------------|--------------------|------------------|---------------|
-| BISHAN              | 5 ROOM              | 290                            | BISHAN ST 24       | 120.0            | AVAILABLE     |
-| BISHAN              | EXECUTIVE           | 222                            | BISHAN ST 23       | 120.0            | AVAILABLE     |
-| BISHAN              | 5 ROOM              | 291                            | BISHAN ST 24       | 120.0            | AVAILABLE     |
-| BISHAN              | EXECUTIVE           | 222                            | BISHAN ST 23       | 120.0            | AVAILABLE     |
-| BISHAN, ANG MO KIO | Semi-Detached House | LANDED HOUSING DEVELOPMENT     | JALAN BINCHANG     | 120.0            | AVAILABLE     |
-
-If you need more information about any specific unit or further assistance, feel free to ask!",
-moderate, want to stay less than 400m from Novena MRT Station. How many units are available for me?,5,"I'm having trouble accessing the property data analysis right now. Your question ' want to stay less than 400m from Novena MRT Station. How many units are available for me?' seems to be about property-related matters. Please try again in a moment, or contact our support team for immediate assistance.",
-moderate,"Out of those units, what is the cheapest rent?",4600,I would need more specific information about the units you're referring to in order to help you find the cheapest rent. Please provide details about the units or the location you're interested in.,
-moderate,How far is it from the MRT in meters?,251.4,"To provide an accurate answer, I would need to know the specific location you are referring to in relation to the MRT (Mass Rapid Transit) station. Please provide more details about the starting point or destination you have in mind.",
-moderate,Currently available terrace houses in Seletar area. What's the mean rent?,12753.85,"Here are the currently available terrace houses in the Seletar area:
-
-| Town    | Flat Type        | Block / Building        | Rental Price (SGD) | Nearest MRT Name          |
-|---------|------------------|-------------------------|---------------------|---------------------------|
-| SELETAR | Terrace House     | LUXUS HILLS             | 15000               | FERNVALE LRT STATION      |
-| SELETAR | Terrace House     | SELETAR HILLS ESTATE    | 12000               | FERNVALE LRT STATION      |
-| SELETAR | Terrace House     | MIMOSA TERRACE          | 14000               | YIO CHU KANG MRT STATION  |
-| SELETAR | Terrace House     | SARACA GARDENS          | 13000               | YIO CHU KANG MRT STATION  |
-| SELETAR | Terrace House     | LUXUS HILLS             | 16000               | FERNVALE LRT STATION      |
-| SELETAR | Terrace House     | MIMOSA TERRACE          | 15500               | YIO CHU KANG MRT STATION  |
-| SELETAR | Terrace House     | GERALD GARDENS          | 14500               | FERNVALE LRT STATION      |
-| SELETAR | Terrace House     | STRATTON GREEN          | 13500               | FERNVALE LRT STATION      |
-| SELETAR | Terrace House     | SELETAR HILLS ESTATE    | 12500               | FERNVALE LRT STATION      |
-| SELETAR | Terrace House     | THE MORNING DEW         | 11000               | THANGGAM LRT STATION      |
-| SELETAR | Terrace House     | MIMOSA TERRACE          | 15000               | YIO CHU KANG MRT STATION  |
-| SELETAR | Terrace House     | LUXUS HILLS             | 16000               | FERNVALE LRT STATION      |
-| SELETAR | Terrace House     | SARACA VILLAS           | 14500               | YIO CHU KANG MRT STATION  |
-
-### Mean Rental Price
-The mean rental price for available terrace houses in the Seletar area is approximately **14,682.61 SGD**. 
-
-If you need more details or further assistance, feel free to ask!",
-moderate,Terrace houses in Seletar that are no longer available. What was the average rent for those listings?,12312.5,"It appears that there are no terrace houses or landed properties listed in Seletar that are marked as ""RENTED"" in the dataset. Therefore, I cannot provide an average rental price for those listings. If you have any other queries or need information on different properties, feel free to ask!",
-complex,I am looking for a landed property in either Hillview or Bukit Timah. What is the average rent for those properties?,17977.36,"The average rent for landed properties in either Hillview or Bukit Timah is approximately **17,751.61 SGD**.",
-complex,How many of those are within 300m of an MRT?,8,"To provide an accurate answer, I would need specific data regarding the locations you are referring to and the MRT (Mass Rapid Transit) stations in question. If you can provide more details about the locations or the context, I can help you better.",
-moderate,Average rent of units at Ang Mo Kio Street 31.,3657.14,"It appears that there are no rental listings for units specifically at ""Ang Mo Kio Street 31"" in the dataset. If you would like, I can check for rental listings in the broader Ang Mo Kio area or any other specific criteria you have in mind. Please let me know!",
+ ・EE・EE・EE・EE Source Text Preview : 9 
+ 
+applicable, shall pay the agency renewal commission in accordance to the CEA Agreement signed between 
+the relevant parties. 
+(i) UNTENANTABILITY...",Bot cannot link the clause on default of tenant to the term cannot pay rent
+complex,what is the price difference for renting 1 bedroom in 2024 versus 2025?,The price difference of renting 1 bedroom is $7.69 as the mean rental price of 1 bedroom units is $1100 in 2024 and $1107.69 in 2025.,"The dataset does not contain future data for 2024 and 2025, as it is based on historical data. Therefore, I cannot provide information on rental price differences for those years. If you have any other queries or need information based on the available data, please let me know!",Bot somehow says 2024 and 2025 are future dates and claim the dataset is based on historical data. So it refuses to execute any python code
+easy,what is the cheapest rental price for houses in Orchard,The lowest rental price for a unit in Orchard is $1000. ,"The cheapest rental price for houses in Orchard is 10,000 SGD per month.",Bot interpret houses as landed properties only. Depends on whether we say the bot is correct in inferring houses as landed type
+easy,what is the highest rental price for a unit in Sengkang?,The highest rental price for a unit in Sengkang is $7900.,"The highest rental price for a unit in Sengkang is 7,900 SGD.",
+moderate,how many 4 room HDB units are available for rent in Bukit Merah?,There are 38 units for rent in Bukit Merah.,There are 82 available 4-room HDB units for rent in Bukit Merah.,82 is inclusive of single bedroom rental types. 38 is for pure 4-room types.
+complex,what is the range of rental prices for houses in June 2024.,The range of prices in June 2024 is from $1100 to $5400.,"It appears that there are no properties listed in June 2024 in the dataset, as indicated by the NaN values for the rental price range. Therefore, there is no available data on rental prices for that specific month. If you have any other queries or need information for a different time period, feel free to ask!",Bot runs code to find specified month in datetime format and fails to find any records
+complex,what is the average size of 3 room HDB flats?,The mean floor area in sqm of 3 room HDB flats is 68.0153.,The average size of 3-room HDB flats is approximately 39.94 square meters.,"Bot runs correctly to find all 3-room flats including those with single bedroom, hence it returns a lower number"
+moderate,How far is the average unit in Bedok from the CBD?,The average distance of units in Bedok is 12.94km away from CBD,The average distance of the rental units in Bedok from the Central Business District (CBD) is approximately 12.94 kilometers.,
+moderate,How many currently available units are near to Tampines MRT?,There are 119 currently available units near Tampines MRT.,There are 288 currently available units near Tampines MRT.,"Bot match all records with tampines included in name, which also included tampines east and west stations"
+complex,What percentage of 4-room or 5-room HDB units available now are under $4500 rent per month?,Approximately 70.7% of the available 4-room or 5-room HDB units are under $4500 rent per month.,Approximately 70.85% of the available 4-room or 5-room HDB units are under $4500 rent per month.,"If ignoring the bedroom rental type problem, the bot is correct"
+moderate,What is the median room floor area of properties that are near Admiralty MRT station?,The median room floor area of properties that are near Admiralty MRT station is 22.0 square meters.,The median room floor area of properties that are near Admiralty MRT station is 22.0 square meters.,
+moderate,My parents stay on Choa Chu Kang Street 53. How many units available now in that area?,There are 6 units available on Choa Chu Kang Street 53.,There are currently 6 units available for rent on Choa Chu Kang Street 53.,
+complex,"Units currently available in Bukit Merah, how many of them are on a high storey? Like 15th floor and above?",There are 74 units currently available in Bukit Merah that are on a high storey.,"There are 74 units currently available in Bukit Merah that are on a high storey, specifically the 15th floor and above.",
+complex,What is the average rent of units currently available in Geylang with floor area more than 100 sqm?,"The average rent of units currently available in Geylang with a floor area of more than 100 sqm is approximately SGD 9,592.50.","The average rent of units currently available in Geylang with a floor area of more than 100 sqm is approximately SGD 9,592.50.",
+moderate,I am interested in staying in the Blossom Mansions. Do you know what is the nearest MRT station?,The nearest MRT station to Blossom Mansions is Paya Lebar MRT Station.,"Blossom Mansions is located in Singapore, and the nearest MRT station is usually the Paya Lebar MRT station. This station is an interchange for the East West Line and the Circle Line, making it convenient for traveling to various parts of the city. However, it's always a good idea to check a current map or local resources for the most accurate and up-to-date information.",Model treats this as a general query but still correct
+moderate,How far is it in meters?,It is 295m away from the MRT.,"I'm sorry, but your question is incomplete. Could you please provide more context or specify the two locations or points you're asking about?",Model treats this as a general query
+moderate,I want to send my son to Raffles Institution. How many available units are near to it? ,There are 2 available units near Raffles Institution.,There are 2 available units near Raffles Institution.,
+moderate,What is the average rent for those units?,The average rent for those units is $9050.,"To provide you with the average rental prices, I need to know which specific units or criteria you're referring to. Could you please specify the type of units or any particular criteria (e.g., location, flat type, availability) you are interested in?",Bot does not have memory of past query
+moderate,How far is the nearest one from the school? In meters,The nearest unit is 402.4m away from Raffles Institution.,"I'm sorry, but I need more context to provide an accurate answer. Could you please specify what you are referring to as ""the nearest one""? Are you asking about a specific location or facility near a particular school?",Bot does not have memory of past query
+complex,I want to stay near Catholic High. The unit must be at least 120 square meters. How many units available now meet my requirements?,There are 5 units available now that meet your requirements of being near Catholic High and having a floor area of at least 120 square meters.,There are 5 units available now that meet your requirements of being near Catholic High and having a floor area of at least 120 square meters.,
+moderate, want to stay less than 400m from Novena MRT Station. How many units are available for me?,There are 5 units available for rent within 400 meters of Novena MRT Station.,There are 5 units available for rent within 400 meters of Novena MRT Station.,
+moderate,"Out of those units, what is the cheapest rent?",The cheapest rent for those 5 units is $4600.,"I'm sorry, but I need more context to provide an accurate answer. Could you please specify which units or location you are referring to?",Bot does not have memory of past query
+moderate,How far is it from the MRT in meters?,It is 251.4m away from Novena MRT Station.,"To provide an accurate answer, I would need more specific information about the location you are referring to in relation to the MRT (Mass Rapid Transit) station. The distance can vary significantly depending on which MRT station and the specific location you have in mind. If you can provide the names or details of both the MRT station and the destination, I can help estimate the distance.",Bot does not have memory of past query
+moderate,Currently available terrace houses in Seletar area. What's the mean rent?,"The mean rental price for currently available terrace houses in the Seletar area is approximately SGD 12,754.","The mean rental price for currently available terrace houses in the Seletar area is approximately SGD 12,754.",
+moderate,Terrace houses in Seletar that are no longer available. What was the average rent for those listings?,The average rental price for terrace houses in Seletar that are no longer available was approximately SGD 12312.5.,"The average rental price for terrace houses in Seletar that are no longer available was approximately SGD 14,931.25.","Bot run into error with searching landed housing development in block, then tries to find landed in property type to give all landed houses including semi-D instead of terrace houses only"
+complex,I am looking for a landed property in either Clementi or Bukit Timah. What is the average rent for those properties?,"The average monthly rental price for landed properties in Clementi or Bukit Timah is approximately SGD 18,268.42.","The average monthly rental price for landed properties in Clementi or Bukit Timah is approximately SGD 18,268.42.",
+complex,How many of those are within 1000m of an MRT?,There are 3 unts within 1000m of an MRT.,"I'm sorry, but I need more context to provide an accurate answer. Could you please specify what you are referring to by ""those""? Are you talking about properties, businesses, or something else? Additionally, the location or city you're referring to would be helpful.",Bot does not have memory of past query
+moderate,Average rent of units at Ang Mo Kio Street 31.,The average rent of units at Ang Mo Kio Street 31 is $3657.14.,"The average rental price of units at Ang Mo Kio Street 31 is approximately SGD 3,657.",

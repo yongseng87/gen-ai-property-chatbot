@@ -1,5 +1,5 @@
 import pandas as pd
-from model import PropertySupportBot
+from model_v2 import PropertySupportBot
 
 # This file is for testing the PropertySupportBot with various queries and collecting the responses.
 
@@ -7,7 +7,7 @@ from model import PropertySupportBot
 support_bot = PropertySupportBot()
 
 # Read the question-answer pairs
-df = pd.read_csv("./question_answer_pair/qa_pair_model_test_results_v4.csv", encoding="ISO-8859-1")
+df = pd.read_csv("./question_answer_pair/qa_pair_model_test_results_v5.csv", encoding="ISO-8859-1")
 
 # Test various query types
 test_queries = df["template_qn"].tolist()
@@ -43,4 +43,4 @@ for query in test_queries:
     i += 1
 
 # Save the updated dataframe to a new CSV file
-df.to_csv("./question_answer_pair/qa_pair_model_test_results_v5.csv", index=False)
+df.to_csv("./question_answer_pair/qa_pair_model_test_results_v5.1.csv", index=False)
