@@ -7,6 +7,9 @@ from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
 from bert_score import score as bert_score
 
 
+# ===============================================================
+# Text Evaluator
+# ===============================================================
 class ChatbotEvaluator:
     """Evaluator for text-based chatbot responses (semantic and linguistic quality)."""
     def __init__(self):
@@ -15,9 +18,6 @@ class ChatbotEvaluator:
         )
         self.smooth_fn = SmoothingFunction().method1
 
-    # ---------------------------
-    # ROUGE evaluation (per-sample)
-    # ---------------------------
     def evaluate_rouge(self, references, candidates):
         results = {'rouge1': [], 'rouge2': [], 'rougeL': []}
         sample_scores = []
@@ -30,13 +30,9 @@ class ChatbotEvaluator:
             })
             for key in results:
                 results[key].append(scores[key].fmeasure)
-
         avg_scores = {k: sum(v) / len(v) for k, v in results.items()}
         return avg_scores, sample_scores
 
-    # ---------------------------
-    # BLEU evaluation (per-sample)
-    # ---------------------------
     def evaluate_bleu(self, references, candidates):
         scores = []
         for ref, cand in zip(references, candidates):
@@ -51,9 +47,6 @@ class ChatbotEvaluator:
         avg_bleu = sum(scores) / len(scores)
         return avg_bleu, scores
 
-    # ---------------------------
-    # BERTScore evaluation (per-sample)
-    # ---------------------------
     def evaluate_bertscore(self, references, candidates, lang="en"):
         P, R, F1 = bert_score(candidates, references, lang=lang)
         sample_scores = [{'precision': float(p), 'recall': float(r), 'f1': float(f)}
@@ -65,9 +58,6 @@ class ChatbotEvaluator:
         }
         return avg_scores, sample_scores
 
-    # ---------------------------
-    # Combined evaluation (per-sample + overall)
-    # ---------------------------
     def evaluate_combined(self, references, candidates, weights=(0.1, 0.4, 0.5)):
         rouge_avg, rouge_samples = self.evaluate_rouge(references, candidates)
         bleu_avg, bleu_samples = self.evaluate_bleu(references, candidates)
@@ -80,7 +70,7 @@ class ChatbotEvaluator:
             rouge_mean = np.mean(list(rouge_samples[i].values()))
             bleu_norm = bleu_samples[i]
             bert_f1 = bert_samples[i]['f1']
-            bert_norm = (bert_f1 - 0.8) / (1.0 - 0.8)  # normalize roughly 0.8–1.0
+            bert_norm = (bert_f1 - 0.8) / (1.0 - 0.8)  # normalize 0.8–1.0
 
             composite = (
                 w_bleu * bleu_norm +
@@ -104,17 +94,16 @@ class ChatbotEvaluator:
             'bertscore': bert_avg,
             'composite_score': overall_composite
         }
-
         return {'overall': overall, 'per_sample': per_sample_results}
 
 
 # ===============================================================
-# Numeric Evaluator for computation-based chatbot responses
+# Numeric Evaluator
 # ===============================================================
 class NumericEvaluator:
     """Evaluator for numeric outputs (e.g., calculations or factual values)."""
     def __init__(self, tolerance_ratio=0.01):
-        self.tolerance_ratio = tolerance_ratio  # default 1% tolerance
+        self.tolerance_ratio = tolerance_ratio
 
     def evaluate(self, references, candidates):
         references = np.array(references, dtype=float)
@@ -148,28 +137,23 @@ class NumericEvaluator:
 
 
 # ===============================================================
-# Unified Evaluator
+# Unified Evaluator (now supports mixed types)
 # ===============================================================
 class UnifiedEvaluator:
-    """
-    Automatically decides whether to run text or numeric evaluation.
-    - For strings: uses ChatbotEvaluator (BLEU, ROUGE, BERTScore)
-    - For numbers: uses NumericEvaluator (accuracy, MAE, MAPE)
-    """
+    """Evaluates each pair automatically as text or numeric."""
 
     def __init__(self, tolerance_ratio=0.01):
         self.text_eval = ChatbotEvaluator()
         self.numeric_eval = NumericEvaluator(tolerance_ratio=tolerance_ratio)
 
-    def evaluate(self, references, candidates):
-        # Detect if this is numeric or textual
-        is_numeric = all(self._is_number(x) and self._is_number(y)
-                         for x, y in zip(references, candidates))
-
-        if is_numeric:
-            return {'type': 'numeric', **self.numeric_eval.evaluate(references, candidates)}
+    def evaluate_row(self, ref, cand):
+        if self._is_number(ref) and self._is_number(cand):
+            result = self.numeric_eval.evaluate([ref], [cand])
+            return {'type': 'numeric', **result['per_sample'][0]}
         else:
-            return {'type': 'text', **self.text_eval.evaluate_combined(references, candidates)}
+            result = self.text_eval.evaluate_combined([ref], [cand])
+            s = result['per_sample'][0]
+            return {'type': 'text', **s}
 
     @staticmethod
     def _is_number(x):
@@ -181,53 +165,47 @@ class UnifiedEvaluator:
 
 
 # ===============================================================
-# Example usage
+# Example usage — mixed evaluation
 # ===============================================================
 if __name__ == "__main__":
-    # --- Example 1: Text-based ---
+    # Load your CSV
+    df = pd.read_csv("qa_pair_model_test_results_v5.1.csv", encoding="latin-1")
 
-    # Load the CSV file
-    df = pd.read_csv("qa_pair_for_testing.csv", encoding="latin-1")
-
-    # Ensure required columns exist
     required_cols = {"template_ans", "model_ans", "difficulty"}
     if not required_cols.issubset(df.columns):
         raise ValueError(f"CSV must contain columns: {required_cols}")
 
-    # Extract the lists
-    text_refs = df["template_ans"].tolist()
-    text_cands = df["model_ans"].tolist()
-
     evaluator = UnifiedEvaluator(tolerance_ratio=0.02)
 
-    print("=== Text Evaluation ===")
-    print(evaluator.evaluate(text_refs, text_cands))
+    print("=== Evaluating responses row by row ===")
+    all_results = []
+    for _, row in df.iterrows():
+        res = evaluator.evaluate_row(row["template_ans"], row["model_ans"])
+        res["difficulty"] = row["difficulty"]
+        all_results.append(res)
 
-    #print("\n=== Numeric Evaluation ===")
-    #print(evaluator.evaluate(numeric_refs, numeric_cands))
+    per_sample_df = pd.DataFrame(all_results)
 
-results = evaluator.evaluate(text_refs, text_cands)
+    # --- Aggregate scores by difficulty (text-only metrics) ---
+    text_metrics = ['composite_score', 'bleu', 'rouge1', 'rouge2', 'rougeL',
+                    'precision', 'recall', 'f1']
+    numeric_metrics = ['abs_error', 'rel_error_%', 'is_correct']
 
-# Convert the per-sample data to a DataFrame
-per_sample_df = pd.DataFrame(results["per_sample"])
+    # Aggregation handling (only apply relevant metrics per type)
+    agg_by_difficulty = (
+        per_sample_df.groupby("difficulty")
+        .apply(lambda g: g[text_metrics + numeric_metrics].mean(numeric_only=True))
+        .reset_index()
+    )
 
-# Merge difficulty back into per-sample evaluation
-per_sample_df["difficulty"] = df["difficulty"]
+    # --- Save results ---
+    per_sample_df.to_csv("evaluation_per_sample.csv", index=False)
+    agg_by_difficulty.to_csv("evaluation_by_difficulty.csv", index=False)
 
-# --- Aggregate scores by difficulty ---
-metrics = ['composite_score', 'bleu', 'rouge1', 'rouge2', 'rougeL', 'precision', 'recall', 'f1']
+    with open("evaluation_results.json", "w") as f:
+        json.dump(all_results, f, indent=2)
 
-# Mean per difficulty
-agg_by_difficulty = per_sample_df.groupby("difficulty")[metrics].mean().reset_index()
-
-total_composite_score = per_sample_df["composite_score"].mean()
-
-# Save overall raw results
-with open("evaluation_results.json", "w") as f:
-    json.dump(results, f, indent=2)
-
-# Save per-sample evaluation
-per_sample_df.to_csv("evaluation_per_sample.csv", index=False)
-
-# Save aggregated by difficulty
-agg_by_difficulty.to_csv("evaluation_by_difficulty.csv", index=False)
+    print("✅ Evaluation completed. Results saved to:")
+    print(" - evaluation_per_sample.csv")
+    print(" - evaluation_by_difficulty.csv")
+    print(" - evaluation_results.json")
