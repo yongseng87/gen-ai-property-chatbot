@@ -392,6 +392,19 @@ with st.sidebar:
     if st.button("🗑️ Clear Conversation", use_container_width=True):
         st.session_state.messages = [st.session_state.messages[0]]
         st.rerun()
+    
+    st.markdown("---")
+    
+    # Agent Information
+    st.markdown("#### 🏢 Contact Us")
+    st.sidebar.image("1762784112385.jpg", use_container_width=True)
+    st.markdown("<h3 style='text-align: center; font-weight: bold;'>Jack Sparrow</h3>", unsafe_allow_html=True)
+    st.markdown("If you are interested in any property and will like further assistance, please reach out to our friendly agent!")
+    st.markdown("📞 Phone: +65 9123 4567")
+    st.markdown("✉️ Email: jacksparrow@proprex.com")
+    
+    st.markdown("---")
+   
 
 # Main content area based on selected view
 if st.session_state.current_view == 'lease_agreement':
