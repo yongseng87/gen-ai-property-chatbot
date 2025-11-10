@@ -177,7 +177,7 @@ class PropertySupportBot:
                     if result.get('source_documents'):
                         print(f"📄 Sources: Page {result['source_documents'][0].metadata.get('page', 'Unknown')} of PDF")
                         print(f"📝 Source Text Preview: {result['source_documents'][0].page_content[:150]}...")
-                        display_content = f"AI Assistant: {result['result']}\n\n📄 Sources: Page {result['source_documents'][0].metadata.get('page', 'Unknown')} of PDF\n\n 📝 Source Text Preview : {result['source_documents'][0].page_content[:150]}..."
+                        display_content = f"AI Assistant: {result['result']}\n\n📄 Sources: Page {result['source_documents'][0].metadata.get('page', 'Unknown')+1} of PDF\n\n 📝 Source Text Preview : {result['source_documents'][0].page_content[:150]}..."
                     return display_content
                 except Exception as e:
                     print(f"❌ PDF QA error: {e}")
@@ -320,8 +320,8 @@ if __name__ == "__main__":
 
     # Test various query types
     test_queries = [
-        "what is the mean price of all flats in Bishan?",
-        "recommend me a place to rent that is near to Ai Tong School",
+        "Average rent of units at Ang Mo Kio Street 31.",
+        # "recommend me a place to rent that is near to Ai Tong School",
         # "Do I need to pay for repairs in my rental unit?",
         # "how to invest in stocks for beginners?",
     ]

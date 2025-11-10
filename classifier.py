@@ -25,6 +25,7 @@ This module handles messages related to inventory management, which can include:
 - Requests for summaries of transaction data for reporting purposes
 - Requests for insights into popular property features and unit types based on transaction history
 - Requests for assistance in identifying suitable properties based on user-defined criteria
+- Requests for data on distances away from the MRT, schools, or CBD
 """
 
 CONTEXT = (
