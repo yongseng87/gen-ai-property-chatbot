@@ -197,11 +197,9 @@ if 'messages' not in st.session_state:
             'role': 'assistant',
             'content': '''Hello! I'm your Tenant AI Assistant. I can help you with:
 
-• Property matching & search
-• Schedule property viewings
+• Property matching & search \n
+• Provide rental market insights \n
 • Answer tenancy agreement questions
-• Handle maintenance requests
-• Provide rent payment information
 
 How can I assist you today?''',
             'timestamp': datetime.now()
@@ -319,7 +317,7 @@ with st.sidebar:
     # Main navigation buttons
     nav_col1, nav_col2 = st.columns(2)
     with nav_col1:
-        if st.button("💬 Lease Agreement", use_container_width=True, key="nav_lease"):
+        if st.button("💬 Property Support Chatbot", use_container_width=True, key="nav_lease"):
             st.session_state.current_view = 'lease_agreement'
             st.rerun()
 
@@ -402,7 +400,7 @@ if st.session_state.current_view == 'lease_agreement':
     
     with col2:
         # Title
-        st.markdown('<div class="main-title">📄 Lease Agreement Assistant</div>', unsafe_allow_html=True)
+        st.markdown('<div class="main-title">📄 Property Support Assistant for Lease Agreement and Property Search</div>', unsafe_allow_html=True)
         st.markdown('<div class="subtitle"><span class="status-online">● Online</span> | Powered by AI • RAG Technology</div>', unsafe_allow_html=True)
         
         # Message display area
