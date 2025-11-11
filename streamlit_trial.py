@@ -879,30 +879,6 @@ elif st.session_state.current_view == 'property_statistics':
                     else:
                         st.info("Dataset does not include latitude/longitude columns, so the map cannot be displayed.")
         
-        # AI-powered insights
-        st.markdown('<div class="text-box">### 🧠 AI-Powered Insights</div>', unsafe_allow_html=True)
-        
-        if ai_bot is not None:
-            insight_queries = [
-                "Analyze property performance trends",
-                "What are the maintenance patterns?",
-                "Identify occupancy optimization opportunities"
-            ]
-            
-            selected_insight = st.selectbox(
-                "Choose an insight to generate:",
-                insight_queries,
-                key="insight_selector"
-            )
-            
-            if st.button("🔍 Generate Insight", key="generate_insight"):
-                with st.spinner("🤖 AI is analyzing data..."):
-                    import asyncio
-                    insight_response = asyncio.run(ai_bot.process_query_async(selected_insight))
-                    st.markdown("#### 💡 AI Insight:")
-                    st.info(insight_response)
-        else:
-            st.warning("⚠️ AI model not available for insights generation")
 
         # Close scoped wrapper
         st.markdown('</div>', unsafe_allow_html=True)
