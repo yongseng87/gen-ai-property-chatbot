@@ -13,6 +13,14 @@ Other than the main chatbot page, the deployed website also contains a property 
 
 ![Property Statistics Page](statistics.png)
 
+## Repository
+
+* **model_v2.py** - main GenAI model to implement the chatbot.
+* **streamlit_trial.py** - streamlit deployment of the main model. Please refer to below section for how to launch the webpage.
+* **property_data_generator** - folder containing codes and datasets to generate the csv database used by the chatbot for property statistics analysis. The final database used is *property_database_v4.csv*. The folder also contains example tenancy clauses, compiled and stored in *ALL TENANCY CLAUSES.pdf*, covering common tenancy agreement terms as well as property specific rules (HDB/Condo/Apartment/Landed).
+* **question_answer_pair** - folder containing question answer pairs used for evaluation and testing of the model. For each question, a difficulty level (easy/moderate/complex) is assigned, and a sample answer is compared against actual model outputs.
+* **superseded_files** - folder containing old files used to build the model. These files are now obsolete and are replaced by newer versions.
+
 
 ## Getting Started
 
