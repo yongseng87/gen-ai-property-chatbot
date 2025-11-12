@@ -41,7 +41,7 @@ streamlit run streamlit_trial.py
 
 ## Credit
 
-* Lim Kai Xiang 
-* Quek Yong Seng
-* Wen Qianyi (Vivian)
-* Zhang Jiasheng
+* Lim Kai Xiang - kai.xiang@u.nus.edu
+* Quek Yong Seng - e1591852@u.nus.edu
+* Wen Qianyi (Vivian) - qianyi.wen@u.nus.edu
+* Zhang Jiasheng - e1597508@u.nus.edu
