@@ -135,6 +135,13 @@ st.markdown("""
         margin-bottom: 0.5rem;
     }
     
+    .secondary-title {
+        color: #000000;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+    }
+    
     .subtitle {
         color: #000000;
         font-size: 0.9rem;
@@ -586,7 +593,7 @@ elif st.session_state.current_view == 'property_statistics':
                 st.warning("⚠️ The dataset is missing a rental price column. Expected `rental_price` or `monthly_rent`.")
             else:
                 # Filter section
-                st.markdown('<div class="text-box">### 🎛️ Property Filters</div>', unsafe_allow_html=True)
+                st.markdown('<div class="secondary-title text-box"> 🎛️ Property Filters </div>', unsafe_allow_html=True)
 
                 unique_mrt = sorted(property_df['nearest_mrt_name'].dropna().unique()) if 'nearest_mrt_name' in property_df.columns else []
                 unique_towns = sorted(property_df['town'].dropna().unique()) if 'town' in property_df.columns else []
@@ -708,7 +715,7 @@ elif st.session_state.current_view == 'property_statistics':
                 if filtered_df.empty:
                     st.warning("⚠️ No properties match the current filters. Please adjust your criteria.")
                 else:
-                    st.markdown('<div class="text-box">### 📈 Key Metrics</div>', unsafe_allow_html=True)
+                    st.markdown('<div class="secondary-title text-box"> 📈 Key Metrics</div>', unsafe_allow_html=True)
 
                     total_properties = len(filtered_df)
                     avg_price = filtered_df[price_column].mean()
@@ -738,7 +745,7 @@ elif st.session_state.current_view == 'property_statistics':
                     st.markdown("---")
 
                     # Chart section with dimension & metric selection
-                    st.markdown('<div class="text-box">### 📊 Filtered Results Chart</div>', unsafe_allow_html=True)
+                    st.markdown('<div class="secondary-title text-box"> 📊 Filtered Results Chart</div>', unsafe_allow_html=True)
 
                     chart_col1, chart_col2 = st.columns([1.2, 1.2])
                     dimension_label_map = {}
@@ -812,7 +819,7 @@ elif st.session_state.current_view == 'property_statistics':
                     st.markdown("---")
 
                     # Data table of filtered results
-                    st.markdown('<div class="text-box">### 📋 Filtered Properties</div>', unsafe_allow_html=True)
+                    st.markdown('<div class="secondary-title text-box"> 📋 Filtered Properties</div>', unsafe_allow_html=True)
                     display_columns = [
                         "town", "flat_type", "block / building", "street_name", "storey", "property_type",
                         "nearest_mrt_name", price_column, "rental_status", "address"
@@ -846,7 +853,7 @@ elif st.session_state.current_view == 'property_statistics':
                         map_df = map_df.dropna(subset=['latitude', 'longitude'])
 
                         if not map_df.empty:
-                            st.markdown('<div class="text-box">### 🗺️ Map of Filtered Properties</div>', unsafe_allow_html=True)
+                            st.markdown('<div class="secondary-title text-box"> 🗺️ Map of Filtered Properties</div>', unsafe_allow_html=True)
 
                             midpoint = [map_df['latitude'].mean(), map_df['longitude'].mean()]
 
